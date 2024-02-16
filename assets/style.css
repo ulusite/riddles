@@ -1,0 +1,67 @@
+:root {
+    --page-max-width: 1200px;
+    --page-padding: 20px 10%;
+    --border-color: #ddd;
+}
+body {
+    margin: 0 auto;
+    padding: var(--page-padding);
+    max-width: var(--page-max-width);
+    font-family: monospace;
+    font-size: x-large;
+}
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: white;
+    border-bottom: 1px dotted var(--border-color);
+}
+main {
+    margin-top: 150px; /* header height */
+}
+.score-line {
+    color: red;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.smaller {
+    font-size: large;
+    line-height: 36px;;
+}
+.question {
+    font-weight: bold;
+}
+.choice {
+    padding-left: 2rem;
+    text-indent: -2rem
+}
+.mobile label {
+    line-height: 48px;
+}
+.note {
+    display: none;
+    line-height: 20px;
+}
+.note::before {
+    content: "(";
+}
+.note::after {
+    content: ")";
+}
+.answer-point {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.score-line span span,
+.answer-point span span {
+    margin-right: 4px;
+}
+.yes::after {
+    content: "\2713"; /* check mark */
+    color: green;
+}
+.no::after {
+    content: "\2717"; /* ballot X */
+    color: red;
+}
