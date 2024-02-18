@@ -15,6 +15,13 @@ function play(type, frequency, duration, volume){
     oscillatorNode.stop(audioContext.currentTime + duration * 0.001);
 }
 
+function warn() {
+    play('sawtooth', 600, 80);
+    setTimeout(function() {
+        play('sawtooth', 500, 50);
+    }, 80);
+}
+
 function beep() {
     play('sawtooth', 440);
 }

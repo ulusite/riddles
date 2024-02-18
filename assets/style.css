@@ -1,15 +1,43 @@
 :root {
     --page-max-width: 1200px;
     --page-padding: 20px 10%;
-    --border-color: #ddd;
+    --border-color: #ccc;
+    --header-height: 190px;
+    --indent-space: 1.2rem;
+    --input-focus-color: #04AA6D;
+    --btn-hover-bk-color: #06c881;
+    --disabled-color: rgb(84, 84, 84);
+    --disabled-bk-color: rgba(239, 239, 239, 0.3);
 }
+
 body {
     margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+    font-size: large;
+}
+body.desktop {
     padding: var(--page-padding);
     max-width: var(--page-max-width);
-    font-family: monospace;
-    font-size: x-large;
 }
+
+main {
+    margin-top: var(--header-height); /* saving space for the fixed header  */
+    line-height: 32px;
+}
+
+/* common styles */
+.strong {
+    font-weight: bold;
+}
+.smaller {
+    font-size: medium;
+}
+.indent {
+    padding-left: var(--indent-space);
+}
+
+/* header elements styles */
 header {
     position: fixed;
     width: 100%;
@@ -17,51 +45,98 @@ header {
     background-color: white;
     border-bottom: 1px dotted var(--border-color);
 }
-main {
-    margin-top: 150px; /* header height */
+.smile {
+    font-family: monospace;
 }
-.score-line {
+.score-headline {
     color: red;
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
-.smaller {
-    font-size: large;
-    line-height: 36px;;
+.score-headline span span {
+    margin-right: 4px;
 }
-.question {
+
+/* riddle input styles */
+.choice {
+    text-indent: -1.6rem;
+}
+.text-wrapper {
+    margin-bottom: 8px;
+}
+.text-input {
+    line-height: 40px;
+    padding: 0 8px;
     font-weight: bold;
 }
-.choice {
-    padding-left: 2rem;
-    text-indent: -2rem
+.text-input:focus {
+    border-color: var(--input-focus-color);
 }
-.mobile label {
-    line-height: 48px;
+.text-input:disabled {
+    color: black;
 }
-.note {
-    display: none;
-    line-height: 20px;
+.text-input::placeholder {
+    color: red;
+    opacity: 1; /* Firefox */
 }
-.note::before {
-    content: "(";
+.btn {
+    height: 40px;
+    color: #fff;
+    background-color: var(--input-focus-color);;
+    cursor: pointer;
 }
-.note::after {
-    content: ")";
+.btn:focus {
+    background-color: var(--btn-hover-bk-color);
 }
-.answer-point {
+.btn:disabled {
+    color: var(--disabled-color);
+}
+
+input {
+    font-size: medium;
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    outline: none;
+}
+input:disabled {
+    background-color: var(--disabled-bk-color);
+    pointer-events: none;
+    cursor: none;
+}
+
+.correct-answer-wrapper {
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
-.score-line span span,
-.answer-point span span {
+
+/* .your-answer-wrapper {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.your-answer-wrapper span span {
     margin-right: 4px;
+} */
+
+.yes.question-wrapper { /* other elements/no with yes classes don't change color */
+    color: green;
 }
 .yes::after {
     content: "\2713"; /* check mark */
     color: green;
 }
+.no.question-wrapper {
+    color: red;
+}
 .no::after {
     content: "\2717"; /* ballot X */
     color: red;
+}
+
+/* mobile tweaks */
+.mobile label {
+    line-height: 48px;
+}
+.mobile .btn-submit {
+    float: right;
 }

@@ -1,7 +1,8 @@
-var DB = [
+const DB = [
     {
         question: '竹杖芒鞋輕勝馬，一蓑煙雨任平生',
         hint: '小説人物',
+        textBox: false,
         choices: [
             {
                 answer: '賈寶玉',
@@ -16,7 +17,7 @@ var DB = [
                 correct: false
             },
             {
-                answer: '魯達',
+                answer: ['魯達', '魯智深', '鲁达', '鲁智深'],
                 correct: true,
                 note: '清，邱圓，魯智深醉鬧五台山寄生草：煙蓑雨笠卷單行，一任俺，芒鞋破缽隨緣化'
             },
@@ -27,8 +28,37 @@ var DB = [
         ]
     },
     {
-        question: '樓閣玲瓏入五雲，一騎紅塵妃子笑',
+        question: '竹杖芒鞋輕勝馬，一蓑煙雨任平生',
+        hint: '小説人物',
+        textBox: true,
+        choices: [
+            {
+                answer: '賈寶玉',
+                correct: false
+            },
+            {
+                answer: '令狐冲',
+                correct: false
+            },
+            {
+                answer: '林冲',
+                correct: false
+            },
+            {
+                answer: ['魯達', '魯智深', '鲁达', '鲁智深'],
+                correct: true,
+                note: '清，邱圓，魯智深醉鬧五台山寄生草：煙蓑雨笠卷單行，一任俺，芒鞋破缽隨緣化'
+            },
+            {
+                answer: '以上皆非',
+                correct: false
+            }
+        ]
+    },
+    {
+        question: '樓閣玲瓏五雲起，一騎紅塵妃子笑',
         hint: '城市',
+        textBox: false,
         choices: [
             {
                 answer: '成都',
@@ -58,6 +88,7 @@ var DB = [
     {
         question: '小樓一夜聽春雨',
         hint: '美食家多愛',
+        textBox: false,
         choices: [
             {
                 answer: '酒',
@@ -85,6 +116,7 @@ var DB = [
     {
         question: '墾丁之北',
         hint: '植物名',
+        textBox: false,
         choices: [
             {
                 answer: '報春花',
@@ -112,6 +144,7 @@ var DB = [
     {
         question: '熱烘烘的太阳往上爬哟',
         hint: '台灣地名',
+        textBox: true,
         choices: [
             {
                 answer: '春日',
@@ -142,6 +175,7 @@ var DB = [
     {
         question: '山在虛無縹緲間',
         hint: '台灣地名',
+        textBox: true,
         choices: [
             {
                 answer: '萬巒',
@@ -154,7 +188,7 @@ var DB = [
                 note: '南投'
             },
             {
-                answer: '霧峰',
+                answer: ['霧峰', '雾峰'],
                 correct: true,
                 note: '台中'
             },
@@ -172,6 +206,7 @@ var DB = [
     {
         question: '舍南舍北皆春水',
         hint: '台灣地名',
+        textBox: false,
         choices: [
             {
                 answer: '平溪',
@@ -182,8 +217,8 @@ var DB = [
                 correct: false
             },
             {
-                answer: '二重溪',
-                correct: true
+                answer: '四重溪',
+                correct: false
             },
             {
                 answer: '雙溪',
@@ -198,6 +233,7 @@ var DB = [
     {
         question: '兩個黃鷂鳴翠柳',
         hint: '台灣地名',
+        textBox: true,
         choices: [
             {
                 answer: '燕巢',
@@ -205,7 +241,7 @@ var DB = [
                 note: '高雄'
             },
             {
-                answer: '鶯歌',
+                answer: ['鶯歌', '莺歌'],
                 correct: true,
                 note: '新北'
             },
@@ -224,5 +260,5 @@ var DB = [
                 correct: false
             }
         ]
-    }
+    },
 ];
