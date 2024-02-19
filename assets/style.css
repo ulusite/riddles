@@ -1,24 +1,26 @@
 :root {
-    --page-max-width: 1200px;
+    --page-max-width: 960px;
     --page-padding: 20px 10%;
     --border-color: #ccc;
-    --header-height: 190px;
+    --header-height: 220px;
     --indent-space: 1.2rem;
     --input-focus-color: #04AA6D;
     --btn-hover-bk-color: #06c881;
     --disabled-color: rgb(84, 84, 84);
     --disabled-bk-color: rgba(239, 239, 239, 0.3);
+    --font-family-en: monospace;
+    --btn-pass-bk-color: #1a73e8;
 }
 
 body {
     margin: 0 auto;
-    padding: 20px;
     font-family: sans-serif;
     font-size: large;
+    padding: 20px;
 }
 body.desktop {
-    padding: var(--page-padding);
     max-width: var(--page-max-width);
+    padding: var(--page-padding);
 }
 
 main {
@@ -36,6 +38,9 @@ main {
 .indent {
     padding-left: var(--indent-space);
 }
+.right {
+    float: right;
+}
 
 /* header elements styles */
 header {
@@ -44,9 +49,10 @@ header {
     top: 0;
     background-color: white;
     border-bottom: 1px dotted var(--border-color);
+    z-index: 99;
 }
 .smile {
-    font-family: monospace;
+    font-family: var(--font-family-en);
 }
 .score-headline {
     color: red;
@@ -55,6 +61,14 @@ header {
 }
 .score-headline span span {
     margin-right: 4px;
+}
+
+/* riddle question element styles */
+.hint {
+    display: none;
+}
+.hint:before {
+    content: "-- ";
 }
 
 /* riddle input styles */
@@ -68,6 +82,7 @@ header {
     line-height: 40px;
     padding: 0 8px;
     font-weight: bold;
+    border: 1px solid var(--border-color);
 }
 .text-input:focus {
     border-color: var(--input-focus-color);
@@ -82,20 +97,34 @@ header {
 .btn {
     height: 40px;
     color: #fff;
-    background-color: var(--input-focus-color);;
+    background-color: var(--input-focus-color);
     cursor: pointer;
+    border: none;
 }
+.desktop .btn:hover,
 .btn:focus {
     background-color: var(--btn-hover-bk-color);
 }
 .btn:disabled {
     color: var(--disabled-color);
+    border: 1px solid var(--border-color);
+}
+.btn-show-answer,
+.btn-pass {
+    height: 28px;
+    background-color: steelblue;
+    font-weight: normal;
+}
+.btn-show-answer {
+    margin-top: 8px;
+}
+.btn-pass {
+    margin-left: 20px;
 }
 
 input {
     font-size: medium;
     font-weight: bold;
-    border: 1px solid var(--border-color);
     border-radius: 4px;
     outline: none;
 }
@@ -118,7 +147,7 @@ input:disabled {
     margin-right: 4px;
 } */
 
-.yes.question-wrapper { /* other elements/no with yes classes don't change color */
+.yes.question-wrapper { /* other elements may have yes/no and not change color */
     color: green;
 }
 .yes::after {
@@ -131,6 +160,21 @@ input:disabled {
 .no::after {
     content: "\2717"; /* ballot X */
     color: red;
+}
+.passed.question-wrapper {
+    color: var(--btn-pass-bk-color);
+}
+ /* brokenheart "\1F494"; */
+/* .passed::after {
+    content: "\2BD1";
+    color: var(--btn-pass-bk-color);
+    font-weight: bold;
+} */
+
+footer {
+    padding-top: 20px;
+    border-top: 1px dotted var(--border-color);
+    font-family: var(--font-family-en);
 }
 
 /* mobile tweaks */
