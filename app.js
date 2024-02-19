@@ -5,6 +5,10 @@ function loadRiddles() {
     const textTemplate = document.querySelector('#template__text');
 
     DB.forEach((riddle, riddleIndex) => {
+        if (riddle.hide === true) {
+            return;
+        }
+        questionCountGlobal++;
         const riddleClone = riddleTemplate.content.cloneNode(true);
 
         const riddleEl = riddleClone.querySelector('.riddle');
@@ -12,19 +16,27 @@ function loadRiddles() {
 
         // load riddle question
         const numberEl = riddleClone.querySelector('.number');
-        numberEl.textContent = `${riddleIndex + 1}. `;
+        numberEl.textContent = `${questionCountGlobal}. `;
         const questionEl = riddleClone.querySelector('.question');
         questionEl.textContent = riddle.question;
-        const hintEl = riddleClone.querySelector('.hint');
-        hintEl.textContent = riddle.hint;
+        if (riddle.hint) {
+            const hintEl = riddleClone.querySelector('.hint');
+            hintEl.textContent = riddle.hint;
+            hintEl.style.display = 'inline';
+        }
 
         const controlEl = riddleClone.querySelector('.control');
-        if (riddle.textBox === true) { // load riddle's text input
+        // if there is only 1 choice, default it to text input and ignore the textBox switch
+        if (riddle.choices.length === 1) {
+            riddle.correctIndex = 0;
             const textClone = textTemplate.content.cloneNode(true);
-            const choiceIndex = riddle.choices.findIndex(choice => choice.correct === true);
-            riddleEl.dataset.choiceIndex = choiceIndex;
             controlEl.appendChild(textClone);
-        } else { // load riddle's radio choices
+        } else if (riddle.textBox === true) { // load riddle with text input
+            const correctIndex = riddle.choices.findIndex(choice => choice.correct === true);
+            riddle.correctIndex = correctIndex;
+            const textClone = textTemplate.content.cloneNode(true);
+            controlEl.appendChild(textClone);
+        } else { // load riddle with radio choices
             riddle.choices.forEach((choice, choiceIndex) => {
                 const choiceClone = choiceTemplate.content.cloneNode(true);
                 const radioEl = choiceClone.querySelector('.radio-input');
@@ -40,13 +52,26 @@ function loadRiddles() {
                 labelEl.htmlFor = answer;
                 labelEl.textContent = answer;
                 if (choice.correct === true) {
-                    riddleEl.dataset.choiceIndex = choiceIndex;
+                    riddle.correctIndex = choiceIndex;
                 }
                 controlEl.appendChild(choiceClone);
             });
         }
         mainEl.appendChild(riddleClone);
     });
+}
+
+function initScoreHeadline() {
+    const scoreHeadlineEl = document.querySelector('.score-headline');
+
+    const questionCountEl = scoreHeadlineEl.querySelector('.question-count');
+    questionCountEl.textContent = questionCountGlobal;
+    const answerCountEl = scoreHeadlineEl.querySelector('.answer-count');
+    answerCountEl.textContent = answerCountGlobal;
+    const scoreEl = scoreHeadlineEl.querySelector('.score');
+    scoreEl.textContent = scoreGlobal;
+
+    scoreHeadlineEl.style.opacity = 1;
 }
 
 function updateScoreHeadline() {
@@ -58,6 +83,8 @@ function updateScoreHeadline() {
 
     // play win/sad sound effect when all questions are answered
     if (answerCountGlobal === questionCountGlobal) {
+        const showAnswerEl = document.querySelector('.btn-show-answer');
+        showAnswerEl.removeAttribute('disabled');
         let audioId = 'win';
         if (scoreGlobal / questionCountGlobal * 100 <= 50) {
             audioId = 'sad'
@@ -70,9 +97,8 @@ function updateScoreHeadline() {
 
 function setCorrectAnswer(riddleEl) {
     const riddleIndex = riddleEl.dataset.riddleIndex;
-    const correctIndex = riddleEl.dataset.choiceIndex;
     const currentRiddle = DB[riddleIndex];
-    const correctChoice = currentRiddle.choices[correctIndex];
+    const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
 
     const correctAnswerWrapper = riddleEl.querySelector('.correct-answer-wrapper');
     const answerEl = correctAnswerWrapper.querySelector('.answer');
@@ -82,18 +108,17 @@ function setCorrectAnswer(riddleEl) {
     } else {
         answerEl.textContent = correctChoice.answer;
     }
-    const noteEl = correctAnswerWrapper.querySelector('.note');;
-    if (correctChoice.note) {
-        noteEl.textContent = `(${correctChoice.note})`;
+    const notesEl = correctAnswerWrapper.querySelector('.notes');;
+    if (correctChoice.notes) {
+        notesEl.textContent = `(${correctChoice.notes})`;
     }
-    correctAnswerWrapper.style.opacity = 1;
+    // correctAnswerWrapper.style.opacity = 1;
 }
 
 function handleYourAnswer(riddleEl, radioEl) {
     const riddleIndex = riddleEl.dataset.riddleIndex;
-    const correctIndex = riddleEl.dataset.choiceIndex;
     const currentRiddle = DB[riddleIndex];
-    const correctChoice = currentRiddle.choices[correctIndex];
+    const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
     // const yourAnswerWrapper = riddleEl.querySelector('.your-answer-wrapper');
 
     let yourAnswer;
@@ -129,7 +154,17 @@ function handleYourAnswer(riddleEl, radioEl) {
         // pointEl.textContent = '0';
     }
     // yourAnswerWrapper.style.opacity = 1;
-    return isCorrect;
+}
+
+function handleByPass(riddleEl) {
+    const questionWrapper = riddleEl.querySelector('.question-wrapper');
+    questionWrapper.classList.add('passed');
+    warn();
+}
+
+function disableAllInputs(riddleEl) {
+    const inputEls = riddleEl.querySelectorAll('input');
+    inputEls.forEach(el => el.disabled = 'true');
 }
 
 window.onload = function() {
@@ -139,28 +174,16 @@ window.onload = function() {
         document.body.classList.add('desktop');
     }
     loadRiddles();
+    initScoreHeadline();
 }
 
-// initialize socre headline
-const scoreHeadlineEl = document.querySelector('.score-headline');
-
-const questionCountGlobal = DB.length;
-const questionCountEl = scoreHeadlineEl.querySelector('.question-count');
-questionCountEl.textContent = questionCountGlobal;
-
+// initialize global vars
+let questionCountGlobal = 0;
 let answerCountGlobal = 0;
-const answerCountEl = scoreHeadlineEl.querySelector('.answer-count');
-answerCountEl.textContent = answerCountGlobal;
-
 let scoreGlobal = 0;
-const scoreEl = scoreHeadlineEl.querySelector('.score');
-scoreEl.textContent = scoreGlobal;
 
-scoreHeadlineEl.style.opacity = 1;
-
-const mainEl = document.querySelector('main');
 let audioContext;
-
+const mainEl = document.querySelector('main');
 mainEl.addEventListener('click', event => {
     if (!audioContext) {
         audioContext = new AudioContext();
@@ -172,26 +195,37 @@ mainEl.addEventListener('click', event => {
         setCorrectAnswer(riddleEl);
         handleYourAnswer(riddleEl, eventEl);
         updateScoreHeadline();
-
-        // disable input controls
-        const radioEls = riddleEl.querySelectorAll('input');
-        radioEls.forEach(el => el.disabled = 'true');
+        disableAllInputs(riddleEl);
     }
     else if (eventEl.tagName === 'INPUT' && eventEl.type === 'button') {
         const riddleEl = eventEl.closest(".riddle");
+        if (eventEl.classList.contains('btn-pass')) {
+            setCorrectAnswer(riddleEl);
+            handleByPass(riddleEl);
+            updateScoreHeadline();
+            disableAllInputs(riddleEl);
+            return;
+        }
+
         const inputEl = riddleEl.querySelector('.text-input');
         if (!inputEl.value) {
             inputEl.placeholder = '請輸入答案再提交';
             warn();
             return;
         }
-
         setCorrectAnswer(riddleEl);
         handleYourAnswer(riddleEl);
         updateScoreHeadline();
-
-        // disable input controls
-        inputEl.disabled = true; // text box
-        eventEl.disabled = true; // submit button
+        disableAllInputs(riddleEl);
     }
+});
+
+const showAnswerEl = document.querySelector('.btn-show-answer');
+showAnswerEl.addEventListener('click', event => {
+    if (showAnswerEl.disabled) {
+        console.log('cannot show answer, answer count: ', answerCountGlobal);
+        return;
+    }
+    const correctAnserEls = document.querySelectorAll('.correct-answer-wrapper');
+    correctAnserEls.forEach(el => el.style.opacity = 1);
 });

@@ -14,12 +14,13 @@
                 <span class="number"></span>
                 <span class="question strong"></span>
             </div>
-            <div class="indent smaller">-- <span class="hint"></span></div>
+            <div class="indent smaller"><span class="hint"></span></div>
             <div class="control indent"></div>
+            <input type="button" value="跳過本題" class="btn btn-pass">
             <div class="correct-answer-wrapper indent smaller">
                 <span class="strong">正確答案：</span>
                 <span class="answer"></span>
-                <span class="note"></span>
+                <span class="notes"></span>
             </div>
             <!-- <div class="your-answer-wrapper indent smaller">
                 <span class="strong">您的答案：</span>
@@ -35,7 +36,7 @@
         <div class="choice indent">
             <input type="radio" class="radio-input">
             <label></label>
-            <!-- <span class="note smaller"></span> -->
+            <!-- <span class="notes smaller"></span> -->
         </div>
     </template>
 
@@ -44,17 +45,22 @@
         <div class="text-wrapper">
             <input type="text" class="text-input">
             <input type="button" value="提交" class="btn btn-submit">
-            <!-- <input type="button" value="跳過" class="btn btn-pass"> -->
         </div>
     </template>
 
     <body>
         <header>
             <h1>元宵燈謎</h1>
-            <p>每題只能囘答一次。提交後恕不退換 <span class="smile">^.^</span></p>
+            <div class="smaller">
+                <span>每題只能答一次。分數出門恕不退換</span>
+                <span class="smile">^.^</span>
+            </div>
+            <div class="smaller">
+                <input type="button" value="答題完畢點此查看答案" disabled class="btn btn-show-answer">
+            </div>
             <h3 class="score-headline">
                 <span>題數：<span class="question-count"></span></span>
-                <span>已答：<span class="answer-count"></span></span>
+                <span>已提交：<span class="answer-count"></span></span>
                 <span>得分：<span class="score"></span></span>
             </h3>
             <!--
@@ -65,6 +71,9 @@
             -->
         </header>
         <main></main>
+        <footer>
+            Copyright (c) 2023 ulusite
+        </footer>
         <script src="./db.js"></script>
         <script src="./audio.js"></script>
         <script src="./app.js"></script>
