@@ -70,6 +70,14 @@ header {
 .hint:before {
     content: "-- ";
 }
+.image-wrapper {
+    display: none;
+}
+.img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
 
 /* riddle input styles */
 .choice {
@@ -112,7 +120,6 @@ header {
 .btn-show-answer,
 .btn-pass {
     height: 28px;
-    background-color: steelblue;
     font-weight: normal;
 }
 .btn-show-answer {
@@ -120,6 +127,7 @@ header {
 }
 .btn-pass {
     margin-left: 20px;
+    background-color: steelblue;
 }
 
 input {
@@ -139,14 +147,9 @@ input:disabled {
     transition: opacity 1s ease-in-out;
 }
 
-/* .your-answer-wrapper {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+.passed.question-wrapper {
+    color: var(--btn-pass-bk-color);
 }
-.your-answer-wrapper span span {
-    margin-right: 4px;
-} */
-
 .yes.question-wrapper { /* other elements may have yes/no and not change color */
     color: green;
 }
@@ -161,15 +164,6 @@ input:disabled {
     content: "\2717"; /* ballot X */
     color: red;
 }
-.passed.question-wrapper {
-    color: var(--btn-pass-bk-color);
-}
- /* brokenheart "\1F494"; */
-/* .passed::after {
-    content: "\2BD1";
-    color: var(--btn-pass-bk-color);
-    font-weight: bold;
-} */
 
 footer {
     padding-top: 20px;

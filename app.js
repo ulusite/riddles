@@ -1,3 +1,14 @@
+function loadImage(imageId, riddleClone) {
+    const imageWrapper = riddleClone.querySelector('.image-wrapper');
+    const imgEl = riddleClone.querySelector('.img');
+    let dataUri = photos[imageId];
+    if (!dataUri) {
+        dataUri = photos[0];
+    }
+    imgEl.src = dataUri;
+    imageWrapper.style.display = 'block';
+}
+
 function loadRiddles() {
     const mainEl = document.querySelector('main');
     const riddleTemplate = document.querySelector('#template__riddle');
@@ -5,7 +16,7 @@ function loadRiddles() {
     const textTemplate = document.querySelector('#template__text');
 
     DB.forEach((riddle, riddleIndex) => {
-        if (riddle.hide === true) {
+        if (riddle.skip === true) {
             return;
         }
         questionCountGlobal++;
@@ -25,6 +36,9 @@ function loadRiddles() {
             hintEl.style.display = 'inline';
         }
 
+        if (riddle.imageId) {
+            loadImage(riddle.imageId, riddleClone);
+        }
         const controlEl = riddleClone.querySelector('.control');
         // if there is only 1 choice, default it to text input and ignore the textBox switch
         if (riddle.choices.length === 1) {
@@ -112,14 +126,12 @@ function setCorrectAnswer(riddleEl) {
     if (correctChoice.notes) {
         notesEl.textContent = `(${correctChoice.notes})`;
     }
-    // correctAnswerWrapper.style.opacity = 1;
 }
 
 function handleYourAnswer(riddleEl, radioEl) {
     const riddleIndex = riddleEl.dataset.riddleIndex;
     const currentRiddle = DB[riddleIndex];
     const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
-    // const yourAnswerWrapper = riddleEl.querySelector('.your-answer-wrapper');
 
     let yourAnswer;
     if (radioEl) {
@@ -137,23 +149,15 @@ function handleYourAnswer(riddleEl, radioEl) {
         isCorrect = answer == yourAnswer;
     }
 
-    // const answerEl = yourAnswerWrapper.querySelector('.answer');
-    // answerEl.textContent = yourAnswer;
-    // const pointEl = yourAnswerWrapper.querySelector('.point');
     const questionWrapper = riddleEl.querySelector('.question-wrapper');
     if (isCorrect) {
         scoreGlobal++;
         tada();
         questionWrapper.classList.add('yes');
-        // answerEl.classList.add('yes');
-        // pointEl.textContent = '1';
     } else {
         beep();
         questionWrapper.classList.add('no');
-        // answerEl.classList.add('no');
-        // pointEl.textContent = '0';
     }
-    // yourAnswerWrapper.style.opacity = 1;
 }
 
 function handleByPass(riddleEl) {

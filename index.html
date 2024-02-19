@@ -15,6 +15,9 @@
                 <span class="question strong"></span>
             </div>
             <div class="indent smaller"><span class="hint"></span></div>
+            <div class="image-wrapper indent">
+                <img class="img">
+            </div>
             <div class="control indent"></div>
             <input type="button" value="跳過本題" class="btn btn-pass">
             <div class="correct-answer-wrapper indent smaller">
@@ -22,11 +25,7 @@
                 <span class="answer"></span>
                 <span class="notes"></span>
             </div>
-            <!-- <div class="your-answer-wrapper indent smaller">
-                <span class="strong">您的答案：</span>
-                <span class="answer"></span>
-                <span>得分：<span class="point"></span></span>
-            </div> -->
+
             <br/>
         </div>
     </template>
@@ -70,12 +69,14 @@
             <audio id="sad" src="./assets/sad-game-over.wav"></audio>
             -->
         </header>
+
         <main></main>
         <footer>
             Copyright (c) 2023 ulusite
         </footer>
         <script src="./db.js"></script>
-        <script src="./audio.js"></script>
+        <script src="./images.js"></script>
+        <script src="./audios.js"></script>
         <script src="./app.js"></script>
     </body>
 </html>
