@@ -1,8 +1,7 @@
-const DB = [
+const db2024 = [
     {
         question: '熱烘烘的太陽往上爬哟',
         hint: '台灣地名',
-        textBox: false,
         choices: [
             {
                 answer: '春日',
@@ -29,7 +28,6 @@ const DB = [
     {
         question: '墾丁之北，爾濱之南',
         hint: '看江山如此多嬌，猜四時不謝之花',
-        textBox: false,
         choices: [
             {
                 answer: '報春花',
@@ -52,7 +50,7 @@ const DB = [
     },
     {
         question: '清風徐來 水波不興',
-        hint: '台灣觀光地名',
+        hint: '台灣觀光地名 （2字）',
         choices: [
             {
                 answer: '平溪',
@@ -61,7 +59,7 @@ const DB = [
     },
     {
         question: '白髮三千丈，會須一飲三百杯',
-        hint: '數學名詞',
+        hint: '數學名詞 （3字）',
         choices: [
             {
                 answer: ['無理數', '无理数'],
@@ -70,7 +68,7 @@ const DB = [
     },
     {
         question: '開會',
-        hint: '物理學名詞',
+        hint: '物理學名詞 （3字）',
         choices: [
             {
                 answer: ['相對論', '相对论'],
@@ -79,7 +77,7 @@ const DB = [
     },
     {
         question: '開大會',
-        hint: '物理學名詞',
+        hint: '物理學名詞 （5字）',
         choices: [
             {
                 answer: ['廣義相對論', '广义相对论'],
@@ -88,7 +86,7 @@ const DB = [
     },
     {
         question: ' ',
-        hint: '人際行爲',
+        hint: '人際行爲 （2字）',
         choices: [
             {
                 answer: ['約會', '约会'],
@@ -97,7 +95,7 @@ const DB = [
     },
     {
         question: '百家爭鳴',
-        hint: '物理學名詞',
+        hint: '物理學名詞 （4字）',
         choices: [
             {
                 answer: ['量子糾纏', '量子纠缠']
@@ -124,7 +122,7 @@ const DB = [
     },
     {
         question: '智齒',
-        hint: '中國傳統祭祀活動。近代在閩臺一帶盛行',
+        hint: '中國傳統祭祀活動。近代在閩臺一帶盛行 （2字）',
         choices: [
             {
                 answer: '尾牙'
@@ -133,7 +131,7 @@ const DB = [
     },
     {
         question: '立春',
-        hint: '音樂活動',
+        hint: '音樂活動 （2字）',
         choices: [
             {
                 answer: '合唱',
@@ -184,7 +182,7 @@ const DB = [
     },
     {
         question: '跑旱船',
-        hint: '南宋著名詩人',
+        hint: '南宋著名詩人 （2字）',
         choices: [
             {
                 answer: ['陸游', '陸放翁', '陆游', '陆放翁', '放翁'],
@@ -193,7 +191,7 @@ const DB = [
     },
     {
         question: '衣錦還鄉',
-        hint: '明朝文人，擅作抒情文',
+        hint: '明朝文人，擅作抒情文 （3字）',
         choices: [
             {
                 answer: ['歸有光', '归有光'],
@@ -202,17 +200,17 @@ const DB = [
     },
     {
         question: '老子曰',
-        hint: '唐朝著名詩人',
+        hint: '唐朝著名詩人 （2字）',
         choices: [
             {
-                answer: '李白',
+                answer: ['李白', '李太白'],
 		        notes: '老子姓李名耳，老子曰即李白'
             }
         ]
     },
     {
         question: '子曰',
-        hint: '書名（不是論語）',
+        hint: '書名（不是論語， 2字）',
         choices: [
             {
                 answer: ['聖經', '圣经'],
@@ -246,7 +244,7 @@ const DB = [
     },
     {
         question: '看圖猜謎',
-        hint: '初春植物',
+        hint: '初春植物 （2或3字）',
         imageId: 'photo1',
         choices: [
             {
@@ -256,7 +254,7 @@ const DB = [
     },
     {
         question: '我欲乘風歸去，高處不再寒',
-        hint: '元宵節應景活動所用物品',
+        hint: '元宵節應景活動所用物品 （2字）',
         choices: [
             {
                 answer: ['天燈', '天灯'],
@@ -265,7 +263,7 @@ const DB = [
     },
     {
         question: '胖子泡溫泉',
-        hint: '應時食品',
+        hint: '應時食品 （2字）',
         choices: [
             {
                 answer: ['湯圓', '汤圆'],
@@ -274,7 +272,7 @@ const DB = [
     },
     {
         question: '川味髮型',
-        hint: '食品。生長在西南，茁壯於東北。最近流行遍灣區',
+        hint: '食品。生長在西南，茁壯於東北。最近流行遍灣區 （3字）',
         choices: [
             {
                 answer: ['麻辣燙', '麻辣烫'],
@@ -283,7 +281,7 @@ const DB = [
     },
     {
         question: '少林寺運動會',
-        hint: '年節菜名',
+        hint: '年節菜名 （3字）',
         choices: [
             {
                 answer: ['佛跳墻', '佛跳墙']
@@ -340,11 +338,14 @@ const DB = [
             }
         ]
     },
+];
+
+const db2019 = [
     {
         question: '山在虛無縹緲間',
-        hint: '台灣地名',
-        skip: true,
-        textBox: true,
+        hint: '台灣地名 （2字）',
+        skip: false,
+        textBox: false,
         choices: [
             {
                 answer: '萬巒',
@@ -371,7 +372,7 @@ const DB = [
     {
         question: '舍南舍北皆春水',
         hint: '台灣地名',
-        skip: true,
+        skip: false,
         choices: [
             {
                 answer: '平溪',
@@ -380,8 +381,7 @@ const DB = [
                 answer: '四湖',
             },
             {
-                answer: '二重溪',
-                correct: true
+                answer: '四重溪',
             },
             {
                 answer: '雙溪',
@@ -395,7 +395,7 @@ const DB = [
     {
         question: '兩個黃鷂鳴翠柳',
         hint: '台灣地名',
-        skip: true,
+        skip: false,
         textBox: false,
         choices: [
             {
@@ -421,3 +421,104 @@ const DB = [
         ]
     },
 ];
+const dbWarmup = [
+    {
+        question: '星探',
+        hint: '信息時代新興人物。主要工作是博人眼球 （2字）',
+        choices: [
+            {
+                answer: ['網美', '网美'],
+                notes: '星探職在[網]羅[美]人'
+            }
+        ]
+    },
+    {
+        question: '減肥',
+        hint: '應節食品。諧音梗 （2字）',
+        choices: [
+            {
+                answer: '元宵',
+                notes: '圓消',
+            }
+        ]
+    },
+    {
+        question: '那時風雨聲，花落知多少',
+        hint: '過年時電視節目名 （2字）',
+        choices: [
+            {
+                answer: '春晚',
+                notes: '孟浩然《春曉》春眠不覺曉，處處聞啼鳥。夜來風雨聲，花落知多少。風雨花落之時即春晚',
+            }
+        ]
+    },
+    {
+        question: '全中國最喜歡以十二生肖動物納入地名的是',
+        choices: [
+            {
+                answer: '四川，山東，河北',
+                correct: true
+            },
+            {
+                answer: '貴州，雲南，廣東',
+            },
+            {
+                answer: '海南，寧夏，上海',
+            },
+            {
+                answer: '以上皆非'
+            }
+        ]
+    },
+    {
+        question: '十二生肖動物地名中，出現最多的前三名',
+        choices: [
+            {
+                answer: '牛，馬，龍',
+            },
+            {
+                answer: '龍，馬，虎',
+            },
+            {
+                answer: '龍，馬，牛',
+                correct: true
+            },
+            {
+                answer: '以上皆非'
+            }
+        ]
+    },
+    {
+        question: '十二生肖動物地名中，出現最少的前三名',
+        choices: [
+            {
+                answer: '鼠，蛇，狗',
+                correct: true
+            },
+            {
+                answer: '鼠，猴，豬',
+            },
+            {
+                answer: '豬，狗，蛇',
+            },
+            {
+                answer: '以上皆非'
+            }
+        ]
+    }
+];
+
+const riddlesDB = {
+    warmup: {
+        title: '模擬暖身',
+        db: dbWarmup
+    },
+    '2024': {
+        title: '甲辰龍年2024',
+        db: db2024
+    },
+    '2019': {
+        title: '己亥豬年2019',
+        db: db2019
+    }
+};
