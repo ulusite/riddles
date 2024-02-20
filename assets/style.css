@@ -1,8 +1,6 @@
 :root {
     --page-max-width: 960px;
-    --page-padding: 20px 10%;
     --border-color: #ccc;
-    --header-height: 220px;
     --indent-space: 1.2rem;
     --input-focus-color: #04AA6D;
     --btn-hover-bk-color: #06c881;
@@ -16,15 +14,14 @@ body {
     margin: 0 auto;
     font-family: sans-serif;
     font-size: large;
-    padding: 20px;
+    padding: 0 20px 20px;
 }
 body.desktop {
     max-width: var(--page-max-width);
-    padding: var(--page-padding);
+    padding: 0 10% 10%;
 }
 
 main {
-    margin-top: var(--header-height); /* saving space for the fixed header  */
     line-height: 32px;
 }
 
@@ -44,12 +41,22 @@ main {
 
 /* header elements styles */
 header {
-    position: fixed;
-    width: 100%;
+    position: sticky;
+    margin-bottom: 16px;
     top: 0;
     background-color: white;
     border-bottom: 1px dotted var(--border-color);
     z-index: 99;
+}
+.h1 {
+    padding: 24px 0;
+    font-weight: bold;
+    font-size: 36px;
+}
+.h3 {
+    padding: 21px 0;
+    font-weight: bold;
+    font-size: 21px;
 }
 .smile {
     font-family: var(--font-family-en);
@@ -68,7 +75,7 @@ header {
     display: none;
 }
 .hint:before {
-    content: "-- ";
+    content: "提示：";
 }
 .image-wrapper {
     display: none;
@@ -124,6 +131,12 @@ header {
 }
 .btn-show-answer {
     margin-top: 8px;
+}
+.btn-show-answer.done,
+.btn-show-answer.done:hover{
+    background-color: steelblue;
+    pointer-events: none;
+    cursor: none;
 }
 .btn-pass {
     margin-left: 20px;

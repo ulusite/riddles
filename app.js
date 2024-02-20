@@ -171,20 +171,34 @@ function disableAllInputs(riddleEl) {
     inputEls.forEach(el => el.disabled = 'true');
 }
 
-window.onload = function() {
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        document.body.classList.add('mobile');
-    } else {
-        document.body.classList.add('desktop');
-    }
-    loadRiddles();
-    initScoreHeadline();
-}
-
 // initialize global vars
 let questionCountGlobal = 0;
 let answerCountGlobal = 0;
 let scoreGlobal = 0;
+
+const searchParams = new URLSearchParams(window.location.search);
+const id = searchParams.get('id')
+const data = riddlesDB[id];
+const DB = data? data.db : riddlesDB['2024'].db;
+
+window.onload = function() {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    // const macos = /(macintosh|macintel|macppc|mac68k|macos)/i;
+    // const windows = /(win32|win64|windows|wince)/i;
+    // const ios = /(iphone|ipad|ipod)/i;
+    const mobile = /iPhone|iPad|iPod|Android/i;
+
+    if (mobile.test(userAgent)) {
+        document.body.classList.add('mobile');
+    } else {
+        document.body.classList.add('desktop');
+        // if (macos.test(userAgent)) {
+        //     document.body.classList.add('mac');
+        // }
+    }
+    loadRiddles();
+    initScoreHeadline();
+}
 
 let audioContext;
 const mainEl = document.querySelector('main');
@@ -230,6 +244,10 @@ showAnswerEl.addEventListener('click', event => {
         console.log('cannot show answer, answer count: ', answerCountGlobal);
         return;
     }
+    const eventEl = event.target;
+    eventEl.value = '答案已顯示于每題之下';
+    eventEl.classList.add('done');
     const correctAnserEls = document.querySelectorAll('.correct-answer-wrapper');
     correctAnserEls.forEach(el => el.style.opacity = 1);
+    tada();
 });
