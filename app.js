@@ -75,16 +75,17 @@ function loadRiddles() {
     });
 }
 
-function initScoreHeadline() {
-    const scoreHeadlineEl = document.querySelector('.score-headline');
+function initHeader() {
+    const subtitleEl = document.querySelector('header .subtitle');
+    subtitleEl.textContent = subtitle;
 
+    const scoreHeadlineEl = document.querySelector('.score-headline');
     const questionCountEl = scoreHeadlineEl.querySelector('.question-count');
     questionCountEl.textContent = questionCountGlobal;
     const answerCountEl = scoreHeadlineEl.querySelector('.answer-count');
     answerCountEl.textContent = answerCountGlobal;
     const scoreEl = scoreHeadlineEl.querySelector('.score');
     scoreEl.textContent = scoreGlobal;
-
     scoreHeadlineEl.style.opacity = 1;
 }
 
@@ -178,8 +179,10 @@ let scoreGlobal = 0;
 
 const searchParams = new URLSearchParams(window.location.search);
 const id = searchParams.get('id')
-const data = riddlesDB[id];
-const DB = data? data.db : riddlesDB['2024'].db;
+const data = riddlesDB[id] ? riddlesDB[id] : riddlesDB['2024'];
+const DB = data.db
+const subtitle = data.title;
+// let isMobile = false;
 
 window.onload = function() {
     const userAgent = window.navigator.userAgent.toLowerCase();
@@ -187,9 +190,14 @@ window.onload = function() {
     // const windows = /(win32|win64|windows|wince)/i;
     // const ios = /(iphone|ipad|ipod)/i;
     const mobile = /iPhone|iPad|iPod|Android/i;
+    const small = /iPhone|iPod|Android/i;
 
     if (mobile.test(userAgent)) {
         document.body.classList.add('mobile');
+        if (small.test(userAgent)) {
+            document.body.classList.add('small');
+            // isMobile = true;
+        }
     } else {
         document.body.classList.add('desktop');
         // if (macos.test(userAgent)) {
@@ -197,7 +205,23 @@ window.onload = function() {
         // }
     }
     loadRiddles();
-    initScoreHeadline();
+    initHeader();
+
+    // if (isMobile) {
+    //     const textInputs = document.querySelectorAll('.text-input');
+    //     textInputs.forEach(inputEl => {
+    //         inputEl.addEventListener('focus', event => {
+    //             const handler = function handler(event) {
+    //                 window.scrollBy({
+    //                     top: -140,
+    //                     behavior: "smooth",
+    //                 });
+    //                 inputEl.removeEventListener("blur", handler);
+    //             }
+    //             inputEl.addEventListener("blur", handler);
+    //         });
+    //     });
+    // }
 }
 
 let audioContext;

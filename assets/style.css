@@ -53,6 +53,9 @@ header {
     font-weight: bold;
     font-size: 36px;
 }
+.subtitle {
+    margin-left: 16px;
+}
 .h3 {
     padding: 21px 0;
     font-weight: bold;
@@ -71,6 +74,9 @@ header {
 }
 
 /* riddle question element styles */
+.riddle {
+    margin-bottom: 16px;
+}
 .hint {
     display: none;
 }
@@ -96,7 +102,6 @@ header {
 .text-input {
     line-height: 40px;
     padding: 0 8px;
-    font-weight: bold;
     border: 1px solid var(--border-color);
 }
 .text-input:focus {
@@ -156,6 +161,7 @@ input:disabled {
 }
 
 .correct-answer-wrapper {
+    line-height: 40px;
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
@@ -188,6 +194,6 @@ footer {
 .mobile label {
     line-height: 48px;
 }
-.mobile .btn-submit {
+.small .btn-submit {
     float: right;
 }
