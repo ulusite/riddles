@@ -1,4 +1,4 @@
-const db2024 = [
+const db2024feb = [
     {
         question: '熱烘烘的太陽往上爬哟',
         hint: '台灣地名',
@@ -421,6 +421,7 @@ const db2019 = [
         ]
     },
 ];
+
 const dbWarmup = [
     {
         question: '星探',
@@ -509,16 +510,16 @@ const dbWarmup = [
 ];
 
 const riddlesDB = {
-    warmup: {
-        title: '模擬暖身',
-        db: dbWarmup
-    },
-    '2024': {
+    '2024feb': {
         title: '2024 甲辰龍年',
-        db: db2024
+        db: db2024feb
     },
     '2019': {
         title: '2019 己亥豬年',
         db: db2019
-    }
+    },
+    warmup: {
+        title: '模擬暖身',
+        db: dbWarmup
+    },
 };

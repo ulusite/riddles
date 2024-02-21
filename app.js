@@ -15,8 +15,8 @@ function loadRiddles() {
     const choiceTemplate = document.querySelector('#template__choice');
     const textTemplate = document.querySelector('#template__text');
 
-    DB.forEach((riddle, riddleIndex) => {
-        if (riddle.skip === true) {
+    dbGlobal.forEach((riddle, riddleIndex) => {
+        if (riddle.skip === true && !showAllGlobal) {
             return;
         }
         questionCountGlobal++;
@@ -77,7 +77,7 @@ function loadRiddles() {
 
 function initHeader() {
     const subtitleEl = document.querySelector('header .subtitle');
-    subtitleEl.textContent = subtitle;
+    subtitleEl.textContent = dataGlobal.title;
 
     const scoreHeadlineEl = document.querySelector('.score-headline');
     const questionCountEl = scoreHeadlineEl.querySelector('.question-count');
@@ -112,7 +112,7 @@ function updateScoreHeadline() {
 
 function setCorrectAnswer(riddleEl) {
     const riddleIndex = riddleEl.dataset.riddleIndex;
-    const currentRiddle = DB[riddleIndex];
+    const currentRiddle = dbGlobal[riddleIndex];
     const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
 
     const correctAnswerWrapper = riddleEl.querySelector('.correct-answer-wrapper');
@@ -131,7 +131,7 @@ function setCorrectAnswer(riddleEl) {
 
 function handleYourAnswer(riddleEl, radioEl) {
     const riddleIndex = riddleEl.dataset.riddleIndex;
-    const currentRiddle = DB[riddleIndex];
+    const currentRiddle = dbGlobal[riddleIndex];
     const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
 
     let yourAnswer;
@@ -177,18 +177,15 @@ let questionCountGlobal = 0;
 let answerCountGlobal = 0;
 let scoreGlobal = 0;
 
+const fisrtId = '2024feb';
 const searchParams = new URLSearchParams(window.location.search);
-const id = searchParams.get('id')
-const data = riddlesDB[id] ? riddlesDB[id] : riddlesDB['2024'];
-const DB = data.db
-const subtitle = data.title;
-// let isMobile = false;
+const id = searchParams.get('id');
+const dataGlobal = (riddlesDB && riddlesDB[id]) ? riddlesDB[id] : riddlesDB[fisrtId];
+const dbGlobal = dataGlobal.db;
+const showAllGlobal = searchParams.get('f') === '1';
 
 window.onload = function() {
     const userAgent = window.navigator.userAgent.toLowerCase();
-    // const macos = /(macintosh|macintel|macppc|mac68k|macos)/i;
-    // const windows = /(win32|win64|windows|wince)/i;
-    // const ios = /(iphone|ipad|ipod)/i;
     const mobile = /iPhone|iPad|iPod|Android/i;
     const small = /iPhone|iPod|Android/i;
 
@@ -196,32 +193,12 @@ window.onload = function() {
         document.body.classList.add('mobile');
         if (small.test(userAgent)) {
             document.body.classList.add('small');
-            // isMobile = true;
         }
     } else {
         document.body.classList.add('desktop');
-        // if (macos.test(userAgent)) {
-        //     document.body.classList.add('mac');
-        // }
     }
     loadRiddles();
     initHeader();
-
-    // if (isMobile) {
-    //     const textInputs = document.querySelectorAll('.text-input');
-    //     textInputs.forEach(inputEl => {
-    //         inputEl.addEventListener('focus', event => {
-    //             const handler = function handler(event) {
-    //                 window.scrollBy({
-    //                     top: -140,
-    //                     behavior: "smooth",
-    //                 });
-    //                 inputEl.removeEventListener("blur", handler);
-    //             }
-    //             inputEl.addEventListener("blur", handler);
-    //         });
-    //     });
-    // }
 }
 
 let audioContext;
