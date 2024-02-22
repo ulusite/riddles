@@ -28,8 +28,17 @@ function loadRiddles() {
         // load riddle question
         const numberEl = riddleClone.querySelector('.number');
         numberEl.textContent = `${questionCountGlobal}. `;
-        const questionEl = riddleClone.querySelector('.question');
-        questionEl.textContent = riddle.question;
+        const questionEl = riddleClone.querySelector('.question.no-link');
+        const linkQuestionEl = riddleClone.querySelector('.question.link');
+        if (riddle.link) {
+            linkQuestionEl.textContent = riddle.question;
+            linkQuestionEl.href = riddle.link;
+            linkQuestionEl.style.display = 'inline-block';
+            questionEl.style.display = 'none';
+        } else {
+            questionEl.textContent = riddle.question;
+        }
+
         if (riddle.hint) {
             const hintEl = riddleClone.querySelector('.hint');
             hintEl.textContent = riddle.hint;
@@ -39,16 +48,22 @@ function loadRiddles() {
         if (riddle.imageId) {
             loadImage(riddle.imageId, riddleClone);
         }
+
         const controlEl = riddleClone.querySelector('.control');
+        const nameAttr = `riddle-${riddleIndex}`;
         // if there is only 1 choice, default it to text input and ignore the textBox switch
         if (riddle.choices.length === 1) {
             riddle.correctIndex = 0;
             const textClone = textTemplate.content.cloneNode(true);
+            const inputEl = textClone.querySelector('.text-input');
+            inputEl.name = nameAttr;
             controlEl.appendChild(textClone);
         } else if (riddle.textBox === true) { // load riddle with text input
             const correctIndex = riddle.choices.findIndex(choice => choice.correct === true);
             riddle.correctIndex = correctIndex;
             const textClone = textTemplate.content.cloneNode(true);
+            const inputEl = textClone.querySelector('.text-input');
+            inputEl.name = nameAttr;
             controlEl.appendChild(textClone);
         } else { // load riddle with radio choices
             riddle.choices.forEach((choice, choiceIndex) => {
@@ -58,12 +73,13 @@ function loadRiddles() {
                 if (Array.isArray(answer)) {
                     answer = answer[0]; // pick the first correct answer for radio choice
                 }
+                const id = `${answer}-${choiceIndex}`;
                 radioEl.value = answer;
-                radioEl.id = answer;
-                radioEl.name = `riddle-${riddleIndex}`;
+                radioEl.id = id;
+                radioEl.name = nameAttr;
                 radioEl.dataset.currentIndex = choiceIndex;
                 const labelEl = choiceClone.querySelector('label');
-                labelEl.htmlFor = answer;
+                labelEl.htmlFor = id;
                 labelEl.textContent = answer;
                 if (choice.correct === true) {
                     riddle.correctIndex = choiceIndex;
@@ -141,6 +157,7 @@ function handleYourAnswer(riddleEl, radioEl) {
         const inputEl = riddleEl.querySelector('.text-input');
         yourAnswer = inputEl.value;
     }
+    yourAnswer = yourAnswer.toLowerCase();
 
     const answer = correctChoice.answer;
     let isCorrect = false;
