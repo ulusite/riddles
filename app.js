@@ -16,7 +16,7 @@ function loadRiddles() {
     const textTemplate = document.querySelector('#template__text');
 
     dbGlobal.forEach((riddle, riddleIndex) => {
-        if (riddle.skip === true && !showAllGlobal) {
+        if (riddle.skip === true && !noSkipGlobal) {
             return;
         }
         questionCountGlobal++;
@@ -73,7 +73,7 @@ function loadRiddles() {
                 if (Array.isArray(answer)) {
                     answer = answer[0]; // pick the first correct answer for radio choice
                 }
-                const id = `${answer}-${choiceIndex}`;
+                const id = `id-${riddleIndex}-${choiceIndex}`;
                 radioEl.value = answer;
                 radioEl.id = id;
                 radioEl.name = nameAttr;
@@ -189,6 +189,19 @@ function disableAllInputs(riddleEl) {
     inputEls.forEach(el => el.disabled = 'true');
 }
 
+function handleTextInput(riddleEl) {
+    const inputEl = riddleEl.querySelector('.text-input');
+    if (!inputEl.value) {
+        inputEl.placeholder = '請輸入答案再提交';
+        warn();
+        return;
+    }
+    setCorrectAnswer(riddleEl);
+    handleYourAnswer(riddleEl);
+    updateScoreHeadline();
+    disableAllInputs(riddleEl);
+}
+
 // initialize global vars
 let questionCountGlobal = 0;
 let answerCountGlobal = 0;
@@ -199,7 +212,8 @@ const searchParams = new URLSearchParams(window.location.search);
 const id = searchParams.get('id');
 const dataGlobal = (riddlesDB && riddlesDB[id]) ? riddlesDB[id] : riddlesDB[fisrtId];
 const dbGlobal = dataGlobal.db;
-const showAllGlobal = searchParams.get('f') === '1';
+const noSkipGlobal = searchParams.get('f') === '1';
+const isAdm = searchParams.get('adm') === '1';
 
 window.onload = function() {
     const userAgent = window.navigator.userAgent.toLowerCase();
@@ -216,6 +230,12 @@ window.onload = function() {
     }
     loadRiddles();
     initHeader();
+    if (isAdm) {
+        const riddleEls = mainEl.querySelectorAll('.riddle');
+        riddleEls.forEach(riddleEl => setCorrectAnswer(riddleEl));
+        const showAnswerEl = document.querySelector('.btn-show-answer');
+        showAnswerEl.removeAttribute('disabled');
+    }
 }
 
 let audioContext;
@@ -224,17 +244,16 @@ mainEl.addEventListener('click', event => {
     if (!audioContext) {
         audioContext = new AudioContext();
     }
-    let eventEl = event.target;
+    const eventEl = event.target;
+    const riddleEl = eventEl.closest('.riddle');
 
     if (eventEl.tagName === 'INPUT' && eventEl.type === 'radio') {
-        const riddleEl = eventEl.closest(".riddle");
         setCorrectAnswer(riddleEl);
         handleYourAnswer(riddleEl, eventEl);
         updateScoreHeadline();
         disableAllInputs(riddleEl);
     }
     else if (eventEl.tagName === 'INPUT' && eventEl.type === 'button') {
-        const riddleEl = eventEl.closest(".riddle");
         if (eventEl.classList.contains('btn-pass')) {
             setCorrectAnswer(riddleEl);
             handleByPass(riddleEl);
@@ -243,29 +262,24 @@ mainEl.addEventListener('click', event => {
             return;
         }
 
-        const inputEl = riddleEl.querySelector('.text-input');
-        if (!inputEl.value) {
-            inputEl.placeholder = '請輸入答案再提交';
-            warn();
-            return;
-        }
-        setCorrectAnswer(riddleEl);
-        handleYourAnswer(riddleEl);
-        updateScoreHeadline();
-        disableAllInputs(riddleEl);
+        handleTextInput(riddleEl);
     }
 });
 
 const showAnswerEl = document.querySelector('.btn-show-answer');
 showAnswerEl.addEventListener('click', event => {
-    if (showAnswerEl.disabled) {
-        console.log('cannot show answer, answer count: ', answerCountGlobal);
-        return;
-    }
     const eventEl = event.target;
     eventEl.value = '答案已顯示于每題之下';
     eventEl.classList.add('done');
     const correctAnserEls = document.querySelectorAll('.correct-answer-wrapper');
     correctAnserEls.forEach(el => el.style.opacity = 1);
     tada();
+});
+
+mainEl.addEventListener('keyup', event => {
+    const eventEl = event.target;
+    if (event.key === 'Enter' && eventEl.tagName === 'INPUT' && eventEl.type === 'text') {
+        const riddleEl = eventEl.closest('.riddle');
+        handleTextInput(riddleEl);
+    }
 });
