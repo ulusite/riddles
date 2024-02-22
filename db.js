@@ -1,6 +1,6 @@
 const db2024feb = [
     {
-        question: '正月十五為上元，是夜為元宵。七月十五為中元。是否有下元？',
+        question: '正月十五為上元。上元夜為元宵。七月十五為中元。是否有下元？',
         choices: [
             {
                 answer: '有。八月十五中秋亦稱下元',
@@ -19,8 +19,8 @@ const db2024feb = [
     },
     {
         // question: '皇',
-        question: '看圖猜題',
-        hint: '成語（4字）。比喻十全十美。',
+        question: '看圖拆字猜題',
+        hint: '成語（4字）。比喻十全十美',
         imageId: 'char1',
         choices: [
             {
@@ -30,17 +30,18 @@ const db2024feb = [
     },
     {
         question: '看圖組字',
-        hint: '初春開花植物 （2或3字）',
+        hint: '初春開花植物 （2字）',
         imageId: 'waterFall',
         choices: [
             {
                 answer: ['水仙', '水仙花'],
+                notes: '一水一人一山，合為水仙'
             },
         ]
     },
     {
-        question: '我欲乘風歸去，高處不再寒',
-        hint: '元宵節應景活動物品 （2字）',
+        question: '我欲乘風歸去，高處不甚寒',
+        hint: '元宵節應景活動時使用的物品 （2字）',
         choices: [
             {
                 answer: ['天燈', '天灯'],
@@ -101,50 +102,11 @@ const db2024feb = [
     {
         // question: '一根棍子，吊著方箱；一把梯子，搭在中央',
         question: '看圖猜題',
-        hint: '打一字。每人都有。丟掉的話，很糗',
+        hint: '打一字。每人都有，丟掉的話會很糗。',
         imageId: 'char3',
         choices: [
             {
                 answer: '面',
-            }
-        ]
-    },
-    {
-        question: '熱烘烘的太陽往上爬哟',
-        hint: '台灣地名',
-        skip: true,
-        choices: [
-            {
-                answer: '春日',
-                notes: '屏東'
-            },
-            {
-                answer: '烏日',
-                notes: '台中'
-            },
-            {
-                answer: '佳冬',
-                notes: '屏東'
-            },
-            {
-                answer: '暖暖',
-                correct: true,
-                notes: '基隆'
-            },
-            {
-                answer: '以上皆非',
-            }
-        ]
-    },
-    {
-        // question: '一邊是紅，一邊是綠。一邊喜風，一邊喜雨',
-        question: '看圖猜題',
-        hint: '打一字。在24節氣中此字出現2次',
-        imageId: 'char2',
-        choices: [
-            {
-                answer: '秋',
-		        notes: '禾：禾是水稻，水稻是綠色，喜歡雨水。火：火是红色，遇風則長'
             }
         ]
     },
@@ -171,13 +133,24 @@ const db2024feb = [
             },
         ]
     },
-
     {
         question: '智齒',
-        hint: '中國傳統祭祀活動。近代在閩臺一帶盛行 （2字）',
+        hint: '傳統祭祀與慶祝活動。近代在閩臺一帶盛行 （2字）',
         choices: [
             {
                 answer: '尾牙'
+            }
+        ]
+    },
+    {
+        // question: '一邊是紅，一邊是綠。一邊喜風，一邊喜雨',
+        question: '看題組字',
+        hint: '打一字。在24節氣中此字出現2次',
+        imageId: 'char2',
+        choices: [
+            {
+                answer: '秋',
+		        notes: '禾：禾是水稻，水稻是綠色，喜歡雨水。火：火是红色，遇風則長'
             }
         ]
     },
@@ -187,7 +160,17 @@ const db2024feb = [
         choices: [
             {
                 answer: '合唱',
-                notes: '立春字解為三人立日，即众/眾【三人】音【立日】，合唱也'
+                notes: '立春拆為三人立日，即众/眾【三人】音【立日】，合唱也'
+            }
+        ]
+    },
+    {
+        question: '柴門聞犬吠，風雪夜歸人',
+        hint: '節氣名 （2字）',
+        choices: [
+            {
+                answer: '冬至',
+                notes: '風雪，冬也。夜歸，至也。風雪夜歸，冬至也。'
             }
         ]
     },
@@ -241,7 +224,7 @@ const db2024feb = [
         hint: '物理學名詞 （4字）',
         choices: [
             {
-                answer: ['量子糾纏', '量子纠缠']
+                answer: ['量子糾纏', '量子纠缠'],
             }
         ]
     },
@@ -265,32 +248,8 @@ const db2024feb = [
         ]
     },
     {
-        question: '竹杖芒鞋輕勝馬，一蓑煙雨任平生',
-        hint: '小説人物',
-        skip: true,
-        choices: [
-            {
-                answer: '賈寶玉',
-            },
-            {
-                answer: '令狐冲',
-            },
-            {
-                answer: '林冲',
-            },
-            {
-                answer: ['魯達', '魯智深', '鲁达', '鲁智深'],
-                correct: true,
-                notes: '清，邱圓《魯智深醉鬧五台山》《寄生草·漫揾英雄淚》：煙蓑雨笠卷單行，一任俺，芒鞋破缽隨緣化'
-            },
-            {
-                answer: '以上皆非',
-            }
-        ]
-    },
-    {
         question: '跑旱船',
-        hint: '南宋著名詩人名 （2字）',
+        hint: '南宋愛國詩人名 （2字）',
         choices: [
             {
                 answer: ['陸游', '陸放翁', '陆游', '陆放翁', '放翁'],
@@ -308,7 +267,7 @@ const db2024feb = [
     },
     {
         question: '老子曰',
-        hint: '唐朝著名詩人名 （2字）',
+        hint: '唐朝大詩人名 （2字）',
         choices: [
             {
                 answer: ['李白', '李太白'],
@@ -322,32 +281,7 @@ const db2024feb = [
         choices: [
             {
                 answer: ['聖經', '圣经'],
-		        notes: '孔子聖人，聖人説話即聖經'
-            }
-        ]
-    },
-    {
-        question: '辛棄疾《青玉案·元夕》：[鳳簫聲動，玉壺光轉] 玩的是什麽燈？',
-        skip: true,
-        choices: [
-            {
-                answer: '天燈',
-            },
-            {
-                answer: '龍燈',
-                correct: true,
-                notes: '龍燈或魚燈，[鳳簫聲動，玉壺光轉，一夜魚龍舞]'
-            },
-            {
-                answer: ['魚燈', '龍燈'],
-                correct: true,
-                notes: '龍燈或魚燈，[鳳簫聲動，玉壺光轉，一夜魚龍舞]'
-            },
-	        {
-		        answer: '水燈',
-            },
-            {
-                answer: '以上皆非',
+		        notes: '孔子聖人，聖人所言即聖經'
             }
         ]
     },
@@ -405,59 +339,10 @@ const db2024feb = [
             }
         ]
     },
-    {
-        question: '樓閣玲瓏五雲起，一騎紅塵妃子笑',
-        hint: '城市',
-        skip: true,
-        choices: [
-            {
-                answer: '成都',
-                notes: '四川'
-            },
-            {
-                answer: '重慶',
-                correct: true
-            },
-            {
-                answer: '莆田',
-                notes: '福建'
-            },
-            {
-                answer: '增城',
-                notes: '廣東'
-            },
-            {
-                answer: '以上皆非',
-            }
-        ]
-    },
-    {
-        question: '小樓一夜聽春雨，賭書潑得永日香',
-        hint: '美食家多愛',
-        skip: true,
-        choices: [
-            {
-                answer: '酒'
-            },
-            {
-                answer: '茶',
-                correct: true,
-                notes: '放翁【晴窗細乳戲分茶】，易安《金石錄後序》賭書潑茶'
-            },
-            {
-                answer: '筍',
-            },
-            {
-                answer: '河豚',
-            },
-            {
-                answer: '以上皆非',
-            }
-        ]
-    },
 ];
 
 const db2024 = [
+    // 地名類
     {
         question: '油管聼歌猜題',
         link: 'https://www.youtube.com/watch?v=ijOZRKla6yg',
@@ -486,6 +371,15 @@ const db2024 = [
         ]
     },
     {
+        question: '清風徐來 水波不興',
+        hint: '台灣觀光地名 （2字）',
+        choices: [
+            {
+                answer: '平溪',
+            }
+        ]
+    },
+    {
         question: '墾丁之北，爾濱之南',
         hint: '看江山如此多嬌，猜四時不謝之花',
         choices: [
@@ -508,43 +402,13 @@ const db2024 = [
             },
         ]
     },
-    {
-        question: '墾丁之北，爾濱之南',
-        hint: '看江山如此多嬌，猜四時不謝之花',
-        skip: true,
-        choices: [
-            {
-                answer: '報春花',
-            },
-            {
-                answer: '迎春花',
-            },
-            {
-                answer: '日日春',
-                correct: true,
-                notes: '墾丁之北為恆春，爾濱之南為長春，皆日日春也'
-            },
-            {
-                answer: '仙草',
-            },
-            {
-                answer: '以上皆非',
-            },
-        ]
-    },
-    {
-        question: '清風徐來 水波不興',
-        hint: '台灣觀光地名 （2字）',
-        choices: [
-            {
-                answer: '平溪',
-            }
-        ]
-    },
+
+    // 數學名詞類
     {
         question: '白髮三千丈，會須一飲三百杯',
         hint: '數學名詞 ',
         textBox: true,
+        skip: true,
         choices: [
             {
                 answer: '虛數',
@@ -564,6 +428,7 @@ const db2024 = [
     {
         question: '開會',
         hint: '物理學名詞 （3字）',
+        skip: true,
         choices: [
             {
                 answer: ['相對論', '相对论'],
@@ -573,6 +438,7 @@ const db2024 = [
     {
         question: '開大會',
         hint: '物理學名詞 （5字）',
+        skip: true,
         choices: [
             {
                 answer: ['廣義相對論', '广义相对论'],
@@ -582,9 +448,39 @@ const db2024 = [
     {
         question: '狹義相對論 ',
         hint: '人際行爲 （2字）',
+        skip: true,
         choices: [
             {
                 answer: ['約會', '约会'],
+            }
+        ]
+    },
+
+    // 物理學/化學名詞類
+    {
+        question: '剖腹生產',
+        hint: '物理學/化學名詞 （2字）',
+        choices: [
+            {
+                answer: ['分子']
+            }
+        ]
+    },
+    {
+        question: '親生的',
+        hint: '物理學/化學名詞 （2字）',
+        choices: [
+            {
+                answer: ['原子']
+            }
+        ]
+    },
+    {
+        question: '呱呱墜地',
+        hint: '物理學/化學名詞 （2字）',
+        choices: [
+            {
+                answer: ['光子']
             }
         ]
     },
@@ -597,40 +493,15 @@ const db2024 = [
             }
         ]
     },
-    {
-        question: '正月十五為上元，是夜為元宵。七月十五為中元。是否有下元？',
-        choices: [
-            {
-                answer: '有。八月十五中秋亦稱下元',
-            },
-            {
-                answer: '有。臘月十五為下元'
-            },
-            {
-                answer: '有。十月十五為下元',
-                correct: true
-            },
-	        {
-		        answer: '沒有下元',
-            }
-        ]
-    },
-    {
-        question: '智齒',
-        hint: '中國傳統祭祀活動。近代在閩臺一帶盛行 （2字）',
-        choices: [
-            {
-                answer: '尾牙'
-            }
-        ]
-    },
+
+    // 節氣/日類
     {
         question: '立春',
-        hint: '音樂活動 （2字）',
+        hint: '一種音樂活動名 （2字）拆字格',
         choices: [
             {
                 answer: '合唱',
-                notes: '立春字解為三人立日，即众【三人】音【立日】，合唱也'
+                notes: '立春拆為三人立日，即众【三人】音【立日】，合唱也'
             }
         ]
     },
@@ -654,8 +525,57 @@ const db2024 = [
         ]
     },
     {
+        question: '正月十五為上元，是夜為元宵。七月十五為中元。是否有下元？',
+        choices: [
+            {
+                answer: '有。八月十五中秋亦稱下元',
+            },
+            {
+                answer: '有。臘月十五為下元'
+            },
+            {
+                answer: '有。十月十五為下元',
+                correct: true
+            },
+	        {
+		        answer: '沒有下元',
+            }
+        ]
+    },
+    {
+        question: '柴門聞犬吠，風雪夜歸人',
+        hint: '節氣名 （2字）',
+        choices: [
+            {
+                answer: '冬至',
+                notes: '風雪，冬也。夜歸，至也。風雪夜歸，冬至也。'
+            }
+        ]
+    },
+    {
+        question: '智齒',
+        hint: '傳統祭祀與慶祝活動。近代在閩臺一帶盛行 （2字）',
+        choices: [
+            {
+                answer: '尾牙'
+            }
+        ]
+    },
+
+    // 文學類
+    {
+        question: '子曰',
+        hint: '書名（不是論語， 2字）',
+        choices: [
+            {
+                answer: ['聖經', '圣经'],
+		        notes: '孔子聖人，聖人所言即聖經'
+            }
+        ]
+    },
+    {
         question: '老子曰',
-        hint: '唐朝著名詩人 （2字）',
+        hint: '唐朝大詩人 （2字）',
         choices: [
             {
                 answer: ['李白', '李太白'],
@@ -664,18 +584,8 @@ const db2024 = [
         ]
     },
     {
-        question: '子曰',
-        hint: '書名（不是論語， 2字）',
-        choices: [
-            {
-                answer: ['聖經', '圣经'],
-		        notes: '孔子聖人，聖人説話即聖經'
-            }
-        ]
-    },
-    {
         question: '跑旱船',
-        hint: '南宋著名詩人 （2字）',
+        hint: '南宋愛國詩人名 （2字）',
         choices: [
             {
                 answer: ['陸游', '陸放翁', '陆游', '陆放翁', '放翁'],
@@ -793,6 +703,7 @@ const db2024 = [
         choices: [
             {
                 answer: ['水仙', '水仙花'],
+                notes: '一水一人一山，合為水仙'
             },
         ]
     },
@@ -830,33 +741,6 @@ const db2024 = [
         choices: [
             {
                 answer: ['佛跳墻', '佛跳墙']
-            }
-        ]
-    },
-    {
-        question: '剖腹生產',
-        hint: '物理學/化學名詞 （2字）',
-        choices: [
-            {
-                answer: ['分子']
-            }
-        ]
-    },
-    {
-        question: '親生的',
-        hint: '物理學/化學名詞 （2字）',
-        choices: [
-            {
-                answer: ['原子']
-            }
-        ]
-    },
-    {
-        question: '呱呱墜地',
-        hint: '物理學/化學名詞 （2字）',
-        choices: [
-            {
-                answer: ['光子']
             }
         ]
     },
