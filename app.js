@@ -123,6 +123,7 @@ function updateScoreHeadline() {
         setTimeout(() => {
             playWav(audioId);
         }, 1000);
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 }
 
@@ -276,6 +277,7 @@ showAnswerEl.addEventListener('click', event => {
     eventEl.classList.add('done');
     const correctAnserEls = document.querySelectorAll('.correct-answer-wrapper');
     correctAnserEls.forEach(el => el.style.opacity = 1);
+    window.scrollTo({top: 0, behavior: 'smooth'});
     tada();
 });
 
