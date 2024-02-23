@@ -342,7 +342,7 @@ const db2024feb = [
 ];
 
 const db2024 = [
-    // 地名類
+    // 地名，花名類
     {
         question: '油管聼歌猜題',
         link: 'https://www.youtube.com/watch?v=ijOZRKla6yg',
@@ -402,13 +402,24 @@ const db2024 = [
             },
         ]
     },
+    {
+        question: '看圖組字',
+        hint: '初春開花植物 （2或3字）',
+        imageId: 'waterFall',
+        choices: [
+            {
+                answer: ['水仙', '水仙花'],
+                notes: '一水一人一山，合為水仙'
+            },
+        ]
+    },
 
+    // 趣味，燒筋急轉彎類
     // 數學名詞類
     {
         question: '白髮三千丈，會須一飲三百杯',
         hint: '數學名詞 ',
         textBox: true,
-        skip: true,
         choices: [
             {
                 answer: '虛數',
@@ -428,7 +439,6 @@ const db2024 = [
     {
         question: '開會',
         hint: '物理學名詞 （3字）',
-        skip: true,
         choices: [
             {
                 answer: ['相對論', '相对论'],
@@ -438,7 +448,6 @@ const db2024 = [
     {
         question: '開大會',
         hint: '物理學名詞 （5字）',
-        skip: true,
         choices: [
             {
                 answer: ['廣義相對論', '广义相对论'],
@@ -448,7 +457,6 @@ const db2024 = [
     {
         question: '狹義相對論 ',
         hint: '人際行爲 （2字）',
-        skip: true,
         choices: [
             {
                 answer: ['約會', '约会'],
@@ -456,6 +464,7 @@ const db2024 = [
         ]
     },
 
+    // 趣味，燒筋急轉彎類
     // 物理學/化學名詞類
     {
         question: '剖腹生產',
@@ -494,7 +503,37 @@ const db2024 = [
         ]
     },
 
-    // 節氣/日類
+    // 趣味，燒筋急轉彎類
+    // 食物類
+    {
+        question: '胖子泡溫泉',
+        hint: '應時食品 （2字）',
+        choices: [
+            {
+                answer: ['湯圓', '汤圆'],
+            }
+        ]
+    },
+    {
+        question: '川味髮型',
+        hint: '食品。生長在西南，茁壯於東北。最近流行遍灣區 （3字）',
+        choices: [
+            {
+                answer: ['麻辣燙', '麻辣烫'],
+            }
+        ]
+    },
+    {
+        question: '少林寺運動會',
+        hint: '年節菜名 （3字）',
+        choices: [
+            {
+                answer: ['佛跳墻', '佛跳墙']
+            }
+        ]
+    },
+
+    // 節氣，節日類
     {
         question: '立春',
         hint: '一種音樂活動名 （2字）拆字格',
@@ -564,22 +603,22 @@ const db2024 = [
 
     // 文學類
     {
-        question: '子曰',
-        hint: '書名（不是論語， 2字）',
-        choices: [
-            {
-                answer: ['聖經', '圣经'],
-		        notes: '孔子聖人，聖人所言即聖經'
-            }
-        ]
-    },
-    {
         question: '老子曰',
         hint: '唐朝大詩人 （2字）',
         choices: [
             {
                 answer: ['李白', '李太白'],
 		        notes: '老子姓李名耳，老子曰即李白'
+            }
+        ]
+    },
+    {
+        question: '子曰',
+        hint: '書名（不是論語， 2字）',
+        choices: [
+            {
+                answer: ['聖經', '圣经'],
+		        notes: '孔子聖人，聖人所言即聖經'
             }
         ]
     },
@@ -598,29 +637,6 @@ const db2024 = [
         choices: [
             {
                 answer: ['歸有光', '归有光'],
-            }
-        ]
-    },
-    {
-        question: '竹杖芒鞋輕勝馬，一蓑煙雨任平生',
-        hint: '小説人物',
-        choices: [
-            {
-                answer: '賈寶玉',
-            },
-            {
-                answer: '令狐冲',
-            },
-            {
-                answer: '林冲',
-            },
-            {
-                answer: ['魯達', '魯智深', '鲁达', '鲁智深'],
-                correct: true,
-                notes: '清，邱圓《魯智深醉鬧五台山》《寄生草·漫揾英雄淚》：煙蓑雨笠卷單行，一任俺，芒鞋破缽隨緣化'
-            },
-            {
-                answer: '以上皆非',
             }
         ]
     },
@@ -697,50 +713,25 @@ const db2024 = [
         ]
     },
     {
-        question: '看圖組字',
-        hint: '初春開花植物 （2或3字）',
-        imageId: 'waterFall',
+        question: '竹杖芒鞋輕勝馬，一蓑煙雨任平生',
+        hint: '小説人物',
         choices: [
             {
-                answer: ['水仙', '水仙花'],
-                notes: '一水一人一山，合為水仙'
+                answer: '賈寶玉',
             },
-        ]
-    },
-    {
-        question: '我欲乘風歸去，高處不再寒',
-        hint: '元宵節應景活動所用物品 （2字）',
-        skip: true,
-        choices: [
             {
-                answer: ['天燈', '天灯'],
-            }
-        ]
-    },
-    {
-        question: '胖子泡溫泉',
-        hint: '應時食品 （2字）',
-        choices: [
+                answer: '令狐冲',
+            },
             {
-                answer: ['湯圓', '汤圆'],
-            }
-        ]
-    },
-    {
-        question: '川味髮型',
-        hint: '食品。生長在西南，茁壯於東北。最近流行遍灣區 （3字）',
-        choices: [
+                answer: '林冲',
+            },
             {
-                answer: ['麻辣燙', '麻辣烫'],
-            }
-        ]
-    },
-    {
-        question: '少林寺運動會',
-        hint: '年節菜名 （3字）',
-        choices: [
+                answer: ['魯達', '魯智深', '鲁达', '鲁智深'],
+                correct: true,
+                notes: '清，邱圓《魯智深醉鬧五台山》《寄生草·漫揾英雄淚》：煙蓑雨笠卷單行，一任俺，芒鞋破缽隨緣化'
+            },
             {
-                answer: ['佛跳墻', '佛跳墙']
+                answer: '以上皆非',
             }
         ]
     },
