@@ -317,7 +317,7 @@ const db2024feb = [
         hint: '物理學/化學名詞 （2字）',
         choices: [
             {
-                answer: ['分子']
+                answer: '分子'
             }
         ]
     },
@@ -326,7 +326,7 @@ const db2024feb = [
         hint: '物理學/化學名詞 （2字）',
         choices: [
             {
-                answer: ['原子']
+                answer: '原子'
             }
         ]
     },
@@ -335,10 +335,38 @@ const db2024feb = [
         hint: '物理學/化學名詞 （2字）',
         choices: [
             {
-                answer: ['光子']
+                answer: '光子'
             }
         ]
     },
+    {
+        question: '美國阿拉斯加州，可以找到下列何物?',
+        choices: [
+            {
+                answer: '冰河',
+                notes: '冰河，北極熊，愛斯基摩人，三文魚',
+                correct: true
+            },
+            {
+                answer: '北極熊',
+                notes: '冰河，北極熊，愛斯基摩人，三文魚',
+                correct: true
+            },
+            {
+                answer: '愛斯基摩人',
+                notes: '冰河，北極熊，愛斯基摩人，三文魚',
+                correct: true
+            },
+            {
+                answer: '三文魚',
+                notes: '冰河，北極熊，愛斯基摩人，三文魚',
+                correct: true
+            },
+            {
+                answer: '企鵝'
+            }
+        ]
+    }
 ];
 
 const db2024 = [
