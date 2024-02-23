@@ -268,6 +268,9 @@ mainEl.addEventListener('click', event => {
 
 const showAnswerEl = document.querySelector('.btn-show-answer');
 showAnswerEl.addEventListener('click', event => {
+    if (!audioContext) {
+        audioContext = new AudioContext();
+    }
     const eventEl = event.target;
     eventEl.value = '答案已顯示于每題之下';
     eventEl.classList.add('done');
@@ -277,6 +280,9 @@ showAnswerEl.addEventListener('click', event => {
 });
 
 mainEl.addEventListener('keyup', event => {
+    if (!audioContext) {
+        audioContext = new AudioContext();
+    }
     const eventEl = event.target;
     if (event.key === 'Enter' && eventEl.tagName === 'INPUT' && eventEl.type === 'text') {
         const riddleEl = eventEl.closest('.riddle');
