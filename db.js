@@ -79,7 +79,7 @@ const db2024feb = [
         ]
     },
     {
-        question: '下列哪個湖的名字，在英文字母中最先出現？',
+        question: '美國【五大湖】名字，哪一個在英文字母中最先出現？',
         choices: [
             {
                 answer: '安大略湖',
@@ -89,13 +89,13 @@ const db2024feb = [
             },
             {
                 answer: '衣律湖',
+                correct: true
             },
             {
                 answer: '太浩湖',
             },
             {
                 answer: '伊麗莎白湖',
-                correct: true
             }
         ]
     },
@@ -179,7 +179,7 @@ const db2024feb = [
         hint: '人名。1. 在超級星期天足球大賽的廣告中出現過 2. 出生於美國政治世家 3. 伯父和父親都參加過美國總統競選',
         choices: [
             {
-                answer: ['robert kennedy jr', 'robert f. kennedy jr'],
+                answer: ['robert kennedy jr.', 'robert f. kennedy jr.', 'rfk jr.', 'robert kennedy jr', 'robert f. kennedy jr', 'rfk jr'],
             }
         ]
     },

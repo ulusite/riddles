@@ -177,7 +177,7 @@ input:disabled {
 
 .correct-answer-wrapper {
     line-height: 40px;
-    text-transform: capitalize;
+    text-transform: uppercase;
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
