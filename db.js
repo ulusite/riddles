@@ -229,7 +229,7 @@ const db2024feb = [
         ]
     },
     {
-        question: '下列哪幾行詩句是描寫的元宵情景?',
+        question: '下列哪幾行詩句是描寫元宵的情景?',
         imageId: 'poems',
         choices: [
             {
@@ -358,7 +358,7 @@ const db2024feb = [
                 correct: true
             },
             {
-                answer: '三文魚',
+                answer: ['三文魚', '冰河', '北極熊', '愛斯基摩人'],
                 notes: '冰河，北極熊，愛斯基摩人，三文魚',
                 correct: true
             },
@@ -366,7 +366,7 @@ const db2024feb = [
                 answer: '企鵝'
             }
         ]
-    }
+    },
 ];
 
 const db2024 = [
@@ -400,7 +400,7 @@ const db2024 = [
     },
     {
         question: '清風徐來 水波不興',
-        hint: '台灣觀光地名 （2字）',
+        hint: '台灣新北市觀光地名 （2字）',
         choices: [
             {
                 answer: '平溪',
@@ -432,7 +432,7 @@ const db2024 = [
     },
     {
         question: '看圖組字',
-        hint: '初春開花植物 （2或3字）',
+        hint: '初春開花植物 （2字）',
         imageId: 'waterFall',
         choices: [
             {
@@ -442,7 +442,7 @@ const db2024 = [
         ]
     },
 
-    // 趣味，燒筋急轉彎類
+    // 趣味，腦筋急轉彎類
     // 數學名詞類
     {
         question: '白髮三千丈，會須一飲三百杯',
@@ -573,7 +573,7 @@ const db2024 = [
         ]
     },
     {
-        question: '下列哪幾行詩句是描寫的元宵情景?',
+        question: '下列哪幾行詩句是描寫元宵的情景?',
         imageId: 'poems',
         choices: [
             {
@@ -669,7 +669,7 @@ const db2024 = [
         ]
     },
     {
-        question: '辛棄疾《青玉案·元夕》：[鳳簫聲動，玉壺光轉] 玩的是什麽燈？',
+        question: '辛棄疾《青玉案·元夕》：【鳳簫聲動，玉壺光轉】詞中舞的是什麽燈？',
         choices: [
             {
                 answer: '天燈',
@@ -677,12 +677,14 @@ const db2024 = [
             {
                 answer: '龍燈',
                 correct: true,
-                notes: '龍燈或魚燈，[鳳簫聲動，玉壺光轉，一夜魚龍舞]'
+                notes: '龍燈或魚燈，【鳳簫聲動，玉壺光轉，一夜魚龍舞】'
             },
+            // for radio inputs and allow milti correct selections, the last correct answer
+            // must have all correct answers in an array with the displayed answer placed at first
             {
                 answer: ['魚燈', '龍燈'],
                 correct: true,
-                notes: '龍燈或魚燈，[鳳簫聲動，玉壺光轉，一夜魚龍舞]'
+                notes: '龍燈或魚燈，【鳳簫聲動，玉壺光轉，一夜魚龍舞】'
             },
 	        {
 		        answer: '水燈',

@@ -122,8 +122,8 @@ function updateScoreHeadline() {
         }
         setTimeout(() => {
             playWav(audioId);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }, 1000);
-        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 }
 
@@ -215,6 +215,7 @@ const dataGlobal = (riddlesDB && riddlesDB[id]) ? riddlesDB[id] : riddlesDB[fisr
 const dbGlobal = dataGlobal.db;
 const noSkipGlobal = searchParams.get('f') === '1';
 const isAdm = searchParams.get('adm') === '1';
+// let isMobile = false;
 
 window.onload = function() {
     const userAgent = window.navigator.userAgent.toLowerCase();
@@ -223,6 +224,7 @@ window.onload = function() {
 
     if (mobile.test(userAgent)) {
         document.body.classList.add('mobile');
+        // isMobile = true;
         if (small.test(userAgent)) {
             document.body.classList.add('small');
         }
@@ -237,6 +239,16 @@ window.onload = function() {
         const showAnswerEl = document.querySelector('.btn-show-answer');
         showAnswerEl.removeAttribute('disabled');
     }
+
+    // if (isMobile) {
+    //     const textEls = mainEl.querySelectorAll('.text-input');
+    //     textEls.forEach(inputEl => {
+    //         inputEl.addEventListener('touchstart', () => {
+    //             console.log(inputEl.offsetHeight);
+    //             console.log('touchstart  detected, force reflow');
+    //         });
+    //     })
+    // }
 }
 
 let audioContext;
