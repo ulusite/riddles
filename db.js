@@ -1,5 +1,5 @@
-const db2024feb = [
-    {
+const DB = {
+    0: {
         question: '正月十五為上元。上元夜為元宵。七月十五為中元。是否有下元？',
         choices: [
             {
@@ -17,7 +17,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    1: {
         // question: '皇',
         question: '看圖拆字猜題',
         hint: '打一成語（4字）。比喻十全十美',
@@ -28,7 +28,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    2: {
         question: '看圖組字',
         hint: '打一初春開花植物 （2字）',
         moreHints: ['觀查圖中元素', '以一字描述一元素', '組合所有元素成二字答案'],
@@ -40,7 +40,7 @@ const db2024feb = [
             },
         ]
     },
-    {
+    3: {
         question: '我欲乘風歸去，高處不甚寒',
         hint: '打一元宵節應景活動時使用的物品 （2字）',
         choices: [
@@ -49,16 +49,17 @@ const db2024feb = [
             }
         ]
     },
-    {
+    4: {
         question: '清風徐來 水波不興',
         hint: '打一新北市觀光地名 （2字）',
+        moreHints: ['有老街', '有鐵路'],
         choices: [
             {
                 answer: '平溪',
             }
         ]
     },
-    {
+    5: {
         question: '美國西部有哪四個州，州界四角接連在一起？',
         choices: [
             {
@@ -79,7 +80,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    6: {
         question: '美國【五大湖】名字，哪一個在英文字母中最先出現？',
         choices: [
             {
@@ -100,7 +101,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    7: {
         // question: '一根棍子，吊著方箱；一把梯子，搭在中央',
         question: '看圖猜題',
         hint: '打一字。每人都有，丟掉的話會很糗。',
@@ -111,7 +112,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    8: {
         question: '墾丁之北，爾濱之南',
         hint: '看江山如此多嬌，猜四時不謝之花',
         choices: [
@@ -134,7 +135,7 @@ const db2024feb = [
             },
         ]
     },
-    {
+    9: {
         question: '智齒',
         hint: '打一傳統祭祀與慶祝活動。近代在閩臺一帶盛行 （2字）',
         choices: [
@@ -143,7 +144,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    10: {
         // question: '一邊是紅，一邊是綠。一邊喜風，一邊喜雨',
         question: '看題組字',
         hint: '打一字。在24節氣中此字出現2次',
@@ -155,7 +156,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    11: {
         question: '立春',
         hint: '打一音樂活動名 （2字）拆字格',
         choices: [
@@ -165,7 +166,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    12: {
         question: '柴門聞犬吠，風雪夜歸人',
         hint: '打一節氣名 （2字）',
         choices: [
@@ -175,7 +176,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    13: {
         question: '2024美國總統大選的【柯文哲】',
         hint: '打一人名。1. 在超級星期天足球大賽的廣告中出現過 2. 出生於美國政治世家 3. 伯父和父親都參加過美國總統競選',
         choices: [
@@ -184,16 +185,17 @@ const db2024feb = [
             }
         ]
     },
-    {
+    14: {
         question: '白髮三千丈，會須一飲三百杯',
         hint: '打一數學名詞 （3字）',
+        moreHints: ['一種數系'],
         choices: [
             {
                 answer: ['無理數', '无理数'],
             }
         ]
     },
-    {
+    15: {
         question: '開會',
         hint: '打一物理學名詞 （3字）',
         moreHints: ['愛因斯坦'],
@@ -203,34 +205,37 @@ const db2024feb = [
             }
         ]
     },
-    {
+    16: {
         question: '開大會',
         hint: '打一物理學名詞 （5字）',
+        moreHints: ['承上題'],
         choices: [
             {
                 answer: ['廣義相對論', '广义相对论'],
             }
         ]
     },
-    {
+    17: {
         question: ' ',
         hint: '打一人際行爲 （2字）',
+        moreHints: ['兩人', '通常是一男一女'],
         choices: [
             {
                 answer: ['約會', '约会'],
             }
         ]
     },
-    {
+    18: {
         question: '百家爭鳴',
         hint: '打一物理學名詞 （4字）',
+        moreHints: ['百家者，何人也？', '公說公有理，婆說婆有理', '剪不斷，理還亂'],
         choices: [
             {
                 answer: ['量子糾纏', '量子纠缠'],
             }
         ]
     },
-    {
+    19: {
         question: '下列哪幾行詩句是描寫元宵的情景?',
         imageId: 'poems',
         choices: [
@@ -249,7 +254,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    20: {
         question: '跑旱船',
         hint: '打一南宋愛國詩人名 （2字）',
         choices: [
@@ -258,7 +263,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    21: {
         question: '衣錦還鄉',
         hint: '打一明朝文人名，擅作抒情文 （3字）',
         choices: [
@@ -267,7 +272,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    22: {
         question: '老子曰',
         hint: '打一唐朝大詩人名 （2字）',
         choices: [
@@ -277,7 +282,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    23: {
         question: '子曰',
         hint: '打一書名（不是論語， 2字）',
         choices: [
@@ -287,7 +292,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    24: {
         question: '胖子泡溫泉',
         hint: '打一應時食品 （2字）',
         choices: [
@@ -296,7 +301,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    25: {
         question: '川味髮型',
         hint: '打一食品。生長在西南，茁壯於東北。最近流行遍灣區 （3字）',
         choices: [
@@ -305,7 +310,7 @@ const db2024feb = [
             }
         ]
     },
-    {
+    26: {
         question: '少林寺運動會',
         hint: '打一年節菜名 （3字）',
         choices: [
@@ -314,34 +319,37 @@ const db2024feb = [
             }
         ]
     },
-    {
+    27: {
         question: '剖腹生產',
         hint: '打一物理學/化學名詞 （2字）',
+        moreHints: ['小', '很小'],
         choices: [
             {
                 answer: '分子'
             }
         ]
     },
-    {
+    28: {
         question: '親生的',
         hint: '打一物理學/化學名詞 （2字）',
+        moreHints: ['極小'],
         choices: [
             {
                 answer: '原子'
             }
         ]
     },
-    {
+    29:{
         question: '呱呱墜地',
-        hint: '打一物理學/化學名詞 （2字）',
+        hint: '承上題打一物理學/化學名詞 （2字）',
+        moreHints: ['虛無縹緲'],
         choices: [
             {
                 answer: '光子'
             }
         ]
     },
-    {
+    30: {
         question: '美國阿拉斯加州，可以找到下列何物?',
         choices: [
             {
@@ -369,11 +377,7 @@ const db2024feb = [
             }
         ]
     },
-];
-
-const db2024 = [
-    // 地名，花名類
-    {
+    31: {
         question: '油管聼歌猜題',
         link: 'https://www.youtube.com/watch?v=ijOZRKla6yg',
         hint: '打一台灣地名',
@@ -400,279 +404,17 @@ const db2024 = [
             }
         ]
     },
-    {
-        question: '清風徐來 水波不興',
-        hint: '打台灣新北市一觀光地名 （2字）',
-        choices: [
-            {
-                answer: '平溪',
-            }
-        ]
-    },
-    {
-        question: '墾丁之北，爾濱之南',
-        hint: '看江山如此多嬌，猜四時不謝之花',
-        choices: [
-            {
-                answer: '百合花',
-            },
-            {
-                answer: '桔梗花',
-            },
-            {
-                answer: '日日春',
-                correct: true,
-                notes: '墾丁之北為恆春，爾濱之南為長春，日日皆春'
-            },
-            {
-                answer: '魯冰花',
-            },
-            {
-                answer: '以上皆非',
-            },
-        ]
-    },
-    {
-        question: '看圖組字',
-        hint: '打一初春開花植物 （2字）',
-        moreHints: ['觀查圖中元素', '以一字描述一元素', '組合所有元素成二字答案'],
-        imageId: 'waterFall',
-        choices: [
-            {
-                answer: ['水仙', '水仙花'],
-                notes: '一水一人一山，合為水仙'
-            },
-        ]
-    },
-
-    // 趣味，腦筋急轉彎類
-    // 數學名詞類
-    {
-        question: '白髮三千丈，會須一飲三百杯',
-        hint: '打一數學名詞 ',
-        textBox: true,
-        choices: [
-            {
-                answer: '虛數',
-            },
-            {
-                answer: '複數'
-            },
-            {
-                answer: ['無理數', '无理数'],
-                correct: true
-            },
-            {
-                answer: '循環數',
-            },
-        ]
-    },
-    {
-        question: '開會',
-        hint: '打一物理學名詞 （3字）',
-        moreHints: ['愛因斯坦'],
-        choices: [
-            {
-                answer: ['相對論', '相对论'],
-            }
-        ]
-    },
-    {
-        question: '開大會',
-        hint: '打一物理學名詞 （5字）',
-        choices: [
-            {
-                answer: ['廣義相對論', '广义相对论'],
-            }
-        ]
-    },
-
-    // 趣味，燒筋急轉彎類
-    // 物理學/化學名詞類
-    {
-        question: '剖腹生產',
-        hint: '打一物理學/化學名詞 （2字）',
-        choices: [
-            {
-                answer: ['分子']
-            }
-        ]
-    },
-    {
-        question: '親生的',
-        hint: '打一物理學/化學名詞 （2字）',
-        choices: [
-            {
-                answer: ['原子']
-            }
-        ]
-    },
-    {
-        question: '呱呱墜地',
-        hint: '打一物理學/化學名詞 （2字）',
-        choices: [
-            {
-                answer: ['光子']
-            }
-        ]
-    },
-    {
-        question: '百家爭鳴',
-        hint: '打一物理學名詞 （4字）',
-        choices: [
-            {
-                answer: ['量子糾纏', '量子纠缠']
-            }
-        ]
-    },
-    {
+    32:     {
         question: '狹義相對論 ',
         hint: '打一人際行爲 （2字）',
+        moreHints: ['兩人', '通常是一男一女'],
         choices: [
             {
                 answer: ['約會', '约会'],
             }
         ]
     },
-
-    // 趣味，燒筋急轉彎類
-    // 食物類
-    {
-        question: '胖子泡溫泉',
-        hint: '打一應時食品 （2字）',
-        choices: [
-            {
-                answer: ['湯圓', '汤圆'],
-            }
-        ]
-    },
-    {
-        question: '川味髮型',
-        hint: '打一食品。生長在西南，茁壯於東北。最近流行遍灣區 （3字）',
-        choices: [
-            {
-                answer: ['麻辣燙', '麻辣烫'],
-            }
-        ]
-    },
-    {
-        question: '少林寺運動會',
-        hint: '打一年節菜名 （3字）',
-        choices: [
-            {
-                answer: ['佛跳墻', '佛跳墙']
-            }
-        ]
-    },
-
-    // 節氣，節日類
-    {
-        question: '立春',
-        hint: '打一音樂活動名 （2字）拆字格',
-        choices: [
-            {
-                answer: '合唱',
-                notes: '立春拆為三人立日，即众【三人】音【立日】，合唱也'
-            }
-        ]
-    },
-    {
-        question: '下列哪幾行詩句是描寫元宵的情景?',
-        imageId: 'poems',
-        choices: [
-            {
-                answer: '1，3，4',
-            },
-	        {
-                answer: '1，2，3，4',
-            },
-            {
-                answer: '1，2，4',
-                correct: true
-            },
-            {
-                answer: '以上皆非',
-            }
-        ]
-    },
-    {
-        question: '正月十五為上元，是夜為元宵。七月十五為中元。是否有下元？',
-        choices: [
-            {
-                answer: '有。八月十五中秋亦稱下元',
-            },
-            {
-                answer: '有。臘月十五為下元'
-            },
-            {
-                answer: '有。十月十五為下元',
-                correct: true
-            },
-	        {
-		        answer: '沒有下元',
-            }
-        ]
-    },
-    {
-        question: '柴門聞犬吠，風雪夜歸人',
-        hint: '打一節氣名 （2字）',
-        choices: [
-            {
-                answer: '冬至',
-                notes: '風雪，冬也。夜歸，至也。風雪夜歸，冬至也。'
-            }
-        ]
-    },
-    {
-        question: '智齒',
-        hint: '打一傳統祭祀與慶祝活動。近代在閩臺一帶盛行 （2字）',
-        choices: [
-            {
-                answer: '尾牙'
-            }
-        ]
-    },
-
-    // 文學類
-    {
-        question: '老子曰',
-        hint: '打一唐朝大詩人 （2字）',
-        choices: [
-            {
-                answer: ['李白', '李太白'],
-		        notes: '老子姓李名耳，老子曰即李白'
-            }
-        ]
-    },
-    {
-        question: '子曰',
-        hint: '打一書名（不是論語， 2字）',
-        choices: [
-            {
-                answer: ['聖經', '圣经'],
-		        notes: '孔子聖人，聖人所言即聖經'
-            }
-        ]
-    },
-    {
-        question: '跑旱船',
-        hint: '打一南宋愛國詩人名 （2字）',
-        choices: [
-            {
-                answer: ['陸游', '陸放翁', '陆游', '陆放翁', '放翁'],
-            }
-        ]
-    },
-    {
-        question: '衣錦還鄉',
-        hint: '打一明朝文人，擅作抒情文 （3字）',
-        choices: [
-            {
-                answer: ['歸有光', '归有光'],
-            }
-        ]
-    },
-    {
+    33: {
         question: '辛棄疾《青玉案·元夕》：【鳳簫聲動，玉壺光轉】詞中舞的是什麽燈？',
         choices: [
             {
@@ -698,9 +440,8 @@ const db2024 = [
             }
         ]
     },
-    {
+    34: {
         question: '樓閣玲瓏五雲起，一騎紅塵妃子笑',
-        hint: '打一城市',
         choices: [
             {
                 answer: '成都',
@@ -708,7 +449,8 @@ const db2024 = [
             },
             {
                 answer: '重慶',
-                correct: true
+                correct: true,
+                notes: '生產荔枝的山城'
             },
             {
                 answer: '莆田',
@@ -723,9 +465,9 @@ const db2024 = [
             }
         ]
     },
-    {
+    35: {
         question: '小樓一夜聽春雨，賭書潑得永日香',
-        hint: '打一美食家多愛',
+        moreHints: ['美食家大都愛', '愈早的愈好'],
         choices: [
             {
                 answer: '酒'
@@ -746,9 +488,10 @@ const db2024 = [
             }
         ]
     },
-    {
+    36: {
         question: '竹杖芒鞋輕勝馬，一蓑煙雨任平生',
         hint: '打一小説人物',
+        moreHints: ['武藝高強', '出家'],
         choices: [
             {
                 answer: '賈寶玉',
@@ -769,10 +512,7 @@ const db2024 = [
             }
         ]
     },
-];
-
-const db2019 = [
-    {
+    37:     {
         question: '山在虛無縹緲間',
         hint: '打一台灣地名 （2字）',
         skip: false,
@@ -800,7 +540,7 @@ const db2019 = [
             }
         ]
     },
-    {
+    38: {
         question: '舍南舍北皆春水',
         hint: '打一台灣地名',
         skip: false,
@@ -823,7 +563,7 @@ const db2019 = [
             }
         ]
     },
-    {
+    39: {
         question: '兩個黃鷂鳴翠柳',
         hint: '打一台灣地名',
         skip: false,
@@ -851,10 +591,7 @@ const db2019 = [
             }
         ]
     },
-];
-
-const dbWarmup = [
-    {
+    40: {
         question: '星探',
         hint: '打一信息時代新興人物。主要工作是博人眼球 （2字）',
         choices: [
@@ -864,7 +601,7 @@ const dbWarmup = [
             }
         ]
     },
-    {
+    41: {
         question: '減肥',
         hint: '打一應節食品。諧音梗 （2字）',
         choices: [
@@ -874,7 +611,7 @@ const dbWarmup = [
             }
         ]
     },
-    {
+    42: {
         question: '那時風雨聲，花落知多少',
         hint: '打一過年時電視節目名 （2字）',
         choices: [
@@ -884,7 +621,7 @@ const dbWarmup = [
             }
         ]
     },
-    {
+    43: {
         question: '全中國最喜歡以十二生肖動物納入地名的省',
         choices: [
             {
@@ -902,7 +639,7 @@ const dbWarmup = [
             }
         ]
     },
-    {
+    44: {
         question: '十二生肖動物地名中，出現最多的前三名',
         choices: [
             {
@@ -920,7 +657,7 @@ const dbWarmup = [
             }
         ]
     },
-    {
+    45: {
         question: '十二生肖動物地名中，出現最少的前三名',
         choices: [
             {
@@ -937,10 +674,27 @@ const dbWarmup = [
                 answer: '以上皆非'
             }
         ]
-    }
+    },
+};
+
+const db2024feb = [
+    0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,20
+];
+
+const db2024 = [
+    31,4,8,2,14,15,16,32,27,28,29,18,24,26,25,11,19,0,12,9,22,23,20,21,33,34,35,36
+];
+
+const db2019 = [
+    37, 39, 39
+];
+
+const dbWarmup = [
+    40,41,42,43,44,45,
 ];
 
 const riddlesDB = {
+    masterDB: DB,
     '2024feb': {
         title: '2024 甲辰龍年',
         db: db2024feb

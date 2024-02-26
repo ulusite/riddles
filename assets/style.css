@@ -154,6 +154,9 @@ header {
     font-weight: normal;
     background-color: var(--btn-aux-bk-color);
 }
+.spacer {
+    margin-bottom: 5px;
+}
 input {
     font-size: medium;
     font-weight: bold;

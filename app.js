@@ -14,8 +14,8 @@ function loadRiddles() {
     const riddleTemplate = document.querySelector('#template__riddle');
     const choiceTemplate = document.querySelector('#template__choice');
     const textTemplate = document.querySelector('#template__text');
-
-    dbGlobal.forEach((riddle, riddleIndex) => {
+    dataGlobal.db.forEach(riddleId => {
+        const riddle = masterDB[riddleId];
         if (riddle.skip === true && !noSkipGlobal) {
             return;
         }
@@ -23,7 +23,7 @@ function loadRiddles() {
         const riddleClone = riddleTemplate.content.cloneNode(true);
 
         const riddleEl = riddleClone.querySelector('.riddle');
-        riddleEl.dataset.riddleIndex = riddleIndex;
+        riddleEl.dataset.riddleId = riddleId;
 
         // load riddle question
         const numberEl = riddleClone.querySelector('.number');
@@ -50,7 +50,7 @@ function loadRiddles() {
         }
 
         const controlEl = riddleClone.querySelector('.control');
-        const nameAttr = `riddle-${riddleIndex}`;
+        const nameAttr = `riddle-${riddleId}`;
         // if there is only 1 choice, default it to text input and ignore the textBox switch
         if (riddle.choices.length === 1) {
             riddle.correctIndex = 0;
@@ -73,13 +73,13 @@ function loadRiddles() {
                 if (Array.isArray(answer)) {
                     answer = answer[0]; // pick the first correct answer for radio choice
                 }
-                const id = `id-${riddleIndex}-${choiceIndex}`;
+                const elId = `id-${riddleId}-${choiceIndex}`;
                 radioEl.value = answer;
-                radioEl.id = id;
+                radioEl.id = elId;
                 radioEl.name = nameAttr;
                 radioEl.dataset.currentIndex = choiceIndex;
                 const labelEl = choiceClone.querySelector('label');
-                labelEl.htmlFor = id;
+                labelEl.htmlFor = elId;
                 labelEl.textContent = answer;
                 if (choice.correct === true) {
                     riddle.correctIndex = choiceIndex;
@@ -137,8 +137,8 @@ function updateScoreHeadline() {
 }
 
 function setCorrectAnswer(riddleEl) {
-    const riddleIndex = riddleEl.dataset.riddleIndex;
-    const currentRiddle = dbGlobal[riddleIndex];
+    const riddleId = riddleEl.dataset.riddleId;
+    const currentRiddle = masterDB[riddleId];
     const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
 
     const correctAnswerWrapper = riddleEl.querySelector('.correct-answer-wrapper');
@@ -157,8 +157,8 @@ function setCorrectAnswer(riddleEl) {
 }
 
 function handleYourAnswer(riddleEl, eventEl) {
-    const riddleIndex = riddleEl.dataset.riddleIndex;
-    const currentRiddle = dbGlobal[riddleIndex];
+    const riddleId = riddleEl.dataset.riddleId;
+    const currentRiddle = masterDB[riddleId];
     const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
 
     let yourAnswer;
@@ -181,10 +181,10 @@ function handleYourAnswer(riddleEl, eventEl) {
     const questionWrapper = riddleEl.querySelector('.question-wrapper');
     if (isCorrect) {
         scoreGlobal++;
-        tada();
+        tada(audioCtxGlobal);
         questionWrapper.classList.add('yes');
     } else {
-        beep();
+        beep(audioCtxGlobal);
         questionWrapper.classList.add('no');
     }
 }
@@ -193,7 +193,7 @@ function handleTextInput(riddleEl) {
     const inputEl = riddleEl.querySelector('.text-input');
     if (!inputEl.value) {
         inputEl.placeholder = '請輸入答案再提交';
-        warn();
+        warn(audioCtxGlobal);
         return;
     }
     setCorrectAnswer(riddleEl);
@@ -208,12 +208,12 @@ function handleByPass(riddleEl) {
     setCorrectAnswer(riddleEl);
     disableAllInputs(riddleEl);
     updateScoreHeadline();
-    warn();
+    warn(audioCtxGlobal);
 }
 
 function handleMoreHints(riddleEl) {
-    const riddleIndex = riddleEl.dataset.riddleIndex;
-    const currentRiddle = dbGlobal[riddleIndex];
+    const riddleId = riddleEl.dataset.riddleId;
+    const currentRiddle = masterDB[riddleId];
     const moreHints = currentRiddle.moreHints;
     const moreHintBtn = riddleEl.querySelector('.btn-hint');
 
@@ -240,7 +240,7 @@ function handleMoreHints(riddleEl) {
     } else {
         moreHintBtn.classList.add('hide');
     }
-    // warn();
+    // warn(audioCtxGlobal);
     hintCountGlobal++;
     const hintCountEl = document.querySelector('.hint-count');
     hintCountEl.textContent = hintCountGlobal;
@@ -251,46 +251,9 @@ function disableAllInputs(riddleEl) {
     inputEls.forEach(el => el.disabled = 'true');
 }
 
-// initialize global vars
-let questionCountGlobal = 0;
-let answerCountGlobal = 0;
-let scoreGlobal = 0;
-let hintCountGlobal = 0;
-
-const fisrtId = '2024feb';
-const searchParams = new URLSearchParams(window.location.search);
-const id = searchParams.get('id');
-const dataGlobal = (riddlesDB && riddlesDB[id]) ? riddlesDB[id] : riddlesDB[fisrtId];
-const dbGlobal = dataGlobal.db;
-const noSkipGlobal = searchParams.get('f') === '1';
-const isAdm = searchParams.get('adm') === '1';
-
-window.onload = function() {
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    const mobile = /iPhone|iPad|iPod|Android/i;
-    const small = /iPhone|iPod|Android/i;
-
-    if (mobile.test(userAgent)) {
-        document.body.classList.add('mobile');
-        if (small.test(userAgent)) {
-            document.body.classList.add('small');
-        }
-    } else {
-        document.body.classList.add('desktop');
-    }
-    loadRiddles();
-    initHeader();
-    if (isAdm) {
-        const riddleEls = mainEl.querySelectorAll('.riddle');
-        riddleEls.forEach(riddleEl => setCorrectAnswer(riddleEl));
-    }
-}
-
-let audioContext;
-const mainEl = document.querySelector('main');
-mainEl.addEventListener('click', event => {
-    if (!audioContext) {
-        audioContext = new AudioContext();
+function handleClick(event) {
+    if (!audioCtxGlobal) {
+        audioCtxGlobal = new AudioContext();
     }
     const eventEl = event.target;
     const riddleEl = eventEl.closest('.riddle');
@@ -312,15 +275,59 @@ mainEl.addEventListener('click', event => {
         }
         handleTextInput(riddleEl);
     }
-});
+}
 
-mainEl.addEventListener('keyup', event => {
-    if (!audioContext) {
-        audioContext = new AudioContext();
+function handleEnter(event) {
+    if (!audioCtxGlobal) {
+        audioCtxGlobal = new AudioContext();
     }
     const eventEl = event.target;
     if (event.key === 'Enter' && eventEl.tagName === 'INPUT' && eventEl.type === 'text') {
         const riddleEl = eventEl.closest('.riddle');
         handleTextInput(riddleEl, eventEl);
     }
-});
+}
+
+function onLoad() {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const mobile = /iPhone|iPad|iPod|Android/i;
+    const small = /iPhone|iPod|Android/i;
+
+    if (mobile.test(userAgent)) {
+        document.body.classList.add('mobile');
+        if (small.test(userAgent)) {
+            document.body.classList.add('small');
+        }
+    } else {
+        document.body.classList.add('desktop');
+    }
+    loadRiddles();
+    initHeader();
+    if (isAdmGlobal) {
+        const riddleEls = document.querySelectorAll('.riddle');
+        riddleEls.forEach(riddleEl => setCorrectAnswer(riddleEl));
+    }
+}
+
+// initialize global vars
+let audioCtxGlobal;
+let questionCountGlobal = 0;
+let answerCountGlobal = 0;
+let scoreGlobal = 0;
+let hintCountGlobal = 0;
+
+const searchParams = new URLSearchParams(window.location.search);
+const noSkipGlobal = searchParams.get('f') === '1';
+const isAdmGlobal = searchParams.get('adm') === '1';
+
+// find/setup the target data
+const fisrtId = '2024feb';
+const dbid = searchParams.get('id');
+const dataGlobal = riddlesDB[dbid] ? riddlesDB[dbid] : riddlesDB[fisrtId];
+const masterDB = riddlesDB.masterDB; // riddlesDB is defined in db.js
+
+// window.onload = onLoad
+window.addEventListener('load', onLoad);
+const mainEl = document.querySelector('main');
+mainEl.addEventListener('click', handleClick);
+mainEl.addEventListener('keyup', handleEnter);
