@@ -7,7 +7,8 @@
     --disabled-color: rgb(84, 84, 84);
     --disabled-bk-color: rgba(239, 239, 239, 0.3);
     --font-family-en: monospace;
-    --btn-pass-bk-color: #1a73e8;
+    --btn-aux-bk-color: cadetblue;
+    --text-passed-color: #1a73e8;
 }
 
 body {
@@ -26,6 +27,9 @@ main {
 }
 
 /* common styles */
+.hide {
+    display: none;
+}
 .strong {
     font-weight: bold;
 }
@@ -33,7 +37,7 @@ main {
     font-size: medium;
 }
 .indent {
-    padding-left: var(--indent-space);
+    margin-left: var(--indent-space);
 }
 .right {
     float: right;
@@ -71,9 +75,8 @@ header {
     font-size: 36px;
 }
 .h3 {
-    padding: 21px 0;
+    padding: 20px 0;
     font-weight: bold;
-    font-size: 21px;
 }
 .smile {
     font-family: var(--font-family-en);
@@ -85,21 +88,23 @@ header {
 .score-headline span span {
     margin-right: 4px;
 }
+.blink {
+    animation: blinker 1s 4;
+}
+@keyframes blinker {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
 
 /* riddle question element styles */
 .riddle {
     margin-bottom: 16px;
 }
-.hint,
-.link {
-    display: none;
+.more-hint-text::before {
+    content: "提示"attr(data-hint-number)"：";
 }
-.hint:before {
-    content: "提示：";
-}
-.image-wrapper {
-    display: none;
-}
+
 .img {
     object-fit: contain;
     height: 100%;
@@ -144,25 +149,11 @@ header {
     color: var(--disabled-color);
     border: 1px solid var(--border-color);
 }
-.btn-show-answer,
-.btn-pass {
+.btn-aux {
     height: 28px;
     font-weight: normal;
+    background-color: var(--btn-aux-bk-color);
 }
-.btn-show-answer {
-    margin-top: 8px;
-}
-.btn-show-answer.done,
-.btn-show-answer.done:hover{
-    background-color: steelblue;
-    pointer-events: none;
-    cursor: none;
-}
-.btn-pass {
-    margin-left: 20px;
-    background-color: steelblue;
-}
-
 input {
     font-size: medium;
     font-weight: bold;
@@ -182,22 +173,22 @@ input:disabled {
     transition: opacity 1s ease-in-out;
 }
 
-.passed.question-wrapper {
-    color: var(--btn-pass-bk-color);
+.passed.question-wrapper:after {
+    color: var(--text-passed-color);
+    content: ' 已跳過';
+    font-weight: bold;;
 }
 .yes.question-wrapper { /* other elements may have yes/no and not change color */
     color: green;
 }
 .yes::after {
     content: "\2713"; /* check mark */
-    color: green;
 }
 .no.question-wrapper {
     color: red;
 }
 .no::after {
     content: "\2717"; /* ballot X */
-    color: red;
 }
 
 footer {

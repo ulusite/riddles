@@ -6,7 +6,7 @@ function loadImage(imageId, riddleClone) {
         dataUri = photos[0];
     }
     imgEl.src = dataUri;
-    imageWrapper.style.display = 'block';
+    imageWrapper.classList.remove('hide');
 }
 
 function loadRiddles() {
@@ -33,8 +33,8 @@ function loadRiddles() {
         if (riddle.link) {
             linkQuestionEl.textContent = riddle.question;
             linkQuestionEl.href = riddle.link;
-            linkQuestionEl.style.display = 'inline-block';
-            questionEl.style.display = 'none';
+            linkQuestionEl.classList.remove('hide');
+            questionEl.classList.add('hide');
         } else {
             questionEl.textContent = riddle.question;
         }
@@ -42,7 +42,7 @@ function loadRiddles() {
         if (riddle.hint) {
             const hintEl = riddleClone.querySelector('.hint');
             hintEl.textContent = riddle.hint;
-            hintEl.style.display = 'inline';
+            hintEl.classList.remove('hide');
         }
 
         if (riddle.imageId) {
@@ -87,6 +87,12 @@ function loadRiddles() {
                 controlEl.appendChild(choiceClone);
             });
         }
+        if (riddle.moreHints && riddle.moreHints.length) {
+            const moreHintsEl = riddleClone.querySelector('.more-hints');
+            moreHintsEl.classList.remove('hide');
+            const moreHintBtn = moreHintsEl.querySelector('.btn-hint');
+            moreHintBtn.dataset.hintIndex = 0;
+        }
         mainEl.appendChild(riddleClone);
     });
 }
@@ -100,22 +106,24 @@ function initHeader() {
     questionCountEl.textContent = questionCountGlobal;
     const answerCountEl = scoreHeadlineEl.querySelector('.answer-count');
     answerCountEl.textContent = answerCountGlobal;
+    const hintCountEl = scoreHeadlineEl.querySelector('.hint-count');
+    hintCountEl.textContent = hintCountGlobal;
     const scoreEl = scoreHeadlineEl.querySelector('.score');
     scoreEl.textContent = scoreGlobal;
+
     scoreHeadlineEl.style.opacity = 1;
 }
 
 function updateScoreHeadline() {
     answerCountGlobal++;
-    const answerCountEl = document.querySelector('.answer-count');
+    const scoreHeadlineEl = document.querySelector('.score-headline');
+    const answerCountEl = scoreHeadlineEl.querySelector('.answer-count');
     answerCountEl.textContent = answerCountGlobal;
-    const scoreEl = document.querySelector('.score');
+    const scoreEl = scoreHeadlineEl.querySelector('.score');
     scoreEl.textContent = scoreGlobal;
 
     // play win/sad sound effect when all questions are answered
     if (answerCountGlobal === questionCountGlobal) {
-        const showAnswerEl = document.querySelector('.btn-show-answer');
-        showAnswerEl.removeAttribute('disabled');
         let audioId = 'win';
         if (scoreGlobal / questionCountGlobal * 100 <= 50) {
             audioId = 'sad'
@@ -123,6 +131,7 @@ function updateScoreHeadline() {
         setTimeout(() => {
             playWav(audioId);
             window.scrollTo({top: 0, behavior: 'smooth'});
+            scoreHeadlineEl.classList.add('blink');
         }, 1000);
     }
 }
@@ -144,16 +153,17 @@ function setCorrectAnswer(riddleEl) {
     if (correctChoice.notes) {
         notesEl.textContent = `(${correctChoice.notes})`;
     }
+    correctAnswerWrapper.style.opacity = 1;
 }
 
-function handleYourAnswer(riddleEl, radioEl) {
+function handleYourAnswer(riddleEl, eventEl) {
     const riddleIndex = riddleEl.dataset.riddleIndex;
     const currentRiddle = dbGlobal[riddleIndex];
     const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
 
     let yourAnswer;
-    if (radioEl) {
-        yourAnswer = radioEl.value;
+    if (eventEl) {
+        yourAnswer = eventEl.value;
     } else {
         const inputEl = riddleEl.querySelector('.text-input');
         yourAnswer = inputEl.value;
@@ -179,17 +189,6 @@ function handleYourAnswer(riddleEl, radioEl) {
     }
 }
 
-function handleByPass(riddleEl) {
-    const questionWrapper = riddleEl.querySelector('.question-wrapper');
-    questionWrapper.classList.add('passed');
-    warn();
-}
-
-function disableAllInputs(riddleEl) {
-    const inputEls = riddleEl.querySelectorAll('input');
-    inputEls.forEach(el => el.disabled = 'true');
-}
-
 function handleTextInput(riddleEl) {
     const inputEl = riddleEl.querySelector('.text-input');
     if (!inputEl.value) {
@@ -199,14 +198,64 @@ function handleTextInput(riddleEl) {
     }
     setCorrectAnswer(riddleEl);
     handleYourAnswer(riddleEl);
-    updateScoreHeadline();
     disableAllInputs(riddleEl);
+    updateScoreHeadline();
+}
+
+function handleByPass(riddleEl) {
+    const questionWrapper = riddleEl.querySelector('.question-wrapper');
+    questionWrapper.classList.add('passed');
+    setCorrectAnswer(riddleEl);
+    disableAllInputs(riddleEl);
+    updateScoreHeadline();
+    warn();
+}
+
+function handleMoreHints(riddleEl) {
+    const riddleIndex = riddleEl.dataset.riddleIndex;
+    const currentRiddle = dbGlobal[riddleIndex];
+    const moreHints = currentRiddle.moreHints;
+    const moreHintBtn = riddleEl.querySelector('.btn-hint');
+
+    let hintIndex = Number.parseInt(moreHintBtn.dataset.hintIndex);
+    let moreHintText
+    if (hintIndex === 0) {
+        moreHintText = riddleEl.querySelector('.more-hint-text');
+        moreHintText.classList.remove('hide');
+    } else {
+        moreHintText = document.createElement("div");
+        moreHintText.classList.add('more-hint-text');
+        moreHintBtn.parentNode.insertBefore(moreHintText, moreHintBtn);
+    }
+    moreHintText.textContent = moreHints[hintIndex];
+    if (moreHints.length > 1) {
+        // hint index is 0-based, whereas display text starts from 1
+        moreHintText.dataset.hintNumber = hintIndex + 1; // data-hint-number is used by CSS
+    }
+
+    hintIndex++;
+    if (moreHints.length > hintIndex) {
+        moreHintBtn.dataset.hintIndex = hintIndex; // set index for next hint
+        moreHintBtn.blur();
+    } else {
+        moreHintBtn.classList.add('hide');
+    }
+    // warn();
+    hintCountGlobal++;
+    const hintCountEl = document.querySelector('.hint-count');
+    hintCountEl.textContent = hintCountGlobal;
+}
+
+function disableAllInputs(riddleEl) {
+    const inputEls = riddleEl.querySelectorAll('input');
+    inputEls.forEach(el => el.disabled = 'true');
 }
 
 // initialize global vars
 let questionCountGlobal = 0;
 let answerCountGlobal = 0;
 let scoreGlobal = 0;
+let hintCountGlobal = 0;
 
 const fisrtId = '2024feb';
 const searchParams = new URLSearchParams(window.location.search);
@@ -215,7 +264,6 @@ const dataGlobal = (riddlesDB && riddlesDB[id]) ? riddlesDB[id] : riddlesDB[fisr
 const dbGlobal = dataGlobal.db;
 const noSkipGlobal = searchParams.get('f') === '1';
 const isAdm = searchParams.get('adm') === '1';
-// let isMobile = false;
 
 window.onload = function() {
     const userAgent = window.navigator.userAgent.toLowerCase();
@@ -224,7 +272,6 @@ window.onload = function() {
 
     if (mobile.test(userAgent)) {
         document.body.classList.add('mobile');
-        // isMobile = true;
         if (small.test(userAgent)) {
             document.body.classList.add('small');
         }
@@ -236,19 +283,7 @@ window.onload = function() {
     if (isAdm) {
         const riddleEls = mainEl.querySelectorAll('.riddle');
         riddleEls.forEach(riddleEl => setCorrectAnswer(riddleEl));
-        const showAnswerEl = document.querySelector('.btn-show-answer');
-        showAnswerEl.removeAttribute('disabled');
     }
-
-    // if (isMobile) {
-    //     const textEls = mainEl.querySelectorAll('.text-input');
-    //     textEls.forEach(inputEl => {
-    //         inputEl.addEventListener('touchstart', () => {
-    //             console.log(inputEl.offsetHeight);
-    //             console.log('touchstart  detected, force reflow');
-    //         });
-    //     })
-    // }
 }
 
 let audioContext;
@@ -263,34 +298,20 @@ mainEl.addEventListener('click', event => {
     if (eventEl.tagName === 'INPUT' && eventEl.type === 'radio') {
         setCorrectAnswer(riddleEl);
         handleYourAnswer(riddleEl, eventEl);
-        updateScoreHeadline();
         disableAllInputs(riddleEl);
+        updateScoreHeadline();
     }
     else if (eventEl.tagName === 'INPUT' && eventEl.type === 'button') {
         if (eventEl.classList.contains('btn-pass')) {
-            setCorrectAnswer(riddleEl);
             handleByPass(riddleEl);
-            updateScoreHeadline();
-            disableAllInputs(riddleEl);
             return;
         }
-
+        if (eventEl.classList.contains('btn-hint')) {
+            handleMoreHints(riddleEl);
+            return;
+        }
         handleTextInput(riddleEl);
     }
-});
-
-const showAnswerEl = document.querySelector('.btn-show-answer');
-showAnswerEl.addEventListener('click', event => {
-    if (!audioContext) {
-        audioContext = new AudioContext();
-    }
-    const eventEl = event.target;
-    eventEl.value = '答案已顯示于每題之下';
-    eventEl.classList.add('done');
-    const correctAnserEls = document.querySelectorAll('.correct-answer-wrapper');
-    correctAnserEls.forEach(el => el.style.opacity = 1);
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    tada();
 });
 
 mainEl.addEventListener('keyup', event => {
@@ -300,6 +321,6 @@ mainEl.addEventListener('keyup', event => {
     const eventEl = event.target;
     if (event.key === 'Enter' && eventEl.tagName === 'INPUT' && eventEl.type === 'text') {
         const riddleEl = eventEl.closest('.riddle');
-        handleTextInput(riddleEl);
+        handleTextInput(riddleEl, eventEl);
     }
 });
