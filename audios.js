@@ -1,41 +1,44 @@
-function play(type, frequency, duration, volume){
+function play(audioCtx, type, frequency, duration, volume) {
+    if (!audioCtx) {
+        return;
+    }
     type = type || 'sine';
     duration = duration || 100;
     frequency = frequency || 440;
     volume = volume || 100;
 
-    const oscillatorNode = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
+    const oscillatorNode = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
     oscillatorNode.connect(gainNode);
-    gainNode.connect(audioContext.destination);
+    gainNode.connect(audioCtx.destination);
     gainNode.gain.value = volume * 0.01;
     oscillatorNode.frequency.value = frequency;
     oscillatorNode.type= type;
-    oscillatorNode.start(audioContext.currentTime);
-    oscillatorNode.stop(audioContext.currentTime + duration * 0.001);
+    oscillatorNode.start(audioCtx.currentTime);
+    oscillatorNode.stop(audioCtx.currentTime + duration * 0.001);
 }
 
-function warn() {
-    play('sawtooth', 600, 80);
+function warn(audioCtx) {
+    play(audioCtx, 'sawtooth', 600, 80);
     setTimeout(function() {
-        play('sawtooth', 500, 50);
+        play(audioCtx, 'sawtooth', 500, 50);
     }, 80);
 }
 
-function beep() {
-    play('sawtooth', 440);
+function beep(audioCtx) {
+    play(audioCtx, 'sawtooth', 440);
 }
 
-function tada() {
-    play('triangle', 200, 60);
+function tada(audioCtx) {
+    play(audioCtx, 'triangle', 200, 60);
     setTimeout(function() {
-        play('triangle', 340, 70);
+        play(audioCtx, 'triangle', 340, 70);
     }, 60);
     setTimeout(function() {
-        play('triangle', 480, 80);
+        play(audioCtx, 'triangle', 480, 80);
     }, 130);
     setTimeout(function() {
-        play('triangle', 530, 180);
+        play(audioCtx, 'triangle', 530, 180);
     }, 210);
 }
 
