@@ -12,15 +12,19 @@
         <div class="riddle">
             <div class="question-wrapper">
                 <span class="number"></span>
-                <a class="question link strong" target="_blank"></a>
+                <a class="question link strong hide" target="_blank"></a>
                 <span class="question no-link strong"></span>
             </div>
-            <div class="indent smaller"><span class="hint"></span></div>
-            <div class="image-wrapper indent">
+            <div class="indent smaller"><span class="hint hide"></span></div>
+            <div class="indent smaller more-hints hide">
+                <div class="more-hint-text hide"></div>
+                <input type="button" value="更多提示" class="btn btn-aux btn-hint">
+            </div>
+            <div class="image-wrapper indent hide">
                 <img class="img">
             </div>
             <div class="control indent"></div>
-            <input type="button" value="跳過本題" class="btn btn-pass">
+            <input type="button" value="跳過本題" class="btn btn-aux indent btn-pass">
             <div class="correct-answer-wrapper indent smaller">
                 <span class="strong">答案：</span>
                 <span class="answer strong"></span>
@@ -59,13 +63,11 @@
                 <span>每題只能答一次。分數出門恕不退換</span>
                 <span class="smile">^.^</span>
             </div>
-            <div class="smaller">
-                <input type="button" value="答題完畢點此查看答案" disabled class="btn btn-show-answer">
-            </div>
-            <div class="h3 score-headline brown">
-                <span>題數：<span class="question-count"></span></span>
-                <span>已提交：<span class="answer-count"></span></span>
-                <span>得分：<span class="score"></span></span>
+            <div class="h3 score-headline smaller brown">
+                <span>題數:<span class="question-count"></span></span>
+                <span>已解答:<span class="answer-count"></span></span>
+                <span>提示數:<span class="hint-count"></span></span>
+                <span>得分:<span class="score"></span></span>
             </div>
             <!--
             pyscript.com doesn't allow us to upload files. Let's use data URI
