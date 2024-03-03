@@ -101,6 +101,7 @@ function initHeader() {
     const riddleTitleWrapper = document.querySelector('.riddle-title-wrapper');
     let targetTitleWrapper;
     if (dataGlobal.title) {
+        document.title = dataGlobal.title;
         targetTitleWrapper = document.querySelector('.common-title-wrapper');
         targetTitleWrapper.querySelector('.title').textContent = dataGlobal.title;
         targetTitleWrapper.classList.remove('hide');
@@ -316,8 +317,8 @@ function onLoad() {
     } else {
         document.body.classList.add('desktop');
     }
-    loadRiddles();
     initHeader();
+    loadRiddles();
     if (isAdmGlobal) {
         const riddleEls = document.querySelectorAll('.riddle');
         riddleEls.forEach(riddleEl => setCorrectAnswer(riddleEl));

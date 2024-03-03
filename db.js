@@ -105,7 +105,7 @@ const DB = {
     7: {
         // question: '一根棍子，吊著方箱；一把梯子，搭在中央',
         question: '看圖猜題',
-        hint: '打一字。每人都有，丟掉的話會很糗。',
+        hint: '打一字',
         moreHints: ['每人都有', '丟了的話會很糗'],
         imageId: 'char3',
         choices: [
@@ -117,7 +117,7 @@ const DB = {
     8: {
         question: '墾丁之北，爾濱之南',
         hint: '看江山如此多嬌，猜四時不謝之花',
-        moreHints: ['兩個地名皆有一相同字'],
+        moreHints: ['兩地名有一字相同'],
         choices: [
             {
                 answer: '百合花',
@@ -294,7 +294,7 @@ const DB = {
     23: {
         question: '子曰',
         hint: '打一書名 （2字）',
-        moreHints: ['不是論語', '信與不信，風行天下'],
+        moreHints: ['不是論語', '不是中國的'],
         choices: [
             {
                 answer: ['聖經', '圣经'],
