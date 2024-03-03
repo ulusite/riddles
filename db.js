@@ -20,7 +20,8 @@ const DB = {
     1: {
         // question: '皇',
         question: '看圖拆字猜題',
-        hint: '打一成語（4字）。比喻十全十美',
+        hint: '打一成語（4字）',
+        moreHints: ['喻十全十美', '一種美石'],
         imageId: 'char1',
         choices: [
             {
@@ -105,6 +106,7 @@ const DB = {
         // question: '一根棍子，吊著方箱；一把梯子，搭在中央',
         question: '看圖猜題',
         hint: '打一字。每人都有，丟掉的話會很糗。',
+        moreHints: ['每人都有', '丟了的話會很糗'],
         imageId: 'char3',
         choices: [
             {
@@ -115,6 +117,7 @@ const DB = {
     8: {
         question: '墾丁之北，爾濱之南',
         hint: '看江山如此多嬌，猜四時不謝之花',
+        moreHints: ['兩個地名皆有一相同字'],
         choices: [
             {
                 answer: '百合花',
@@ -137,7 +140,8 @@ const DB = {
     },
     9: {
         question: '智齒',
-        hint: '打一傳統祭祀與慶祝活動。近代在閩臺一帶盛行 （2字）',
+        hint: '打一傳統祭祀與慶祝活動 （2字）',
+        moreHints: ['近代盛行於閩臺一帶', '年終'],
         choices: [
             {
                 answer: '尾牙'
@@ -147,7 +151,8 @@ const DB = {
     10: {
         // question: '一邊是紅，一邊是綠。一邊喜風，一邊喜雨',
         question: '看題組字',
-        hint: '打一字。在24節氣中此字出現2次',
+        hint: '打一字',
+        moreHints: ['此字在24節氣中出現2次', '季節'],
         imageId: 'char2',
         choices: [
             {
@@ -159,6 +164,7 @@ const DB = {
     11: {
         question: '立春',
         hint: '打一音樂活動名 （2字）拆字格',
+        moreHints: ['可陽春白雪', '可下里巴人'],
         choices: [
             {
                 answer: '合唱',
@@ -168,7 +174,8 @@ const DB = {
     },
     12: {
         question: '柴門聞犬吠，風雪夜歸人',
-        hint: '打一節氣名 （2字）',
+        hint: '打一節氣',
+        moreHints: ['冬季'],
         choices: [
             {
                 answer: '冬至',
@@ -247,7 +254,8 @@ const DB = {
             },
             {
                 answer: '1，2，4',
-                correct: true
+                correct: true,
+                notes: '第1行第1句：蘇味道《正月十五夜》。第1行第2句及第2行1，2句：歐陽修《生查子·元夕》。第4行：辛棄疾《青玉案·元夕》。第3行，第1句改崔灝《黃鶴樓》日暮鄉關何處是，第2句出自崔護《題都城南莊》'
             },
             {
                 answer: '以上皆非',
@@ -265,7 +273,8 @@ const DB = {
     },
     21: {
         question: '衣錦還鄉',
-        hint: '打一明朝文人名，擅作抒情文 （3字）',
+        hint: '打一明朝文人名 （3字）',
+        moreHints: ['擅作抒情文', '江蘇崑山人'],
         choices: [
             {
                 answer: ['歸有光', '归有光'],
@@ -284,7 +293,8 @@ const DB = {
     },
     23: {
         question: '子曰',
-        hint: '打一書名（不是論語， 2字）',
+        hint: '打一書名 （2字）',
+        moreHints: ['不是論語', '信與不信，風行天下'],
         choices: [
             {
                 answer: ['聖經', '圣经'],
@@ -295,6 +305,7 @@ const DB = {
     24: {
         question: '胖子泡溫泉',
         hint: '打一應時食品 （2字）',
+        moreHints: ['通常是甜的'],
         choices: [
             {
                 answer: ['湯圓', '汤圆'],
@@ -303,7 +314,8 @@ const DB = {
     },
     25: {
         question: '川味髮型',
-        hint: '打一食品。生長在西南，茁壯於東北。最近流行遍灣區 （3字）',
+        hint: '打一食品（3字）',
+        moreHints: ['出於西南', '盛於東北', '近來流行遍灣區'],
         choices: [
             {
                 answer: ['麻辣燙', '麻辣烫'],
@@ -381,6 +393,7 @@ const DB = {
         question: '油管聼歌猜題',
         link: 'https://www.youtube.com/watch?v=ijOZRKla6yg',
         hint: '打一台灣地名',
+        moreHints: ['電影邊城主題曲--熱烘烘的太陽'],
         choices: [
             {
                 answer: '春日',
@@ -404,7 +417,7 @@ const DB = {
             }
         ]
     },
-    32:     {
+    32: {
         question: '狹義相對論 ',
         hint: '打一人際行爲 （2字）',
         moreHints: ['兩人', '通常是一男一女'],
@@ -491,16 +504,16 @@ const DB = {
     36: {
         question: '竹杖芒鞋輕勝馬，一蓑煙雨任平生',
         hint: '打一小説人物',
-        moreHints: ['武藝高強', '出家'],
+        moreHints: ['出家', '武藝高強'],
         choices: [
             {
                 answer: '賈寶玉',
             },
             {
-                answer: '令狐冲',
+                answer: '武松',
             },
             {
-                answer: '林冲',
+                answer: '令狐冲',
             },
             {
                 answer: ['魯達', '魯智深', '鲁达', '鲁智深'],
@@ -512,7 +525,7 @@ const DB = {
             }
         ]
     },
-    37:     {
+    37: {
         question: '山在虛無縹緲間',
         hint: '打一台灣地名 （2字）',
         skip: false,
@@ -593,7 +606,8 @@ const DB = {
     },
     40: {
         question: '星探',
-        hint: '打一信息時代新興人物。主要工作是博人眼球 （2字）',
+        hint: '打一信息時代新興人物 （2字）',
+        moreHints: ['主要工作是博人眼球'],
         choices: [
             {
                 answer: ['網美', '网美'],
@@ -603,7 +617,8 @@ const DB = {
     },
     41: {
         question: '減肥',
-        hint: '打一應節食品。諧音梗 （2字）',
+        hint: '打一應節食品 （2字）',
+        moreHints: ['諧音梗'],
         choices: [
             {
                 answer: '元宵',
@@ -675,10 +690,236 @@ const DB = {
             }
         ]
     },
+    46: {
+        question: '千山響杜鵑，樹杪百重泉',
+        hint: '打一節氣',
+        moreHints: ['杜鵑別名', '春季'],
+        choices: [
+            {
+                answer: ['穀雨', '谷雨'],
+                notes: '王維《送梓州李使君》：万壑樹參天，千山響杜鵑，山中一夜雨，樹杪百重泉'
+            }
+        ]
+    },
+    47: {
+        question: '退燒',
+        hint: '打一節氣',
+        moreHints: ['秋季'],
+        choices: [
+            {
+                answer: ['處暑', '处暑'],
+            }
+        ]
+    },
+    48: {
+        question: '蟋蟀入我床下',
+        hint: '打一節氣',
+        moreHints: ['只待新雷第一声', '春季'],
+        choices: [
+            {
+                answer: ['驚蟄', '惊蛰'],
+            }
+        ]
+    },
+    49: {
+        question: '舜何人也，禹何人也',
+        hint: '打一節氣',
+        moreHints: ['禪讓', '夏季'],
+        choices: [
+            {
+                answer: '立夏',
+            }
+        ]
+    },
+    50: {
+        question: '潤無細無聲，泉眼惜細流',
+        hint: '打一節氣',
+        moreHints: ['似牛毛，似花針', '春季'],
+        choices: [
+            {
+                answer: '雨水',
+            }
+        ]
+    },
+    51: {
+        question: '家家麥飯美，處處插秧忙',
+        hint: '打一節氣',
+        moreHints: ['黛玉葬花', '夏季'],
+        choices: [
+            {
+                answer: ['芒種', '芒种'],
+                notes: '陸遊《時雨》時雨及芒種，四野皆插秧。家家麥飯美，處處菱歌長。'
+            }
+        ]
+    },
+    52: {
+        question: '子在川上曰，湘江北去，橘子洲頭',
+        hint: '打一節氣',
+        moreHints: ['秋季'],
+        choices: [
+            {
+                answer: '立秋',
+                notes: '毛澤東《沁園春•長沙》獨立寒秋'
+            }
+        ]
+    },
+    53: {
+        question: '飯吃七分飽，話留三分好',
+        // question: '青杏枝頭花漸少，乳鴨池塘水欲深',
+        hint: '打一節氣',
+        moreHints: ['夏季'],
+        choices: [
+            {
+                answer: '小滿',
+                // notes: '趙慶熹《台城路其二》：枝头青杏尚小。戴敏《初夏游張園》：乳鴨池塘水淺深'
+            }
+        ]
+    },
+    54: {
+        question: '老頭子沒染髮',
+        hint: '打一節氣',
+        moreHints: ['秋季'],
+        choices: [
+            {
+                answer: '白露',
+            }
+        ]
+    },
+    55: {
+        question: '老太婆忘染髮',
+        hint: '打一節氣',
+        moreHints: ['秋季'],
+        choices: [
+            {
+                answer: '霜降',
+            }
+        ]
+    },
+    56: {
+        question: '點餐用coupon，飲料都不要',
+        hint: '打一節氣',
+        moreHints: ['進LV店，只逛不買', '秋季'],
+        choices: [
+            {
+                answer: '寒露',
+            }
+        ]
+    },
+    57: {
+        question: '黃狗身上白',
+        hint: '打一節氣',
+        moreHints: ['冬季'],
+        choices: [
+            {
+                answer: '小雪',
+            }
+        ]
+    },
+    58: {
+        question: '白狗身上腫',
+        hint: '打一節氣',
+        moreHints: ['冬季'],
+        choices: [
+            {
+                answer: ['大雪'],
+            }
+        ]
+    },
+    59: {
+        question: '二胖',
+        hint: '打一節氣',
+        moreHints: ['拆字格', '春季'],
+        choices: [
+            {
+                answer: '春分',
+            }
+        ]
+    },
+    60: {
+        question: '南雁北囘，又伴艷陽歸',
+        hint: '打一節氣',
+        moreHints: ['夏季'],
+        choices: [
+            {
+                answer: '夏至',
+            }
+        ]
+    },
+    61: {
+        question: '汗如雨下懶搖扇',
+        hint: '打一節氣',
+        moreHints: ['夏季'],
+        choices: [
+            {
+                answer: ['小暑'],
+            }
+        ]
+    },
+    62: {
+        question: '浮瓜沉李待三秋',
+        hint: '打一節氣',
+        moreHints: ['夏季'],
+        choices: [
+            {
+                answer: ['大暑'],
+            }
+        ]
+    },
+    63: {
+        question: '學海無涯勤作岸，尊師有道程門雪',
+        hint: '打一節氣',
+        moreHints: ['冬季'],
+        choices: [
+            {
+                answer: '立冬',
+            }
+        ]
+    },
+    64: {
+        question: '一簞食，一瓢飲，居陋巷，囘也不改其樂',
+        hint: '打一節氣',
+        moreHints: ['冬季'],
+        choices: [
+            {
+                answer: '小寒',
+            }
+        ]
+    },
+    65: {
+        question: '青女素娥俱耐冷，月中霜裏鬥嬋娟',
+        hint: '打一節氣',
+        moreHints: ['月宮', '冬季'],
+        choices: [
+            {
+                answer: '大寒',
+                notes: '月宮又名廣寒宮，廣者，大也',
+            }
+        ]
+    },
+    66: {
+        question: '小樓聼春雨，深巷賣杏花，素衣風塵嘆，何時可到家',
+        hint: '打一節氣',
+        moreHints: ['杏帘招客飲', '春季'],
+        choices: [
+            {
+                answer: '清明',
+            }
+        ]
+    },
+    67: {
+        question: '(北方)種麥正當時，無雨莫種園',
+        hint: '打一節氣',
+        moreHints: ['白露早，寒露遲，此時種麥正當時', '秋季'],
+        choices: [
+            {
+                answer: '秋分',
+            }
+        ]
+    },
 };
 
 const db2024feb = [
-    0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,20
+    0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30
 ];
 
 const db2024 = [
@@ -689,6 +930,10 @@ const db2019 = [
     37, 39, 39
 ];
 
+const dbJieqi = [
+    46,48,49,47,57,58,12,50,51,52,53,54,55,56,11,59,60,61,62,63,64,65,66,67
+];
+
 const dbWarmup = [
     40,41,42,43,44,45,
 ];
@@ -696,19 +941,24 @@ const dbWarmup = [
 const riddlesDB = {
     masterDB: DB,
     '2024feb': {
-        title: '2024 甲辰龍年',
+        subtitle: '2024 甲辰龍年',
         db: db2024feb
     },
     '2024': {
-        title: '2024 甲辰龍年',
+        subtitle: '2024 甲辰龍年',
         db: db2024
     },
     '2019': {
-        title: '2019 己亥豬年',
+        subtitle: '2019 己亥豬年',
         db: db2019
     },
+    jieqi: {
+        title: '二十四節氣',
+        db: dbJieqi,
+    },
     warmup: {
-        title: '模擬暖身',
+        title: '益智問答',
+        subtitle: '模擬暖身',
         db: dbWarmup
     },
 };

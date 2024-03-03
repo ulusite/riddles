@@ -16,7 +16,7 @@ function loadRiddles() {
     const textTemplate = document.querySelector('#template__text');
     dataGlobal.db.forEach(riddleId => {
         const riddle = masterDB[riddleId];
-        if (riddle.skip === true && !noSkipGlobal) {
+        if (!riddle || (riddle.skip === true && !noSkipGlobal)) {
             return;
         }
         questionCountGlobal++;
@@ -98,8 +98,19 @@ function loadRiddles() {
 }
 
 function initHeader() {
-    const subtitleEl = document.querySelector('header .subtitle');
-    subtitleEl.textContent = dataGlobal.title;
+    const riddleTitleWrapper = document.querySelector('.riddle-title-wrapper');
+    let targetTitleWrapper;
+    if (dataGlobal.title) {
+        targetTitleWrapper = document.querySelector('.common-title-wrapper');
+        targetTitleWrapper.querySelector('.title').textContent = dataGlobal.title;
+        targetTitleWrapper.classList.remove('hide');
+        riddleTitleWrapper.classList.add('hide');
+    } else {
+        targetTitleWrapper = riddleTitleWrapper
+    }
+    if (dataGlobal.subtitle) {
+        targetTitleWrapper.querySelector('.subtitle').textContent = dataGlobal.subtitle;
+    }
 
     const scoreHeadlineEl = document.querySelector('.score-headline');
     const questionCountEl = scoreHeadlineEl.querySelector('.question-count');
@@ -248,7 +259,11 @@ function handleMoreHints(riddleEl) {
 
 function disableAllInputs(riddleEl) {
     const inputEls = riddleEl.querySelectorAll('input');
-    inputEls.forEach(el => el.disabled = 'true');
+    inputEls.forEach(el => {
+        if (!el.classList.contains('btn-hint')) {
+            el.disabled = 'true';
+        }
+    });
 }
 
 function handleClick(event) {
