@@ -764,19 +764,18 @@ const DB = {
         ]
     },
     53: {
-        question: '飯吃七分飽，話留三分好',
-        // question: '青杏枝頭花漸少，乳鴨池塘水欲深',
+        question: '青杏枝頭花漸少，乳鴨池塘水欲深',
         hint: '打一節氣',
-        moreHints: ['夏季'],
+        moreHints: ['飯吃七分飽，話留三分好', '夏季'],
         choices: [
             {
                 answer: '小滿',
-                // notes: '趙慶熹《台城路其二》：枝头青杏尚小。戴敏《初夏游張園》：乳鴨池塘水淺深'
+                notes: '趙慶熹《台城路其二》：枝头青杏尚小。戴敏《初夏游張園》：乳鴨池塘水淺深'
             }
         ]
     },
     54: {
-        question: '老頭子沒染髮',
+        question: '多情應笑我，早生華髮',
         hint: '打一節氣',
         moreHints: ['秋季'],
         choices: [
@@ -786,7 +785,7 @@ const DB = {
         ]
     },
     55: {
-        question: '老太婆忘染髮',
+        question: '白髮三千丈，疑是銀河落九天',
         hint: '打一節氣',
         moreHints: ['秋季'],
         choices: [
@@ -796,12 +795,13 @@ const DB = {
         ]
     },
     56: {
-        question: '點餐用coupon，飲料都不要',
+        question: '地瘦栽松柏，家貧子讀書',
         hint: '打一節氣',
-        moreHints: ['進LV店，只逛不買', '秋季'],
+        moreHints: ['秋季'],
         choices: [
             {
                 answer: '寒露',
+                notes: '紹興八年，高宗問莆仙眾進士“卿土何奇？”，榜眼陳俊卿之答'
             }
         ]
     },
@@ -846,7 +846,7 @@ const DB = {
         ]
     },
     61: {
-        question: '汗如雨下懶搖扇',
+        question: '熱未央，午夢長，映日荷花別樣紅',
         hint: '打一節氣',
         moreHints: ['夏季'],
         choices: [
@@ -856,7 +856,7 @@ const DB = {
         ]
     },
     62: {
-        question: '浮瓜沉李待三秋',
+        question: '荔枝熟，汗難收，浮瓜沉李待三秋',
         hint: '打一節氣',
         moreHints: ['夏季'],
         choices: [
@@ -897,7 +897,7 @@ const DB = {
         ]
     },
     66: {
-        question: '小樓聼春雨，深巷賣杏花，素衣風塵嘆，何時可到家',
+        question: '小樓聼春雨，深巷賣杏花，素衣風塵嘆，何日可到家',
         hint: '打一節氣',
         moreHints: ['杏帘招客飲', '春季'],
         choices: [
@@ -907,9 +907,9 @@ const DB = {
         ]
     },
     67: {
-        question: '(北方)種麥正當時，無雨莫種園',
+        question: '人逢喜事精神爽，月待何時分外明',
         hint: '打一節氣',
-        moreHints: ['白露早，寒露遲，此時種麥正當時', '秋季'],
+        moreHints: ['北方：白露早，寒露遲，此時種麥正當時', '秋季'],
         choices: [
             {
                 answer: '秋分',

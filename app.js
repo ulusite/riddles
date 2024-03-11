@@ -201,6 +201,13 @@ function handleYourAnswer(riddleEl, eventEl) {
     }
 }
 
+function handleRadioInput(riddleEl, eventEl) {
+    setCorrectAnswer(riddleEl);
+    handleYourAnswer(riddleEl, eventEl);
+    disableAllInputs(riddleEl);
+    updateScoreHeadline();
+}
+
 function handleTextInput(riddleEl) {
     const inputEl = riddleEl.querySelector('.text-input');
     if (!inputEl.value) {
@@ -275,21 +282,16 @@ function handleClick(event) {
     const riddleEl = eventEl.closest('.riddle');
 
     if (eventEl.tagName === 'INPUT' && eventEl.type === 'radio') {
-        setCorrectAnswer(riddleEl);
-        handleYourAnswer(riddleEl, eventEl);
-        disableAllInputs(riddleEl);
-        updateScoreHeadline();
-    }
-    else if (eventEl.tagName === 'INPUT' && eventEl.type === 'button') {
+        handleRadioInput(riddleEl, eventEl);
+    } else if (eventEl.tagName === 'INPUT' && eventEl.type === 'button') {
         if (eventEl.classList.contains('btn-pass')) {
             handleByPass(riddleEl);
-            return;
         }
-        if (eventEl.classList.contains('btn-hint')) {
+        else if (eventEl.classList.contains('btn-hint')) {
             handleMoreHints(riddleEl);
-            return;
+        } else {
+            handleTextInput(riddleEl);
         }
-        handleTextInput(riddleEl);
     }
 }
 
@@ -300,7 +302,7 @@ function handleEnter(event) {
     const eventEl = event.target;
     if (event.key === 'Enter' && eventEl.tagName === 'INPUT' && eventEl.type === 'text') {
         const riddleEl = eventEl.closest('.riddle');
-        handleTextInput(riddleEl, eventEl);
+        handleTextInput(riddleEl);
     }
 }
 
@@ -317,8 +319,8 @@ function onLoad() {
     } else {
         document.body.classList.add('desktop');
     }
-    initHeader();
     loadRiddles();
+    initHeader();
     if (isAdmGlobal) {
         const riddleEls = document.querySelectorAll('.riddle');
         riddleEls.forEach(riddleEl => setCorrectAnswer(riddleEl));

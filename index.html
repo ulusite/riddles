@@ -10,23 +10,24 @@
     <!-- Riddle maim template -->
     <template id="template__riddle">
         <div class="riddle">
-            <div class="question-wrapper">
+            <div class="question-wrapper large strong">
                 <span class="number"></span>
-                <a class="question link strong hide" target="_blank"></a>
-                <span class="question no-link strong"></span>
+                <a class="question link hide" target="_blank"></a>
+                <span class="question no-link"></span>
             </div>
-            <div class="indent smaller"><span class="hint hide"></span></div>
-            <div class="indent smaller more-hints hide">
+            <div class="indent"><span class="hint hide"></span></div>
+            <div class="indent more-hints hide">
                 <div class="more-hint-text hide"></div>
                 <input type="button" value="更多提示" class="btn btn-aux btn-hint">
-                <div class="spacer"></div>
             </div>
             <div class="image-wrapper indent hide">
                 <img class="img">
             </div>
             <div class="control indent"></div>
-            <input type="button" value="跳過本題" class="btn btn-aux indent btn-pass">
-            <div class="correct-answer-wrapper indent smaller">
+            <div>
+                <input type="button" value="跳過本題" class="btn btn-aux indent btn-pass">
+            </div>
+            <div class="correct-answer-wrapper indent">
                 <span class="strong">答案：</span>
                 <span class="answer strong"></span>
                 <span class="notes"></span>
@@ -39,7 +40,7 @@
         <div class="choice indent">
             <input type="radio" class="radio-input">
             <label></label>
-            <!-- <span class="notes smaller"></span> -->
+            <!-- <span class="notes"></span> -->
         </div>
     </template>
 
@@ -53,22 +54,24 @@
 
     <body>
         <header>
-            <div class="h1 riddle-title-wrapper">
-                <span class="red">元</span>
-                <span class="green">宵</span>
-                <span class="orange">燈</span>
-                <span class="blue">謎</span>
-                <span class="subtitle smaller indent red"></span>
+            <div class="h1 riddle-title-wrapper strong">
+                <span class="title">
+                    <span class="red">元</span>
+                    <span class="green">宵</span>
+                    <span class="orange">燈</span>
+                    <span class="blue">謎</span>
+                </span>
+                <span class="subtitle indent red"></span>
             </div>
-            <div class="h1 common-title-wrapper hide green">
+            <div class="h1 common-title-wrapper hide green strong">
                 <span class="title"></span>
-                <span class="subtitle smaller indent"></span>
+                <span class="subtitle indent"></span>
             </div>
-            <div class="smaller">
+            <div>
                 <span>每題只能答一次。分數出門恕不退換</span>
                 <span class="smile">^.^</span>
             </div>
-            <div class="h3 score-headline smaller brown">
+            <div class="h3 score-headline brown strong">
                 <span>題數:<span class="question-count"></span></span>
                 <span>已解答:<span class="answer-count"></span></span>
                 <span>提示數:<span class="hint-count"></span></span>
