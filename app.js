@@ -176,6 +176,7 @@ function handleYourAnswer(riddleEl, eventEl) {
     let yourAnswer;
     if (eventEl) {
         yourAnswer = eventEl.value;
+        eventEl.classList.add('selected');
     } else {
         const inputEl = riddleEl.querySelector('.text-input');
         yourAnswer = inputEl.value;
@@ -268,7 +269,7 @@ function handleMoreHints(riddleEl) {
 function disableAllInputs(riddleEl) {
     const inputEls = riddleEl.querySelectorAll('input');
     inputEls.forEach(el => {
-        if (!el.classList.contains('btn-hint')) {
+        if (!el.classList.contains('btn-hint') && !el.classList.contains('selected')) {
             el.disabled = 'true';
         }
     });
@@ -282,7 +283,9 @@ function handleClick(event) {
     const riddleEl = eventEl.closest('.riddle');
 
     if (eventEl.tagName === 'INPUT' && eventEl.type === 'radio') {
-        handleRadioInput(riddleEl, eventEl);
+        if (!eventEl.classList.contains('selected')) {
+            handleRadioInput(riddleEl, eventEl);
+        }
     } else if (eventEl.tagName === 'INPUT' && eventEl.type === 'button') {
         if (eventEl.classList.contains('btn-pass')) {
             handleByPass(riddleEl);

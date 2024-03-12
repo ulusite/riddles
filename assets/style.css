@@ -1,13 +1,15 @@
 :root {
     --page-max-width: 960px;
+    --common-height: 28px;
+    --input-height: 40px;
     --border-color: #ccc;
     --indent-space: 1.2rem;
-    --input-focus-color: #04AA6D;
+    --btn-bk-color: #04AA6D;
     --btn-hover-bk-color: #06c881;
+    --btn-aux-bk-color: cadetblue;
     --disabled-color: rgb(84, 84, 84);
     --disabled-bk-color: rgba(239, 239, 239, 0.3);
     --font-family-en: monospace;
-    --btn-aux-bk-color: cadetblue;
     --text-passed-color: #1a73e8;
 }
 
@@ -23,7 +25,7 @@ body.desktop {
 }
 
 main {
-    line-height: 30px;
+    line-height: var(--common-height);
 }
 
 /* common styles */
@@ -32,15 +34,6 @@ main {
 }
 .strong {
     font-weight: bold;
-}
-.large {
-    font-size: large;
-}
-.indent {
-    margin-left: var(--indent-space);
-}
-.right {
-    float: right;
 }
 .red {
     color: red;
@@ -69,8 +62,11 @@ header {
     position: sticky;
     top: 0;
 }
-.h1 .title {
+.title {
     font-size: 36px;
+}
+.subtitle {
+    margin-left: var(--indent-space);
 }
 .h1 {
     padding: 24px 0;
@@ -89,7 +85,7 @@ header {
     margin-right: 4px;
 }
 .blink {
-    animation: blinker 1s 4;
+    animation: blinker 1s 3;
 }
 @keyframes blinker {
     0% { opacity: 1; }
@@ -102,7 +98,13 @@ header {
     margin-bottom: 16px;
 }
 .riddle > div {
+    margin-left: var(--indent-space);
     margin-bottom: 8px;
+
+}
+div.question-wrapper {
+    font-size: large;
+    margin-left: 0;
 }
 .more-hint-text::before {
     content: "提示"attr(data-hint-number)"：";
@@ -116,63 +118,65 @@ header {
 }
 
 /* riddle input styles */
-.choice {
-    text-indent: -1.2em; /* calc(0 - var(--indent-space)); */
-}
+/* .choice-wrapper {
+     text-indent: -1.2rem; // calc(0 - var(--indent-space));
+} */
 input {
     font-size: medium;
-    font-weight: bold;
     border-radius: 4px;
     outline: none;
 }
 input:disabled {
+    color: var(--disabled-color);
     background-color: var(--disabled-bk-color);
+    opacity: 1; /* remove Safari fade */
     pointer-events: none;
     cursor: none;
 }
 .text-input {
-    height: 40px;
+    height: var(--input-height);
     box-sizing: border-box;
     vertical-align: top;
     padding: 0 8px;
     border: 1px solid var(--border-color);
-    width: calc(100% - 90px);
-    max-width: 260px;
+    width: calc(100% - 66px);
+    max-width: 277px;
 }
 .text-input:focus {
-    border-color: var(--input-focus-color);
-}
-.text-input:disabled {
-    color: black;
+    border-color: var(--btn-bk-color);
 }
 .text-input::placeholder {
     color: red;
     opacity: 1; /* Firefox */
 }
 .btn {
-    height: 40px;
+    height: var(--input-height);
+    vertical-align: top;
     color: #fff;
-    background-color: var(--input-focus-color);
+    background-color: var(--btn-bk-color);
+    border: 1px solid var(--btn-bk-color);
     cursor: pointer;
-    border: none;
 }
 .desktop .btn:hover,
 .btn:focus {
     background-color: var(--btn-hover-bk-color);
+    border-color: var(--btn-hover-bk-color);
 }
 .btn:disabled {
-    color: var(--disabled-color);
-    border: 1px solid var(--border-color);
+    border-color: var(--border-color);
+    font-weight: normal;
+}
+.btn-submit {
+    font-weight: bold;
+    margin-left: 4px;
 }
 .btn-aux {
-    height: 28px;
-    line-height: 28px;
-    font-weight: normal;
+    height: var(--common-height);
     background-color: var(--btn-aux-bk-color);
+    border-color: var(--btn-aux-bk-color);
 }
 
 .correct-answer-wrapper {
-    line-height: 24px;
     text-transform: uppercase;
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -205,8 +209,9 @@ footer {
 
 /* mobile tweaks */
 .mobile label {
-    line-height: 48px;
+    line-height: var(--input-height);
 }
-.small .btn-submit {
-    float: right;
+.small .text-input {
+    padding: 0 16px;
+    max-width: 250px;
 }
