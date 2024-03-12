@@ -10,24 +10,24 @@
     <!-- Riddle maim template -->
     <template id="template__riddle">
         <div class="riddle">
-            <div class="question-wrapper large strong">
+            <div class="question-wrapper strong">
                 <span class="number"></span>
                 <a class="question link hide" target="_blank"></a>
                 <span class="question no-link"></span>
             </div>
-            <div class="indent"><span class="hint hide"></span></div>
-            <div class="indent more-hints hide">
+            <div class="main-hint"><span class="hint hide"></span></div>
+            <div class="more-hints hide">
                 <div class="more-hint-text hide"></div>
                 <input type="button" value="更多提示" class="btn btn-aux btn-hint">
             </div>
-            <div class="image-wrapper indent hide">
+            <div class="image-wrapper hide">
                 <img class="img">
             </div>
-            <div class="control indent"></div>
-            <div>
-                <input type="button" value="跳過本題" class="btn btn-aux indent btn-pass">
+            <div class="control"></div>
+            <div class="bypass-button">
+                <input type="button" value="跳過本題" class="btn btn-aux btn-pass">
             </div>
-            <div class="correct-answer-wrapper indent">
+            <div class="correct-answer-wrapper">
                 <span class="strong">答案：</span>
                 <span class="answer strong"></span>
                 <span class="notes"></span>
@@ -37,7 +37,7 @@
 
     <!-- Riddle input： radio choices -->
     <template id="template__choice">
-        <div class="choice indent">
+        <div class="choice-wrapper">
             <input type="radio" class="radio-input">
             <label></label>
             <!-- <span class="notes"></span> -->
@@ -61,11 +61,11 @@
                     <span class="orange">燈</span>
                     <span class="blue">謎</span>
                 </span>
-                <span class="subtitle indent red"></span>
+                <span class="subtitle red"></span>
             </div>
             <div class="h1 common-title-wrapper hide green strong">
                 <span class="title"></span>
-                <span class="subtitle indent"></span>
+                <span class="subtitle"></span>
             </div>
             <div>
                 <span>每題只能答一次。分數出門恕不退換</span>

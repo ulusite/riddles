@@ -927,7 +927,7 @@ const db2024 = [
 ];
 
 const db2019 = [
-    37, 39, 39
+    37, 38, 39
 ];
 
 const dbJieqi = [
