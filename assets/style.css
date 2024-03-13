@@ -95,12 +95,13 @@ header {
 
 /* riddle question element styles */
 .riddle {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+}
+.riddle div {
+    margin-bottom: 8px;
 }
 .riddle > div {
     margin-left: var(--indent-space);
-    margin-bottom: 8px;
-
 }
 div.question-wrapper {
     font-size: large;
@@ -117,10 +118,6 @@ div.question-wrapper {
     max-width: 330px;
 }
 
-/* riddle input styles */
-/* .choice-wrapper {
-     text-indent: -1.2rem; // calc(0 - var(--indent-space));
-} */
 input {
     font-size: medium;
     border-radius: 4px;
@@ -154,13 +151,12 @@ input:disabled {
     vertical-align: top;
     color: #fff;
     background-color: var(--btn-bk-color);
-    border: 1px solid var(--btn-bk-color);
+    border: 1px solid transparent;
     cursor: pointer;
 }
 .desktop .btn:hover,
 .btn:focus {
     background-color: var(--btn-hover-bk-color);
-    border-color: var(--btn-hover-bk-color);
 }
 .btn:disabled {
     border-color: var(--border-color);
@@ -173,7 +169,6 @@ input:disabled {
 .btn-aux {
     height: var(--common-height);
     background-color: var(--btn-aux-bk-color);
-    border-color: var(--btn-aux-bk-color);
 }
 
 .correct-answer-wrapper {
@@ -208,9 +203,6 @@ footer {
 }
 
 /* mobile tweaks */
-.mobile label {
-    line-height: var(--input-height);
-}
 .small .text-input {
     padding: 0 16px;
     max-width: 250px;
