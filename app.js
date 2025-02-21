@@ -140,10 +140,18 @@ function updateScoreHeadline() {
         if (scoreGlobal / questionCountGlobal * 100 <= 50) {
             audioId = 'sad'
         }
-        setTimeout(() => {
-            playWav(audioId);
-            window.scrollTo({top: 0, behavior: 'smooth'});
-            scoreHeadlineEl.classList.add('blink');
+
+        setTimeout(async () => {
+            try {
+                await playWav(audioId);
+                window.scrollTo({top: 0, behavior: 'smooth'});
+                scoreHeadlineEl.classList.add('blink');
+            } catch (error) {
+                console.error('Failed to play sound for final score:', error);
+                // Still perform visual feedback even if sound fails
+                window.scrollTo({top: 0, behavior: 'smooth'});
+                scoreHeadlineEl.classList.add('blink');
+            }
         }, 1000);
     }
 }
@@ -211,6 +219,7 @@ function handleRadioInput(riddleEl, eventEl) {
 
 function handleTextInput(riddleEl) {
     const inputEl = riddleEl.querySelector('.text-input');
+    inputEl.value = inputEl.value.trim();
     if (!inputEl.value) {
         inputEl.placeholder = '請輸入答案再提交';
         warn(audioCtxGlobal);

@@ -85,7 +85,7 @@ header {
     margin-right: 4px;
 }
 .blink {
-    animation: blinker 1s 3;
+    animation: blinker 1.3s 4;
 }
 @keyframes blinker {
     0% { opacity: 1; }
