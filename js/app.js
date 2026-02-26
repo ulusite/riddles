@@ -235,31 +235,6 @@ function setCorrectAnswer(riddleEl) {
             notesEl.textContent = `(${correctChoice.notes})`;
         }
     }
-    // if (Array.isArray(currentRiddle.correctIndex)) {
-    //     // checkbox group may have multiple correct answers, show all correct answers
-    //     const correctAnswers = currentRiddle.correctIndex.map(index => {
-    //         const choice = currentRiddle.choices[index];
-    //         const answer = choice.answer ? `${index + 1} ${choice.answer}` : `${index + 1}`;
-    //         return answer;
-    //     });
-    //     answerEl.textContent = correctAnswers.join(', ');
-    // } else {
-    //     const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
-    //     if (correctChoice.answer && Array.isArray(correctChoice.answer)) {
-    //         // text input may have multiple answers, show the first correct answer
-    //         answerEl.textContent = correctChoice.answer[0];
-    //     } else if (correctChoice.answer){
-    //         // radio input has only 1 correct answer
-    //         answerEl.textContent = correctChoice.answer;
-    //     } else {
-    //         answerEl.textContent = `${currentRiddle.correctIndex + 1}`;
-    //     }
-    //     if (correctChoice.notes) {
-    //         const notesEl = correctAnswerWrapper.querySelector('.notes');
-    //         notesEl.textContent = `(${correctChoice.notes})`;
-    //     }
-    // }
-
     correctAnswerWrapper.style.opacity = 1;
 }
 
@@ -271,13 +246,8 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
     if (selectedRadioOrCheckboxes && selectedRadioOrCheckboxes.length > 0) {
         // checkbox group may have multiple correct answers, get all selected answers
         const yourAnswers = Array.from(selectedRadioOrCheckboxes).map(input => input.value);
-        // const correctAnswers = currentRiddle.correctIndex.map(index => {
-        //     const choice = currentRiddle.choices[index];
-        //     return choice.answer;
-        // });
         const sortedYourAnswers = [...yourAnswers].sort();
         const sortedCorrectAnswers = [...currentRiddle.correctIndex].sort();
-        // Compare each element
         isCorrect = sortedCorrectAnswers.every((value, index) => value == sortedYourAnswers[index]);
     } else {
          // text input or radio group has only 1 correct answer
