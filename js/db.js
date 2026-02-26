@@ -22,7 +22,7 @@ const DB = {
         question: '看圖拆字猜題',
         hint: '打一成語（4字）',
         moreHints: ['喻十全十美', '一種美石'],
-        imageId: 'char1',
+        imageId: 'char-huang.jpg',
         choices: [
             {
                 answer: ['白玉無瑕', '白玉无瑕'],
@@ -33,7 +33,8 @@ const DB = {
         question: '看圖組字',
         hint: '打一初春開花植物 （2字）',
         moreHints: ['觀查圖中元素', '以一字描述一元素', '組合所有元素成二字答案'],
-        imageId: 'waterFall',
+        imageId: 'water-fall-tall.jpeg',
+        // imageId: 'apricot.jpg',
         choices: [
             {
                 answer: ['水仙', '水仙花'],
@@ -107,7 +108,7 @@ const DB = {
         question: '看圖猜題',
         hint: '打一字',
         moreHints: ['每人都有', '丟了的話會很糗'],
-        imageId: 'char3',
+        imageId: 'char-mien.jpg',
         choices: [
             {
                 answer: '面',
@@ -153,7 +154,7 @@ const DB = {
         question: '看題組字',
         hint: '打一字',
         moreHints: ['此字在24節氣中出現2次', '季節'],
-        imageId: 'char2',
+        imageId: 'char-qiu.jpg',
         choices: [
             {
                 answer: '秋',
@@ -244,7 +245,7 @@ const DB = {
     },
     19: {
         question: '下列哪幾行詩句是描寫元宵的情景?',
-        imageId: 'poems',
+        imageId: 'poems-yuan-xiao.png',
         choices: [
             {
                 answer: '1，3，4',
@@ -390,8 +391,8 @@ const DB = {
         ]
     },
     31: {
-        question: '油管聼歌猜題',
-        link: 'https://www.youtube.com/watch?v=ijOZRKla6yg',
+        question: '油管聽歌猜題',
+        link: 'https://www.youtube.com/watch?v=4YTzFDxqOAY&list=RD4YTzFDxqOAY&start_radio=1',
         hint: '打一台灣地名',
         moreHints: ['電影邊城主題曲--熱烘烘的太陽'],
         choices: [
@@ -580,7 +581,7 @@ const DB = {
         question: '兩個黃鷂鳴翠柳',
         hint: '打一台灣地名',
         skip: false,
-        textBox: false,
+        textBox: true,
         choices: [
             {
                 answer: '燕巢',
@@ -916,9 +917,80 @@ const DB = {
             }
         ]
     },
+    68: {
+        question: '十二生肖動物地名中，出現最多的前三名',
+        choices: [
+            {
+                answer: '龍',
+                correct: true
+            },
+            {
+                answer: '馬',
+                correct: true
+            },
+            {
+                answer: '牛',
+                correct: true
+            },
+            {
+                answer: '狗'
+            }
+        ]
+    },
+    69: {
+        question: '下列哪些花有相似別名？',
+        choices: [
+            {
+                answer: '荷花',
+                imageId: 'lotus.png',
+                correct: true,
+            },
+            {
+                answer: '玫瑰',
+                imageId: 'rose.png',
+            },
+            {
+                answer: '木槿',
+                imageId: 'hibiscus.png',
+                correct: true,
+            },
+            {
+                answer: '木蘭',
+                imageId: 'magnolia.png',
+                correct: true
+            }
+        ]
+    },
+    70: {
+        question: '以下哪種花没有和其他花相似的別名？',
+        choices: [
+            {
+                // answer: '荷花',
+                imageId: 'lotus.png',
+            },
+            {
+                // answer: '玫瑰',
+                imageId: 'rose.png',
+                correct: true,
+            },
+            {
+                // answer: '木槿',
+                imageId: 'hibiscus.png',
+            },
+            {
+                // answer: '木蘭',
+                imageId: 'magnolia.png',
+            }
+        ]
+    },
 };
 
-const db2024feb = [
+
+const db2026 = [
+    2,70,68,69,39
+];
+
+const db2024bx = [
     0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30
 ];
 
@@ -935,14 +1007,19 @@ const dbJieqi = [
 ];
 
 const dbWarmup = [
-    40,41,42,43,44,45,
+    68,//40,41,42,43,44,45
 ];
 
 const riddlesDB = {
     masterDB: DB,
-    '2024feb': {
+    defaultDBId: '2026',
+    '2026': {
+        subtitle: '2026 丙午馬年',
+        db: db2026
+    },
+    '2024bx': {
         subtitle: '2024 甲辰龍年',
-        db: db2024feb
+        db: db2024bx
     },
     '2024': {
         subtitle: '2024 甲辰龍年',

@@ -4,7 +4,7 @@
         <title>元宵燈謎</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <link href="./assets/style.css" rel="stylesheet"/>
+        <link href="./css/style.css" rel="stylesheet"/>
     </head>
     <!--
     Prototypes:
@@ -31,8 +31,10 @@
                 <img class="img">
             </div>
             <div class="control"></div>
-            <div class="bypass-button">
-                <input type="button" value="跳過本題" class="btn btn-aux btn-pass">
+            <div class="buttons">
+                <input type="button" value="跳  過" class="btn btn-pass">
+                <input type="button" value="提  交" class="btn btn-submit">
+                <span class="hide error">請選擇答案再提交</span>
             </div>
             <div class="correct-answer-wrapper">
                 <span class="strong">答案：</span>
@@ -42,12 +44,29 @@
         </div>
     </template>
 
-    <!-- Riddle input： radio choices -->
-    <template id="template__choice">
-        <div class="choice-wrapper">
+    <!-- Riddle input： checkbox -->
+    <template id="template__checkbox">
+        <div class="checkbox-wrapper">
+            <input type="checkbox" class="checkbox-input">
+            <label>
+                <span class="label-text"></span>
+                <span class="image-wrapper hide">
+                    <img class="img">
+                </span>
+            </label>
+        </div>
+    </template>
+
+    <!-- Riddle input： radio button -->
+    <template id="template__radio">
+        <div class="radio-wrapper">
             <input type="radio" class="radio-input">
-            <label></label>
-            <!-- <span class="notes"></span> -->
+            <label>
+                <span class="label-text"></span>
+                <span class="image-wrapper hide">
+                    <img class="img">
+                </span>
+            </label>
         </div>
     </template>
 
@@ -55,7 +74,6 @@
     <template id="template__text">
         <div class="text-wrapper">
             <input type="text" class="text-input">
-            <input type="button" value="提交" class="btn btn-submit">
         </div>
     </template>
 
@@ -84,21 +102,21 @@
                 <span>提示數:<span class="hint-count"></span></span>
                 <span>得分:<span class="score"></span></span>
             </div>
-            <!--
-            pyscript.com doesn't allow us to upload files. Let's use data URI
-            for sounds so we can host this prototype on pyscript.com
-            <audo id="win" src="./assets/laugh.wav"></audio>
-            <audio id="sad" src="./assets/sad-game-over.wav"></audio>
-            -->
+
         </header>
 
         <main></main>
         <footer>
-            Copyright (c) 2024 ulusite
+            <!--
+            pyscript.com doesn't allow us to upload files. Let's use data URI
+            for sounds so we can host this prototype on pyscript.com
+            -->
+            <audio id="win" src="./assets/win.wav"></audio>
+            <audio id="sad" src="./assets/sad.wav"></audio>
+            Copyright (c) <script>document.write(new Date().getFullYear())</script> ulusite
         </footer>
-        <script src="./db.js"></script>
-        <script src="./app.js"></script>
-        <script src="./images.js"></script>
-        <script src="./audios.js"></script>
+        <script src="./js/db.js"></script>
+        <script src="./js/audios.js"></script>
+        <script src="./js/app.js"></script>
     </body>
 </html>

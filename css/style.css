@@ -11,6 +11,7 @@
     --disabled-bk-color: rgba(239, 239, 239, 0.3);
     --font-family-en: monospace;
     --text-passed-color: #1a73e8;
+    --image-border-color: #eee;
 }
 
 body {
@@ -116,6 +117,15 @@ div.question-wrapper {
     width: 100%;
     vertical-align: top;
     max-width: 330px;
+    box-sizing:border-box;
+    /* border: 3px solid var(--border-color); */
+}
+.control .img {
+    max-width: 290px;
+}
+.control .img.block {
+    display: block;
+    max-width: 330px;
 }
 
 input {
@@ -134,10 +144,10 @@ input:disabled {
     height: var(--input-height);
     box-sizing: border-box;
     vertical-align: top;
-    padding: 0 8px;
+    padding: 0 16px;
     border: 1px solid var(--border-color);
-    width: calc(100% - 66px);
-    max-width: 277px;
+    width: 100%;
+    max-width: 330px;
 }
 .text-input:focus {
     border-color: var(--btn-bk-color);
@@ -145,6 +155,11 @@ input:disabled {
 .text-input::placeholder {
     color: red;
     opacity: 1; /* Firefox */
+}
+.error {
+    color: red;
+    line-height: 48px;
+    margin-left: 4px;
 }
 .btn {
     height: var(--input-height);
@@ -163,8 +178,12 @@ input:disabled {
     font-weight: normal;
 }
 .btn-submit {
-    font-weight: bold;
     margin-left: 4px;
+    padding: 0 20px;
+}
+.btn-pass {
+    background-color: var(--btn-aux-bk-color);
+    padding: 0 20px;
 }
 .btn-aux {
     height: var(--common-height);
@@ -203,7 +222,7 @@ footer {
 }
 
 /* mobile tweaks */
-.small .text-input {
+/* .small .text-input {
     padding: 0 16px;
     max-width: 250px;
-}
+} */
