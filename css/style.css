@@ -191,7 +191,7 @@ input:disabled {
 }
 
 .correct-answer-wrapper {
-    text-transform: uppercase;
+    text-transform: capitalize;
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }

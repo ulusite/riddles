@@ -189,7 +189,7 @@ const DB = {
         hint: '打一人名。1. 在超級星期天足球大賽的廣告中出現過 2. 出生於美國政治世家 3. 伯父和父親都參加過美國總統競選',
         choices: [
             {
-                answer: ['robert kennedy jr.', 'robert f. kennedy jr.', 'rfk jr.', 'robert kennedy jr', 'robert f. kennedy jr', 'rfk jr'],
+                answer: ['robert kennedy jr.', 'Robert f. Kennedy jr.', 'rfk jr.', 'robert kennedy jr', 'robert f. kennedy jr', 'rfk jr'],
             }
         ]
     },
@@ -987,7 +987,7 @@ const DB = {
 
 
 const db2026 = [
-    2,70,68,69,39
+    2,70,68,69,39,13
 ];
 
 const db2024bx = [
