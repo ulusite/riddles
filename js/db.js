@@ -1007,7 +1007,7 @@ const dbJieqi = [
 ];
 
 const dbWarmup = [
-    68,//40,41,42,43,44,45
+    68,40,41,42,43,44,45
 ];
 
 const riddlesDB = {

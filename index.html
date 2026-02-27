@@ -98,9 +98,11 @@
             </div>
             <div class="h3 score-headline brown strong">
                 <span>題數:<span class="question-count"></span></span>
-                <span>已解答:<span class="answer-count"></span></span>
-                <span>提示數:<span class="hint-count"></span></span>
+                <span>已答:<span class="answer-count"></span></span>
+                <span>提示:<span class="hint-count"></span></span>
                 <span>得分:<span class="score"></span></span>
+                <span class="hide happy">&#128512;</span>
+                <span class="hide sad">&#128546;</span>
             </div>
 
         </header>
@@ -110,9 +112,10 @@
             <!--
             pyscript.com doesn't allow us to upload files. Let's use data URI
             for sounds so we can host this prototype on pyscript.com
+
+            <audio id="win" src="./assets/win.mp3"></audio>
+            <audio id="sad" src="./assets/sad.mp3"></audio>
             -->
-            <audio id="win" src="./assets/win.wav"></audio>
-            <audio id="sad" src="./assets/sad.wav"></audio>
             Copyright (c) <script>document.write(new Date().getFullYear())</script> ulusite
         </footer>
         <script src="./js/db.js"></script>

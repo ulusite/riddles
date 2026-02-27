@@ -177,17 +177,26 @@ function updateScoreHeadline() {
     if (answerCountGlobal === questionCountGlobal) {
         let audioId = 'win';
         if (scoreGlobal / questionCountGlobal * 100 <= 50) {
-            audioId = 'sad'
+            audioId = 'sad';
         }
 
         setTimeout(async () => {
             try {
-                const sound = document.getElementById(audioId);
-                sound.play();
-                // const sound = new Audio(`./images/${audioId}.wav`);
-                // await sound.play();
+                // const sound = document.getElementById(audioId);
+                // sound.play();
+                if (isMobileChromeGlobal) {
+                    playGameOver(audioCtxGlobal, audioId);
+                } else {
+                    const sound = new Audio(`./assets/${audioId}.mp3`);
+                    await sound.play();
+                }
                 window.scrollTo({top: 0, behavior: 'smooth'});
                 scoreHeadlineEl.classList.add('blink');
+                if (audioId === 'sad') {
+                    scoreHeadlineEl.querySelector('.sad').classList.remove('hide');
+                } else {
+                    scoreHeadlineEl.querySelector('.happy').classList.remove('hide');
+                }
             } catch (error) {
                 console.error('Failed to play sound for final score:', error);
                 // Still perform visual feedback even if sound fails
@@ -273,7 +282,7 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
         playTada(audioCtxGlobal);
         questionWrapper.classList.add('yes');
     } else {
-        playBeep(audioCtxGlobal);
+        playMidTone(audioCtxGlobal);
         questionWrapper.classList.add('no');
     }
 }
@@ -282,7 +291,7 @@ function handleCheckboxInput(riddleEl) {
     const selectedCheckboxes = riddleEl.querySelectorAll('.checkbox-input:checked');
     if (!selectedCheckboxes.length) {
         riddleEl.querySelector('.error').classList.remove('hide');
-        playWarn(audioCtxGlobal);
+        playSoftTone(audioCtxGlobal);
         return;
     }
     setCorrectAnswer(riddleEl);
@@ -295,7 +304,7 @@ function handleRadioInput(riddleEl) {
     const selectedRadio = riddleEl.querySelector('.radio-input:checked');
     if (!selectedRadio) {
         riddleEl.querySelector('.error').classList.remove('hide');
-        playWarn(audioCtxGlobal);
+        playSoftTone(audioCtxGlobal);
         return;
     }
     setCorrectAnswer(riddleEl);
@@ -309,7 +318,7 @@ function handleTextInput(riddleEl) {
     inputEl.value = inputEl.value.trim();
     if (!inputEl.value) {
         inputEl.placeholder = '請輸入答案再提交';
-        playWarn(audioCtxGlobal);
+        playSoftTone(audioCtxGlobal);
         return;
     }
     setCorrectAnswer(riddleEl);
@@ -324,8 +333,7 @@ function handleByPass(riddleEl) {
     setCorrectAnswer(riddleEl);
     disableAllInputs(riddleEl);
     updateScoreHeadline();
-    // playWarn(audioCtxGlobal);
-    playHint(audioCtxGlobal);
+    playMidTone(audioCtxGlobal);
 }
 
 function handleMoreHints(riddleEl) {
@@ -357,7 +365,7 @@ function handleMoreHints(riddleEl) {
     } else {
         moreHintBtn.classList.add('hide');
     }
-    playHint(audioCtxGlobal);
+    playSoftTone(audioCtxGlobal);
     hintCountGlobal++;
     const hintCountEl = document.querySelector('.hint-count');
     hintCountEl.textContent = hintCountGlobal;
@@ -416,12 +424,14 @@ function onLoad() {
 
     if (mobile.test(userAgent)) {
         document.body.classList.add('mobile');
+        isMobileChromeGlobal = userAgent.indexOf("chrome") > -1 || userAgent.includes('crios');
         if (small.test(userAgent)) {
             document.body.classList.add('small');
         }
     } else {
         document.body.classList.add('desktop');
     }
+
     loadRiddles();
     initHeader();
     if (isAdmGlobal) {
@@ -436,6 +446,7 @@ let questionCountGlobal = 0;
 let answerCountGlobal = 0;
 let scoreGlobal = 0;
 let hintCountGlobal = 0;
+let isMobileChromeGlobal = false;
 
 const searchParams = new URLSearchParams(window.location.search);
 const noSkipGlobal = searchParams.get('f') == '1';
