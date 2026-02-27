@@ -78,16 +78,18 @@ async function playWin(audioCtx) {
     await play(audioCtx, 'triangle', 450, 150);
     await play(audioCtx, 'triangle', 500, 180);
     await play(audioCtx, 'triangle', 480, 190);
+    await play(audioCtx, 'triangle', 510, 180);
+    await play(audioCtx, 'triangle', 490, 190);
     await play(audioCtx, 'sine', 440, 200);
     await play(audioCtx, 'sine', 400, 190);
-    await play(audioCtx, 'sine', 330, 190);
+    await play(audioCtx, 'sine', 330, 300);
 }
 
 async function playSad(audioCtx) {
-    await play(audioCtx, 'triangle', 515, 400);
-    await play(audioCtx, 'triangle', 500, 450);
-    await play(audioCtx, 'triangle', 450, 500);
-    await play(audioCtx, 'triangle', 420, 550);
+    await play(audioCtx, 'triangle', 515, 500);
+    await play(audioCtx, 'triangle', 500, 550);
+    await play(audioCtx, 'triangle', 450, 600);
+    await play(audioCtx, 'triangle', 410, 700);
 }
 
 function playGameOver(audioCtx, audioId) {

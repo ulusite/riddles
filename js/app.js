@@ -168,7 +168,7 @@ function updateScoreHeadline() {
             try {
                 // const sound = document.getElementById(audioId);
                 // sound.play();
-                if (isMobileChromeGlobal) {
+                if (isIphoneChromeGlobal) {
                     playGameOver(audioCtxGlobal, audioId);
                 } else {
                     const sound = new Audio(`./assets/${audioId}.mp3`);
@@ -399,12 +399,13 @@ function handleEnter(event) {
 
 function onLoad() {
     const userAgent = window.navigator.userAgent.toLowerCase();
-    const mobile = /iPhone|iPad|iPod|Android/i;
-    const small = /iPhone|iPod|Android/i;
+    const mobile = /iPhone|iPad|Android/i;
+    const iphone = /iPhone/i;
+    const small = /iPhone|Android/i;
 
     if (mobile.test(userAgent)) {
         document.body.classList.add('mobile');
-        isMobileChromeGlobal = userAgent.indexOf("chrome") > -1 || userAgent.includes('crios');
+        isIphoneChromeGlobal = iphone.test(userAgent) && userAgent.includes('crios');
         if (small.test(userAgent)) {
             document.body.classList.add('small');
         }
@@ -426,7 +427,7 @@ let questionCountGlobal = 0;
 let answerCountGlobal = 0;
 let scoreGlobal = 0;
 let hintCountGlobal = 0;
-let isMobileChromeGlobal = false;
+let isIphoneChromeGlobal = false;
 
 const searchParams = new URLSearchParams(window.location.search);
 const noSkipGlobal = searchParams.get('f') == '1';
