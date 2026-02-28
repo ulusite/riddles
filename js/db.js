@@ -367,22 +367,18 @@ const DB = {
         choices: [
             {
                 answer: '冰河',
-                notes: '冰河，北極熊，愛斯基摩人，三文魚',
                 correct: true
             },
             {
                 answer: '北極熊',
-                notes: '冰河，北極熊，愛斯基摩人，三文魚',
                 correct: true
             },
             {
                 answer: '愛斯基摩人',
-                notes: '冰河，北極熊，愛斯基摩人，三文魚',
                 correct: true
             },
             {
-                answer: ['三文魚', '冰河', '北極熊', '愛斯基摩人'],
-                notes: '冰河，北極熊，愛斯基摩人，三文魚',
+                answer: ['三文魚'],
                 correct: true
             },
             {
@@ -439,10 +435,8 @@ const DB = {
                 correct: true,
                 notes: '龍燈或魚燈，【鳳簫聲動，玉壺光轉，一夜魚龍舞】'
             },
-            // for radio inputs and allow milti correct selections, the last correct answer
-            // must have all correct answers in an array with the displayed answer placed at first
             {
-                answer: ['魚燈', '龍燈'],
+                answer: '魚燈',
                 correct: true,
                 notes: '龍燈或魚燈，【鳳簫聲動，玉壺光轉，一夜魚龍舞】'
             },
@@ -983,11 +977,20 @@ const DB = {
             }
         ]
     },
+    71: {
+        question: ['列出詩中所有可代表動植物：', '鷓鴣聲聲呼', '山路多躑躅', '依依春深處', '松鼠攀流蘇'],
+        exactMultiChoice: true,
+        choices: [
+            {
+                answer: ['鷓鴣', '躑躅', '依依', '松鼠', '流蘇'], //鹧鸪, 踯躅, 松鼠 流苏, 依依
+            },
+        ]
+    },
 };
 
 
 const db2026 = [
-    2,//70,68,69,39,13
+    71,2,70,68,69,39,13
 ];
 
 const db2024bx = [

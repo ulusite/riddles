@@ -16,11 +16,12 @@
 
     <!-- Riddle maim template -->
     <template id="template__riddle">
+      <li>
         <div class="riddle">
             <div class="question-wrapper strong">
-                <span class="number"></span>
+                <!-- <span class="number"></span> -->
                 <a class="question link hide" target="_blank"></a>
-                <span class="question no-link"></span>
+                <span class="question no-link first-line"></span>
             </div>
             <div class="main-hint"><span class="hint hide"></span></div>
             <div class="more-hints hide">
@@ -32,16 +33,17 @@
             </div>
             <div class="control"></div>
             <div class="buttons">
-                <input type="button" value="跳  過" class="btn btn-pass">
-                <input type="button" value="提  交" class="btn btn-submit">
+                <input type="button" value="跳 過" class="btn btn-pass">
+                <input type="button" value="提 交" class="btn btn-submit">
                 <span class="hide error">請選擇答案再提交</span>
             </div>
             <div class="correct-answer-wrapper">
-                <span class="strong">答案：</span>
-                <span class="answer strong"></span>
+                <span class="">答案：</span>
+                <span class="answer"></span>
                 <span class="notes"></span>
             </div>
         </div>
+      </li>
     </template>
 
     <!-- Riddle input： checkbox -->
@@ -50,9 +52,9 @@
             <input type="checkbox" class="checkbox-input">
             <label>
                 <span class="label-text"></span>
-                <span class="image-wrapper hide">
+                <div class="image-wrapper hide">
                     <img class="img">
-                </span>
+                </div>
             </label>
         </div>
     </template>
@@ -63,9 +65,9 @@
             <input type="radio" class="radio-input">
             <label>
                 <span class="label-text"></span>
-                <span class="image-wrapper hide">
+                <div class="image-wrapper hide">
                     <img class="img">
-                </span>
+                </div>
             </label>
         </div>
     </template>
@@ -93,10 +95,10 @@
                 <span class="subtitle"></span>
             </div>
             <div>
-                <span>每題只能答一次。分數出門恕不退換</span>
-                <span class="smile">^.^</span>
+                <span>每題只能答一次。分數出門恕不退換。</span>
+                <!-- <span class="smile">^.^</span> -->
             </div>
-            <div class="h3 score-headline brown strong">
+            <div class="h3 score-headline">
                 <span>題數:<span class="question-count"></span></span>
                 <span>已答:<span class="answer-count"></span></span>
                 <span>提示:<span class="hint-count"></span></span>
@@ -107,7 +109,9 @@
 
         </header>
 
-        <main></main>
+        <main>
+            <ol class="riddle-list"></ol>
+        </main>
         <footer>
             <!--
             pyscript.com doesn't allow us to upload files. Let's use data URI
@@ -118,6 +122,14 @@
             -->
             Copyright (c) <script>document.write(new Date().getFullYear())</script> ulusite
         </footer>
+        <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/cn2t.js"></script>
+        <script>
+
+        // Initialize the converter for Simplified to Traditional
+        // const converter = OpenCC.Converter({ from: 'cn', to: 't' });
+        // const converted = converter('简体中文');
+        // console.log('converted: ', converted);
+        </script>
         <script src="./js/db.js"></script>
         <script src="./js/audios.js"></script>
         <script src="./js/app.js"></script>

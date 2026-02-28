@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'NotoSansTC';
+    src: url('../assets/NotoSansTC-VariableFont_wght.ttf') format('truetype');
+}
+
 :root {
     --page-max-width: 960px;
     --common-height: 28px;
@@ -16,8 +21,10 @@
 
 body {
     margin: 0 auto;
-    font-family: sans-serif;
-    font-size: medium;
+    font-family: 'NotoSansTC', sans-serif;
+    font-size: large;
+    /* font-weight: 300; */
+    letter-spacing: 1px;
     padding: 0 20px 20px;
 }
 body.desktop {
@@ -34,7 +41,7 @@ main {
     display: none;
 }
 .strong {
-    font-weight: bold;
+    font-weight: 600;
 }
 .red {
     color: red;
@@ -47,9 +54,6 @@ main {
 }
 .blue {
     color: dodgerblue;
-}
-.brown {
-    color: brown;
 }
 
 /* header elements styles */
@@ -75,12 +79,11 @@ header {
 .h3 {
     padding: 20px 0;
 }
-.smile {
+/* .smile {
     font-family: var(--font-family-en);
-}
+} */
 .score-headline {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    color: darkred;
 }
 .score-headline span span {
     margin-right: 4px;
@@ -94,6 +97,9 @@ header {
     100% { opacity: 1; }
 }
 
+.riddle-list {
+    padding-inline-start: 1.5em;
+}
 /* riddle question element styles */
 .riddle {
     margin-bottom: 24px;
@@ -101,13 +107,19 @@ header {
 .riddle div {
     margin-bottom: 8px;
 }
-.riddle > div {
+/* .riddle > div {
     margin-left: var(--indent-space);
-}
+} */
 div.question-wrapper {
-    font-size: large;
     margin-left: 0;
 }
+.riddle > div.main-hint, .riddle div.more-hint-text {
+    font-size: medium;
+    margin-bottom: 0;
+}
+/* .riddle div.more-hint-text:last-of-type {
+    margin-bottom: 8px;
+} */
 .more-hint-text::before {
     content: "提示"attr(data-hint-number)"：";
 }
@@ -118,18 +130,22 @@ div.question-wrapper {
     vertical-align: top;
     max-width: 330px;
     box-sizing:border-box;
-    /* border: 3px solid var(--border-color); */
 }
-.control .img {
-    max-width: 290px;
+
+.block {
+    display: block;
+}
+
+/* .control .img {
+    max-width: 289px;
 }
 .control .img.block {
     display: block;
     max-width: 330px;
-}
+} */
 
 input {
-    font-size: medium;
+    font-size: large;
     border-radius: 4px;
     outline: none;
 }
@@ -158,7 +174,7 @@ input:disabled {
 }
 .error {
     color: red;
-    line-height: 48px;
+    line-height: 40px;
     margin-left: 4px;
 }
 .btn {
@@ -168,6 +184,7 @@ input:disabled {
     background-color: var(--btn-bk-color);
     border: 1px solid transparent;
     cursor: pointer;
+    padding: 0 16px;
 }
 .desktop .btn:hover,
 .btn:focus {
@@ -175,19 +192,19 @@ input:disabled {
 }
 .btn:disabled {
     border-color: var(--border-color);
-    font-weight: normal;
 }
 .btn-submit {
     margin-left: 4px;
-    padding: 0 20px;
 }
 .btn-pass {
     background-color: var(--btn-aux-bk-color);
-    padding: 0 20px;
 }
 .btn-aux {
     height: var(--common-height);
     background-color: var(--btn-aux-bk-color);
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 0 8px;
 }
 
 .correct-answer-wrapper {
@@ -199,7 +216,6 @@ input:disabled {
 .passed.question-wrapper:after {
     color: var(--text-passed-color);
     content: ' 已跳過';
-    font-size: medium;
     vertical-align: top;
 }
 .yes.question-wrapper { /* other elements may have yes/no and not change color */
@@ -218,7 +234,9 @@ input:disabled {
 footer {
     padding-top: 20px;
     border-top: 1px dotted var(--border-color);
-    font-family: var(--font-family-en);
+    /* font-family: var(--font-family-en); */
+    font-size: medium;
+    letter-spacing: 2px;
 }
 
 /* mobile tweaks */
