@@ -936,21 +936,21 @@ const DB = {
         choices: [
             {
                 answer: '荷花',
-                imageId: 'lotus.png',
+                imageId: 'lotus.jpg',
                 correct: true,
             },
             {
-                answer: '玫瑰',
-                imageId: 'rose.png',
+                answer: '月季',
+                imageId: 'rose.jpg',
             },
             {
                 answer: '木槿',
-                imageId: 'hibiscus.png',
+                imageId: 'hibiscus.jpg',
                 correct: true,
             },
             {
                 answer: '木蘭',
-                imageId: 'magnolia.png',
+                imageId: 'magnolia.jpg',
                 correct: true
             }
         ]
@@ -990,7 +990,7 @@ const DB = {
 
 
 const db2026 = [
-    71,2,70,68,69,39,13
+    71,2,68,69,39,13
 ];
 
 const db2024bx = [
