@@ -164,7 +164,7 @@ function initHeader() {
     scoreHeadlineEl.querySelector('.answer-count').textContent = answerCountGlobal;
     scoreHeadlineEl.querySelector('.hint-count').textContent = hintCountGlobal;
     scoreHeadlineEl.querySelector('.score').textContent = scoreGlobal;
-    // scoreHeadlineEl.style.opacity = 1;
+    scoreHeadlineEl.style.opacity = 1;
 }
 
 function updateScoreHeadline() {
@@ -451,8 +451,8 @@ function onLoad() {
     } else {
         document.body.classList.add('desktop');
     }
-    initHeader();
     loadRiddles();
+    initHeader(); // init after riddles are loaded as some might be marked skipped
     if (isAdmGlobal) {
         const riddleEls = document.querySelectorAll('.riddle');
         riddleEls.forEach(riddleEl => showCorrectAnswer(riddleEl));
