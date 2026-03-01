@@ -34,7 +34,6 @@ const DB = {
         hint: '打一初春開花植物 （2字）',
         moreHints: ['觀查圖中元素', '以一字描述一元素', '組合所有元素成二字答案'],
         imageId: 'water-fall-tall.jpeg',
-        // imageId: 'apricot.jpg',
         choices: [
             {
                 answer: ['水仙', '水仙花'],
@@ -932,7 +931,7 @@ const DB = {
         ]
     },
     69: {
-        question: '下列哪些花有相似別名？',
+        question: '下列哪些花名相關？',
         choices: [
             {
                 answer: '荷花',
@@ -944,40 +943,18 @@ const DB = {
                 imageId: 'rose.jpg',
             },
             {
-                answer: '木槿',
+                answer: '扶桑',
                 imageId: 'hibiscus.jpg',
                 correct: true,
             },
             {
-                answer: '木蘭',
+                answer: '辛夷',
                 imageId: 'magnolia.jpg',
                 correct: true
             }
         ]
     },
     70: {
-        question: '以下哪種花没有和其他花相似的別名？',
-        choices: [
-            {
-                // answer: '荷花',
-                imageId: 'lotus.png',
-            },
-            {
-                // answer: '玫瑰',
-                imageId: 'rose.png',
-                correct: true,
-            },
-            {
-                // answer: '木槿',
-                imageId: 'hibiscus.png',
-            },
-            {
-                // answer: '木蘭',
-                imageId: 'magnolia.png',
-            }
-        ]
-    },
-    71: {
         question: ['列出詩中所有可代表動植物：', '鷓鴣聲聲呼', '山路多躑躅', '依依春深處', '松鼠攀流蘇'],
         exactMultiChoice: true,
         choices: [
@@ -986,11 +963,194 @@ const DB = {
             },
         ]
     },
+    71: {
+        question: '以下哪些不是詠梅：',
+        choices: [
+            {
+                answer: '侵天香氣對晴空',
+            },
+            {
+                answer: '偷來梨蕊三分白',
+                correct: true,
+            },
+            {
+                answer: '此花開盡更無花',
+                correct: true,
+            },
+            {
+                answer: '竹籬茅舍自甘心',
+            }
+        ]
+        // choices: [
+        //     {
+        //         answer: '侵天香氣對晴空（清‧惲壽平）',
+        //     },
+        //     {
+        //         answer: '偷來梨蕊三分白（清‧曹雪芹）',
+        //         correct: true,
+        //     },
+        //     {
+        //         answer: '此花開盡更無花（唐‧元稹）',
+        //         correct: true,
+        //     },
+        //     {
+        //         answer: '竹籬茅舍自甘心（宋‧王淇）',
+        //     }
+        // ]
+    },
+    72: {
+        question: '【孤標傲世偕誰隱，一樣花開為底遲】詠的是？',
+        choices: [
+            {
+                answer: '梅',
+            },
+            {
+                answer: '菊',
+                correct: true,
+                notes: '曹雪芹《紅樓夢林黛玉問菊》'
+            },
+            {
+                answer: '芙蓉',
+            },
+            {
+                answer: '茱萸',
+            }
+        ]
+    },
+    73: {
+        question: '以下哪句詩詠的花與其它不同？',
+        choices: [
+            {
+                answer: '花開時節動京城',
+            },
+            {
+                answer: '一枝紅艷露凝香',
+            },
+            {
+                answer: '我花開後百花殺',
+                correct: true,
+                notes: '黄巢《不第后赋菊》',
+            },
+            {
+                answer: '任是無情也動人',
+            }
+            // {
+            //     answer: '花開時節動京城（唐‧劉禹錫）',
+            // },
+            // {
+            //     answer: '一枝紅艷露凝香（唐‧李白）',
+            // },
+            // {
+            //     answer: '我花開後百花殺（唐‧黄巢）',
+            //     correct: true,
+            //     notes: '黄巢《不第后赋菊》',
+            // },
+            // {
+            //     answer: '任是無情也動人（唐‧羅隱）',
+            // }
+        ]
+    },
+    74: {
+        question: '【只恐夜深花睡去】詠的是？',
+        choices: [
+           {
+                answer: '牡丹',
+                imageId: 'poeny.jpg',
+            },
+            {
+                answer: '杏花',
+                imageId: 'xing5.jpg',
+            },
+            {
+                answer: '秋海棠',
+                imageId: 'qiu-haitang2.jpg',
+            },
+            {
+                answer: '海棠',
+                imageId: 'haitang1.jpg',
+                correct: true,
+                notes: '蘇軾《海棠詩》',
+            },
+        ]
+    },
+    75: {
+        question: '【白日不到處，青春恰自來】詠的是？',
+        moreHints: ['如米小'],
+        choices: [
+            {
+                answer: '勿忘我',
+            },
+            {
+                answer: '苔花',
+                correct: true,
+                notes: '袁枚《苔》'
+            },
+            {
+                answer: '酢漿草',
+            },
+            {
+                answer: '蒲公英',
+            },
+        ]
+    },
+    76: {
+        question: '【淡極始知花更艷】詠的是？',
+        choices: [
+            {
+                answer: '白梅花',
+                imageId: 'mei-bai1.jpg',
+            },
+            {
+                answer: '白杏花',
+                imageId: 'xing8.jpg',
+            },
+            {
+                answer: '白牡丹',
+                imageId: 'peony-white3.jpg',
+            },
+            {
+                answer: '白海棠',
+                imageId: 'haitang-bai1.jpg',
+                correct: true,
+                notes: '曹雪芹《紅樓夢薛寶釵詠白海棠》',
+            }
+        ]
+    },
+    77: {
+        question: '以下哪些活動的時節相同？',
+        choices: [
+            {
+                answer: '舞雩歌詠',
+                correct: true,
+            },
+            {
+                answer: '曲水流觴',
+                correct: true,
+            },
+            {
+                answer: '泛舟',
+                correct: true,
+            },
+            {
+                answer: '放紙鳶',
+            },
+        ]
+    },
+    78: {
+        question: '照片猜一大詩詞人',
+        imageId: 'li5.png',
+        moreHints: ['李花', '南北宋之際', '女性'],
+        choices: [
+            {
+                answer: '李清照',
+                correct: true,
+            },
+        ]
+    },
 };
 
-
 const db2026 = [
-    71,2,68,69,39,13
+    69,70,71,72,73,74,75,76,77,78
 ];
 
 const db2024bx = [

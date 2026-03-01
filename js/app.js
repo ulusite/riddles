@@ -82,7 +82,7 @@ function loadRiddles() {
 
         if (riddle.hint) {
             const hintEl = riddleNode.querySelector('.hint');
-            hintEl.textContent = riddle.hint;
+            hintEl.textContent = `提示：${riddle.hint}`;
             hintEl.classList.remove('hide');
         }
 
@@ -240,6 +240,7 @@ function showCorrectAnswer(riddleEl) {
                 }
             }
         }
+        // support notes for single correct answer only
         if (correctChoice.notes) {
             const notesEl = correctAnswerWrapper.querySelector('.notes');
             notesEl.textContent = `(${correctChoice.notes})`;
@@ -457,6 +458,16 @@ function onLoad() {
         const riddleEls = document.querySelectorAll('.riddle');
         riddleEls.forEach(riddleEl => showCorrectAnswer(riddleEl));
     }
+    // this also disables arrow keys moving screen up and down
+    // const radioButtons = document.querySelectorAll('input[type="radio"]');
+    // radioButtons.forEach(radio => {
+    //     radio.addEventListener('keydown', function(event) {
+    //         // 38 = Up Arrow, 40 = Down Arrow, 37 = Left, 39 = Right
+    //         if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 37 || event.keyCode === 39) {
+    //             event.preventDefault(); // Prevents selection change
+    //         }
+    //     });
+    // });
     c2tGlobal = OpenCC.Converter({ from: 'cn', to: 't' });
 }
 
