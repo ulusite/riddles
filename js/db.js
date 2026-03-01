@@ -1029,7 +1029,7 @@ const DB = {
             {
                 answer: '我花開後百花殺',
                 correct: true,
-                notes: '黄巢《不第后赋菊》',
+                notes: '黄巢《不第後賦菊》',
             },
             {
                 answer: '任是無情也動人',
@@ -1076,6 +1076,7 @@ const DB = {
     75: {
         question: '【白日不到處，青春恰自來】詠的是？',
         moreHints: ['如米小'],
+        // moreHints: ['如米小', '問紅葉，何物是斜陽？'],
         choices: [
             {
                 answer: '勿忘我',
