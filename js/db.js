@@ -1138,7 +1138,7 @@ const DB = {
         ]
     },
     78: {
-        question: '照片猜一大詩詞人',
+        question: '照片猜一大詞人',
         imageId: 'li5.png',
         moreHints: ['李花', '南北宋之際', '女性'],
         choices: [
@@ -1150,6 +1150,42 @@ const DB = {
     },
 };
 
+/*
+    riddle structure example:
+
+    // required field, a unique id for the riddle, used as the key in the db object
+    75: {
+
+        // required field, string or array of strings, when it is an array, each string is display in a new line
+        question: '【白日不到處，青春恰自來】詠的是？',
+
+        // optional field of a string, when appears it is display as under the question
+        hint: '如米小',
+
+        // optional field, array of strings, each string is display as a hint in order when the user click "more hints" button
+        moreHints: ['如米小', '問紅葉，何物是斜陽？'],
+
+        // required field, array of objects, each object has a required answer field and optional imageid, correct and notes fields
+        choices: [
+            {
+                answer: '勿忘我',
+            },
+            {
+                answer: '苔花',
+                imageId: 'moss-flower.jpg',
+                correct: true,
+                notes: '袁枚《苔》' // the notes field is supported for input questions and single selection questions only
+            },
+            {
+                answer: '酢漿草',
+            },
+            {
+                answer: '蒲公英',
+            },
+        ]
+    },
+
+*/
 const db2026 = [
     69,70,71,72,73,74,75,76,77,78
 ];

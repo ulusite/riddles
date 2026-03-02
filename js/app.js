@@ -59,6 +59,11 @@ function loadRiddles() {
         const questionEl = riddleNode.querySelector('.question.first-line');
         const linkQuestionEl = riddleNode.querySelector('.question.link');
         if (riddle.link) {
+            if (Array.isArray(riddle.question)) {
+                linkQuestionEl.textContent = riddle.question.join(' ');
+            } else {
+                linkQuestionEl.textContent = riddle.question;
+            }
             linkQuestionEl.href = riddle.link;
             linkQuestionEl.classList.remove('hide');
             questionEl.classList.add('hide');
@@ -82,7 +87,7 @@ function loadRiddles() {
 
         if (riddle.hint) {
             const hintEl = riddleNode.querySelector('.hint');
-            hintEl.textContent = `提示：${riddle.hint}`;
+            hintEl.textContent = riddle.hint;
             hintEl.classList.remove('hide');
         }
 
