@@ -932,6 +932,7 @@ const DB = {
     },
     69: {
         question: '下列哪些花名相關？',
+        moreHints: ['芙蓉'],
         choices: [
             {
                 answer: '荷花',
@@ -1000,6 +1001,7 @@ const DB = {
     },
     72: {
         question: '【孤標傲世偕誰隱，一樣花開為底遲】詠的是？',
+        moreHints: ['性原冷淡，骨本崢嶸；生既兀傲，死亦堅貞', '不為五斗米折腰'],
         choices: [
             {
                 answer: '梅',
@@ -1052,6 +1054,7 @@ const DB = {
     },
     74: {
         question: '【只恐夜深花睡去】詠的是？',
+        moreHints: ['史湘雲', '唐玄宗贊楊貴妃“睡未足耳”'],
         choices: [
            {
                 answer: '牡丹',
@@ -1148,6 +1151,280 @@ const DB = {
             },
         ]
     },
+    79: {
+        question: '我爸爸的哥哥',
+        hint: '猜亞洲國名',
+        moreHints: ['在西亞', '石油大國'],
+        choices: [
+            {
+                answer: '阿拉伯',
+                correct: true,
+            },
+        ]
+    },
+    80: {
+        question: '任是無人也自香，千古幽貞是此花',
+        hint: '猜歐洲國名',
+        moreHints: ['在北歐', 'Nokia'],
+        choices: [
+            {
+                answer: '芬蘭',
+                correct: true,
+            },
+        ]
+    },
+    81: {
+        question: '番石榴',
+        hint: '猜非洲國名',
+        moreHints: ['在中非','產鑽石','英語簡稱也是ROC'],
+        choices: [
+            {
+                answer: '剛果',
+                correct: true,
+            },
+        ]
+    },
+    82: {
+        question: '寒流襲台灣',
+        hint: '猜歐洲國名',
+        moreHints: ['時常爆發火山', '靠近北極'],
+        choices: [
+            {
+                answer: '冰島',
+                correct: true,
+            },
+        ]
+    },
+    83: {
+        question: '紅高粱',
+        hint: '猜歐洲國名',
+        moreHints: ['海盜', '安徒生'],
+        choices: [
+            {
+                answer: '丹麥',
+                correct: true,
+            },
+        ]
+    },
+    84: {
+        question: '越南',
+        hint: '猜歷史上某單位二字簡稱',
+        moreHints: ['現代全名極長', '在和平東路'],
+        choices: [
+            {
+                answer: '北小',
+                correct: true,
+            },
+        ]
+    },
+    85: {
+        question: '老虎變病貓',
+        hint: '猜歐洲國名',
+        moreHints: ['格林蘭', '王儲妃據傳有作風問題'],
+        choices: [
+            {
+                answer: '挪威',
+                correct: true,
+            },
+        ]
+    },
+    86: {
+        question: '川普并吞格林蘭',
+        hint: '猜美國地名',
+        moreHints: ['不在美東', '和墨西哥接壤', '有沙漠'],
+        choices: [
+            {
+                answer: '加州（加爲動詞）',
+                correct: true,
+            },
+        ]
+    },
+    87: {
+        question: '冬天的暖氣，火鍋，熱水澡',
+        hint: '猜三種植物',
+        moreHints: ['都是好朋友'],
+        choices: [
+            {
+                answer: '松竹梅（歲寒三友）',
+                correct: true,
+            },
+        ]
+    },
+    88: {
+        question: '人生七十才開始',
+        hint: '猜四字成語',
+        moreHints: ['時光倒流'],
+        choices: [
+            {
+                answer: '返老還童',
+                correct: true,
+            },
+        ]
+    },
+    89: {
+        question: '三星堆',
+        hint: '猜美洲國名',
+        moreHints: ['中美洲', '四川', '先秦國名'],
+        choices: [
+            {
+                answer: '古巴',
+                correct: true,
+            },
+        ]
+    },
+    90: {
+        question: '看圖拆字猜題',
+        hint: '猜亞洲國名',
+        moreHints: ['東南亞', '華人多'],
+        imageId: 'arab-horses.png',
+        choices: [
+            {
+                answer: ['馬來西亞'],
+            }
+        ]
+    },
+
+    100: {
+        question: '雙喜臨門',
+        hint: '打一大陸城市',
+        moreHints: ['直轄市', '山城'],
+        choices: [
+            {
+                answer: '重慶',
+            },
+        ]
+    },
+    101: {
+        question: '天無三日晴',
+        hint: '打一大陸城市',
+        moreHints: ['在天無三日晴之省內'],
+        choices: [
+            {
+                answer: '貴陽',
+                // answer: ['貴陽','潮州'],
+            },
+        ]
+    },
+    102: {
+        question: '地無三里平',
+        hint: '打一大陸城市',
+        moreHints: ['趙子龍'],
+        choices: [
+            {
+                answer: '常山',
+            },
+        ]
+    },
+    103: {
+        question: '人無三兩銀',
+        hint: '打一韓國城市',
+        choices: [
+            {
+                answer: '光州',
+            },
+        ]
+    },
+    104: {
+        question: '媽祖顯靈',
+        hint: '打一大陸城市',
+        choices: [
+            {
+                answer: '寧波',
+                notes: '且說那三寶太監下西洋，在海上行了幾日，那一夜忽然狂風大作，巨浪滔天，那西洋的怪獸惡魚都出來作亂，要把那船隻翻覆。三寶太監大驚小怪，忙忙叫合船上的人，燒香點燭，跪在地下，求神求佛。忽然只見船頭頂上，有一盞紅燈，高高的掛著，照耀得滿天明亮。那大風也不刮了，那巨浪也平靜了。三寶太監看見，忙叫道：“這是天妃娘娘顯聖了！”',
+
+            },
+        ]
+    },
+    105: {
+        question: '關公',
+        hint: '打一大陸城市',
+        moreHints: ['也是聖人'],
+        choices: [
+            {
+                answer: '武漢',
+            },
+        ]
+    },
+    106: {
+        question: '蟬噪林逾靜，鳥鳴山更幽',
+        hint: '打一大陸城市',
+        choices: [
+            {
+                answer: '寧夏',
+            },
+        ]
+    },
+    107: {
+        question: '人生七十才開始',
+        hint: '打一四字成語',
+        choices: [
+            {
+                answer: '返老還童',
+            },
+        ]
+    },
+    108: {
+        question: '成都好雨',
+        hint: '打一假日名稱',
+        moreHints: ['隨風潛入夜，潤物細無聲', '中國人最重視的'],
+        choices: [
+            {
+                answer: '春節',
+            },
+        ]
+    },
+
+    109: {
+        question: '去年今日此門中，人面桃花相映紅。',
+        hint: '打一群眾活動的名稱',
+        moreHints: ['地表最大遷徙'],
+        choices: [
+            {
+                answer: '春運',
+            },
+        ]
+    },
+
+    110: {
+        question: '綠州',
+        hint: '打一大陸城市',
+        moreHints: ['啤酒', '山東省'],
+        choices: [
+            {
+                answer: '青島',
+            },
+        ]
+    },
+    111: {
+        question: '野人獻爆',
+        hint: '打一大陸城市',
+        moreHints: ['產鹽', '山東省' ],
+        choices: [
+            {
+                answer: '日照',
+            },
+        ]
+    },
+    112: {
+        question: '烽燧',
+        hint: '打一大陸城市',
+        moreHints: ['蘋果', '山東省'],
+        choices: [
+            {
+                answer: '煙台',
+            },
+        ]
+    },
+    113: {
+        question: '伊斯蘭女裝',
+        hint: '打一大陸城市',
+        // moreHints: ['蘋果', '山東省'],
+        choices: [
+            {
+                answer: '包頭',
+            },
+        ]
+    },
 };
 
 /*
@@ -1187,7 +1464,7 @@ const DB = {
 
 */
 const db2026 = [
-    69,70,71,72,73,74,75,76,77,78
+    69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,100,101,102,103,104,105,106,107,108,109,110,111,112113
 ];
 
 const db2024bx = [
