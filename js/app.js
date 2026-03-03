@@ -232,10 +232,6 @@ function showCorrectAnswer(riddleEl) {
             return answer;
         });
         answerEl.textContent = correctAnswers.join(', ');
-        // if (notes.length > 0) {
-        //     const notesEl = correctAnswerWrapper.querySelector('.notes');
-        //     notesEl.textContent = `(${notes.join('; ')})`;
-        // }
     } else {
         const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
         if (controlEl.classList.contains('radio-group')) {
@@ -253,7 +249,11 @@ function showCorrectAnswer(riddleEl) {
             } else {
                 // when single correct answer but has multi representations, show the first
                 if (Array.isArray(correctChoice.answer)) {
-                    answerEl.textContent = correctChoice.answer[0];
+                    if (currentRiddle.multiAnswer) {
+                        answerEl.textContent = correctChoice.answer.join(', ');
+                    } else {
+                        answerEl.textContent = correctChoice.answer[0];
+                    }
                 } else {
                     answerEl.textContent = correctChoice.answer;
                 }
@@ -323,6 +323,7 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
         questionWrapper.classList.add('yes');
         correctCountGlobal++;
     } else {
+        scoreGlobal--;
         playMidTone(audioCtxGlobal);
         questionWrapper.classList.add('no');
         wrongCountGlobal++;
