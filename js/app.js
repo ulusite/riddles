@@ -168,6 +168,9 @@ function initHeader() {
     scoreHeadlineEl.querySelector('.question-count').textContent = questionCountGlobal;
     scoreHeadlineEl.querySelector('.answer-count').textContent = answerCountGlobal;
     scoreHeadlineEl.querySelector('.hint-count').textContent = hintCountGlobal;
+    scoreHeadlineEl.querySelector('.bypass-count').textContent = bypassCountGlobal;
+    scoreHeadlineEl.querySelector('.wrong-count').textContent = wrongCountGlobal;
+    scoreHeadlineEl.querySelector('.correct-count').textContent = correctCountGlobal;
     scoreHeadlineEl.querySelector('.score').textContent = scoreGlobal;
     scoreHeadlineEl.style.opacity = 1;
 }
@@ -177,6 +180,9 @@ function updateScoreHeadline() {
     const scoreHeadlineEl = document.querySelector('.score-headline');
     scoreHeadlineEl.querySelector('.answer-count').textContent = answerCountGlobal;
     scoreHeadlineEl.querySelector('.score').textContent = scoreGlobal;
+    scoreHeadlineEl.querySelector('.correct-count').textContent = correctCountGlobal;
+    scoreHeadlineEl.querySelector('.wrong-count').textContent = wrongCountGlobal;
+    scoreHeadlineEl.querySelector('.bypass-count').textContent = bypassCountGlobal;
 
     // play win/sad sound effect when all questions are answered
     if (answerCountGlobal === questionCountGlobal) {
@@ -216,12 +222,20 @@ function showCorrectAnswer(riddleEl) {
 
     if (controlEl.classList.contains('checkbox-group')) {
         // checkbox group may have multiple correct answers, show all correct answers
+        // const notes = [];
         const correctAnswers = currentRiddle.correctIndex.map(index => {
             const choice = currentRiddle.choices[index];
             const answer = choice.answer ? `${index + 1}. ${choice.answer}` : `${index + 1}`;
+            if (choice.notes) {
+                return `${answer} (${choice.notes})`;
+            }
             return answer;
         });
         answerEl.textContent = correctAnswers.join(', ');
+        // if (notes.length > 0) {
+        //     const notesEl = correctAnswerWrapper.querySelector('.notes');
+        //     notesEl.textContent = `(${notes.join('; ')})`;
+        // }
     } else {
         const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
         if (controlEl.classList.contains('radio-group')) {
@@ -307,9 +321,11 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
         scoreGlobal++;
         playTada(audioCtxGlobal);
         questionWrapper.classList.add('yes');
+        correctCountGlobal++;
     } else {
         playMidTone(audioCtxGlobal);
         questionWrapper.classList.add('no');
+        wrongCountGlobal++;
     }
 }
 
@@ -358,6 +374,7 @@ function handleByPass(riddleEl) {
     questionWrapper.classList.add('passed');
     showCorrectAnswer(riddleEl);
     disableAllInputs(riddleEl);
+    bypassCountGlobal++;
     updateScoreHeadline();
     playMidTone(audioCtxGlobal);
 }
@@ -480,8 +497,11 @@ function onLoad() {
 let audioCtxGlobal;
 let questionCountGlobal = 0;
 let answerCountGlobal = 0;
-let scoreGlobal = 0;
 let hintCountGlobal = 0;
+let wrongCountGlobal = 0;
+let correctCountGlobal = 0;
+let bypassCountGlobal = 0;
+let scoreGlobal = 0;
 let isIphoneChromeGlobal = false;
 let c2tGlobal;
 

@@ -938,29 +938,33 @@ const DB = {
                 answer: '荷花',
                 imageId: 'lotus.jpg',
                 correct: true,
+                notes: '荷花又稱芙蓉。王昌齡《采蓮曲》：荷葉羅裙一色裁，芙蓉向臉兩邊開。',
             },
             {
                 answer: '月季',
                 imageId: 'rose.jpg',
             },
             {
-                answer: '扶桑',
-                imageId: 'hibiscus.jpg',
+                answer: '木槿',
+                imageId: 'hibiscus3.jpg',
                 correct: true,
+                notes: '木槿即木芙蓉',
             },
             {
                 answer: '辛夷',
                 imageId: 'magnolia.jpg',
-                correct: true
+                correct: true,
+                notes: '王維《辛夷塢》：木末芙蓉花，山中發紅萼。故辛夷可稱芙蓉。',
             }
         ]
     },
     70: {
-        question: ['列出詩中所有可代表動植物：', '鷓鴣聲聲呼', '山路多躑躅', '依依春深處', '松鼠攀流蘇'],
+        question: ['列出詩中所有動植物：', '山路多躑躅', '松鼠攀流蘇' ,'依依春深處', '子規聲聲呼'],
         exactMultiChoice: true,
         choices: [
             {
-                answer: ['鷓鴣', '躑躅', '依依', '松鼠', '流蘇'], //鹧鸪, 踯躅, 松鼠 流苏, 依依
+                answer: ['子規', '躑躅', '依依', '松鼠', '流蘇'], //鹧鸪, 踯躅, 松鼠 流苏, 依依
+                notes: '杜鵑花又稱躑躅。詩經《採薇》：昔我往矣，楊柳依依。',
             },
         ]
     },
@@ -1070,7 +1074,7 @@ const DB = {
             },
             {
                 answer: '海棠',
-                imageId: 'haitang1.jpg',
+                imageId: 'haitang2.jpg',
                 correct: true,
                 notes: '蘇軾《海棠詩》',
             },
@@ -1132,7 +1136,7 @@ const DB = {
                 correct: true,
             },
             {
-                answer: '泛舟',
+                answer: '三月三日天氣新，長安水邊多麗人',
                 correct: true,
             },
             {
@@ -1142,7 +1146,7 @@ const DB = {
     },
     78: {
         question: '照片猜一大詞人',
-        imageId: 'li5.png',
+        imageId: 'li2.png',
         moreHints: ['李花', '南北宋之際', '女性'],
         choices: [
             {
@@ -1276,14 +1280,13 @@ const DB = {
         question: '看圖拆字猜題',
         hint: '猜亞洲國名',
         moreHints: ['東南亞', '華人多'],
-        imageId: 'arab-horses.png',
+        imageId: 'arab-horses2.png',
         choices: [
             {
                 answer: ['馬來西亞'],
             }
         ]
     },
-
     100: {
         question: '雙喜臨門',
         hint: '打一大陸城市',
@@ -1297,7 +1300,7 @@ const DB = {
     101: {
         question: '天無三日晴',
         hint: '打一大陸城市',
-        moreHints: ['在天無三日晴之省內'],
+        moreHints: ['省會', '珍惜難得日光'],
         choices: [
             {
                 answer: '貴陽',
@@ -1308,7 +1311,7 @@ const DB = {
     102: {
         question: '地無三里平',
         hint: '打一大陸城市',
-        moreHints: ['趙子龍'],
+        moreHints: ['趙子龍', '北岳'],
         choices: [
             {
                 answer: '常山',
@@ -1318,6 +1321,7 @@ const DB = {
     103: {
         question: '人無三兩銀',
         hint: '打一韓國城市',
+        moreHints: ['在半島南部', '曾發生抗議全斗煥事件'],
         choices: [
             {
                 answer: '光州',
@@ -1326,19 +1330,19 @@ const DB = {
     },
     104: {
         question: '媽祖顯靈',
-        hint: '打一大陸城市',
+        hint: '打一華東沿海城市',
+        moreHints: ['平風', '靜浪'],
         choices: [
             {
                 answer: '寧波',
-                notes: '且說那三寶太監下西洋，在海上行了幾日，那一夜忽然狂風大作，巨浪滔天，那西洋的怪獸惡魚都出來作亂，要把那船隻翻覆。三寶太監大驚小怪，忙忙叫合船上的人，燒香點燭，跪在地下，求神求佛。忽然只見船頭頂上，有一盞紅燈，高高的掛著，照耀得滿天明亮。那大風也不刮了，那巨浪也平靜了。三寶太監看見，忙叫道：“這是天妃娘娘顯聖了！”',
-
+                notes:'按《三寶太監西洋記》:且說那三寶太監下西洋，在海上行了幾日，那一夜忽然狂風大作，巨浪滔天，那西洋的怪獸惡魚都出來作亂，要把那船隻翻覆。三寶太監大驚小怪，忙忙叫合船上的人，燒香點燭，跪在地下，求神求佛。忽然只見船頭頂上，有一盞紅燈，高高的掛著，照耀得滿天明亮。那大風也不刮了，那巨浪也平靜了。三寶太監看見，忙叫道：“這是天妃娘娘顯聖了！”且說那三寶太監下西洋，在海上行了幾日，那一夜忽然狂風大作，巨浪滔天，那西洋的怪獸惡魚都出來作亂，要把那船隻翻覆。三寶太監大驚小怪，忙忙叫合船上的人，燒香點燭，跪在地下，求神求佛。忽然只見船頭頂上，有一盞紅燈，高高的掛著，照耀得滿天明亮。那大風也不刮了，那巨浪也平靜了。三寶太監看見，忙叫道：“這是天妃娘娘顯聖了！”'
             },
         ]
     },
     105: {
         question: '關公',
-        hint: '打一大陸城市',
-        moreHints: ['也是聖人'],
+        hint: '打一華中城市',
+        moreHints: ['長江中游', '萬里長江第一橋', '男子大丈夫'],
         choices: [
             {
                 answer: '武漢',
@@ -1347,29 +1351,22 @@ const DB = {
     },
     106: {
         question: '蟬噪林逾靜，鳥鳴山更幽',
-        hint: '打一大陸城市',
+        hint: '打一中國西北地區名',
+        moreHints: ['回族自治', '塞上江南', '盛產枸杞'],
         choices: [
             {
                 answer: '寧夏',
             },
         ]
     },
-    107: {
-        question: '人生七十才開始',
-        hint: '打一四字成語',
-        choices: [
-            {
-                answer: '返老還童',
-            },
-        ]
-    },
     108: {
         question: '成都好雨',
-        hint: '打一假日名稱',
-        moreHints: ['隨風潛入夜，潤物細無聲', '中國人最重視的'],
+        hint: '打一傳統假日名稱',
+        moreHints: ['杜甫草堂詠物', '必在立春前後'],
         choices: [
             {
                 answer: '春節',
+                notes:'好雨知時"節"，當"春"乃發生'
             },
         ]
     },
@@ -1381,6 +1378,7 @@ const DB = {
         choices: [
             {
                 answer: '春運',
+                notes:'“人面不知何處去，桃花依舊笑春風”。一面之緣的“春”天桃花“運”'
             },
         ]
     },
@@ -1388,7 +1386,7 @@ const DB = {
     110: {
         question: '綠州',
         hint: '打一大陸城市',
-        moreHints: ['啤酒', '山東省'],
+        moreHints: ['啤酒', '山東'],
         choices: [
             {
                 answer: '青島',
@@ -1396,9 +1394,9 @@ const DB = {
         ]
     },
     111: {
-        question: '野人獻爆',
+        question: '野人獻曝',
         hint: '打一大陸城市',
-        moreHints: ['產鹽', '山東省' ],
+        moreHints: ['產鹽', '山東' ],
         choices: [
             {
                 answer: '日照',
@@ -1408,7 +1406,7 @@ const DB = {
     112: {
         question: '烽燧',
         hint: '打一大陸城市',
-        moreHints: ['蘋果', '山東省'],
+        moreHints: ['周幽王', '褒姒'],
         choices: [
             {
                 answer: '煙台',
@@ -1416,9 +1414,8 @@ const DB = {
         ]
     },
     113: {
-        question: '伊斯蘭女裝',
+        question: '穆斯林女裝',
         hint: '打一大陸城市',
-        // moreHints: ['蘋果', '山東省'],
         choices: [
             {
                 answer: '包頭',
@@ -1464,7 +1461,7 @@ const DB = {
 
 */
 const db2026 = [
-    69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,100,101,102,103,104,105,106,107,108,109,110,111,112113
+    69,70,77,78,79,80,81,82,83,84,85,86,87,88,89,90,100,101,102,103,104,105,106,107,108,109,110,111,75,72,73,71,74,76
 ];
 
 const db2024bx = [
