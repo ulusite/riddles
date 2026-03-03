@@ -355,7 +355,7 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
             isCorrect = checkTextAnswer(currentRiddle, yourAnswer, correctAnswer);
         }
     }
-    showAnswerResult(riddleEl, true);
+    showAnswerResult(riddleEl, isCorrect);
 }
 
 function handleCheckboxInput(riddleEl) {

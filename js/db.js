@@ -1150,7 +1150,7 @@ const DB = {
     },
     78: {
         question: '照片猜一大詞人',
-        imageId: 'li2.png',
+        imageId: 'li.jpg',
         moreHints: ['李花', '南北宋之際', '女性'],
         choices: [
             {
