@@ -1,7 +1,7 @@
 function loadImage(imageId, templateNode) {
     const imageWrapper = templateNode.querySelector('.image-wrapper');
     const imgEl = templateNode.querySelector('.img');
-    imgEl.src = 'images/' + imageId;
+    imgEl.src = `images/${imageId}`;
     imageWrapper.classList.remove('hide');
 }
 
@@ -24,10 +24,6 @@ function buildChoiceEl(choiceEl, riddleId, choiceIndex, choice, templateNode) {
             answer = answer[0]; // pick the first correct answer for radio choice
         }
         labelTextEl.textContent = `${choiceIndex + 1}. ${answer}`;
-        // if (choice.imageId) {
-        //     const imgEl = templateNode.querySelector('.img');
-        //     imgEl.classList.add('block');
-        // }
     } else {
         labelTextEl.textContent = `${choiceIndex + 1} `;
     }
@@ -111,6 +107,10 @@ function loadRiddles() {
             const textNode = textTemplate.content.cloneNode(true);
             const inputEl = textNode.querySelector('.text-input');
             inputEl.name = nameAttr;
+            if (riddle.skipInput == true) {
+                inputEl.placeholder = '請直接提交';
+                inputEl.disabled = 'true';
+            }
             controlEl.appendChild(textNode);
         } else {
             const correctIndixes = riddle.choices.map((choice, index) => (choice.correct == true ? index : -1)).filter(index => index !== -1);
@@ -214,10 +214,14 @@ function updateScoreHeadline() {
 }
 
 function showCorrectAnswer(riddleEl) {
+    const correctAnswerWrapper = riddleEl.querySelector('.correct-answer-wrapper');
+    if (correctAnswerWrapper.classList.contains('had-shown')) {
+        return;
+    }
+
     const riddleId = riddleEl.dataset.riddleId;
     const currentRiddle = masterDB[riddleId];
     const controlEl = riddleEl.querySelector('.control');
-    const correctAnswerWrapper = riddleEl.querySelector('.correct-answer-wrapper');
     const answerEl = correctAnswerWrapper.querySelector('.answer');
 
     if (controlEl.classList.contains('checkbox-group')) {
@@ -242,6 +246,21 @@ function showCorrectAnswer(riddleEl) {
                 answerEl.textContent = `${currentRiddle.correctIndex + 1}`;
             }
         } else {
+            if (currentRiddle.skipInput && !correctAnswerWrapper.classList.contains('had-shown')) {
+                const notesEl = correctAnswerWrapper.querySelector('.notes');
+                if (correctChoice.notes) {
+                    notesEl.textContent = `(${correctChoice.notes})`;
+                }
+                if (correctChoice.answerImageId) {
+                    const imgEl = document.createElement('img');
+                    imgEl.classList.add('img');
+                    imgEl.src = `images/${correctChoice.answerImageId}`;
+                    notesEl.after(imgEl);
+                }
+                correctAnswerWrapper.style.opacity = 1;
+                correctAnswerWrapper.classList.add('had-shown');
+                return;
+            }
             const isExactMulti = currentRiddle.exactMultiChoice == true;
             // only when user answer matches all correct answers can be considered correct answer, show all
             if (isExactMulti && Array.isArray(correctChoice.answer)) {
@@ -266,6 +285,7 @@ function showCorrectAnswer(riddleEl) {
         }
     }
     correctAnswerWrapper.style.opacity = 1;
+    correctAnswerWrapper.classList.add('had-shown');
 }
 
 function prepareText(text) {
@@ -291,11 +311,31 @@ function checkTextAnswer(riddle, yourAnswer, correctAnswer) {
     return correctAnswerSorted.every((value, index) => value == yourAnswersSorted[index]);
 }
 
+function showAnswerResult(riddleEl, isCorrect) {
+    const questionWrapper = riddleEl.querySelector('.question-wrapper');
+    if (isCorrect) {
+        scoreGlobal++;
+        playTada(audioCtxGlobal);
+        questionWrapper.classList.add('yes');
+        correctCountGlobal++;
+    } else {
+        scoreGlobal--;
+        playMidTone(audioCtxGlobal);
+        questionWrapper.classList.add('no');
+        wrongCountGlobal++;
+    }
+}
+
 function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
     const riddleId = riddleEl.dataset.riddleId;
     const currentRiddle = masterDB[riddleId];
-    let isCorrect = false;
 
+    if (currentRiddle.skipInput == true) {
+        showAnswerResult(riddleEl, true);
+        return;
+    }
+
+    let isCorrect = false;
     if (selectedRadioOrCheckboxes && selectedRadioOrCheckboxes.length > 0) {
         // checkbox group may have multiple correct answers, get all selected answers
         const yourAnswers = Array.from(selectedRadioOrCheckboxes).map(input => input.value);
@@ -315,19 +355,7 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
             isCorrect = checkTextAnswer(currentRiddle, yourAnswer, correctAnswer);
         }
     }
-
-    const questionWrapper = riddleEl.querySelector('.question-wrapper');
-    if (isCorrect) {
-        scoreGlobal++;
-        playTada(audioCtxGlobal);
-        questionWrapper.classList.add('yes');
-        correctCountGlobal++;
-    } else {
-        scoreGlobal--;
-        playMidTone(audioCtxGlobal);
-        questionWrapper.classList.add('no');
-        wrongCountGlobal++;
-    }
+    showAnswerResult(riddleEl, true);
 }
 
 function handleCheckboxInput(riddleEl) {
@@ -359,7 +387,10 @@ function handleRadioInput(riddleEl) {
 function handleTextInput(riddleEl) {
     const inputEl = riddleEl.querySelector('.text-input');
     inputEl.value = inputEl.value.trim();
-    if (!inputEl.value) {
+    const riddleId = riddleEl.dataset.riddleId;
+    const currentRiddle = masterDB[riddleId];
+
+    if (!inputEl.value && !currentRiddle.skipInput) {
         inputEl.placeholder = '請輸入答案再提交';
         playSoftTone(audioCtxGlobal);
         return;
