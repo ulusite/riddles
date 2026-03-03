@@ -1238,8 +1238,9 @@ const DB = {
         moreHints: ['不在美東', '和墨西哥接壤', '有沙漠'],
         choices: [
             {
-                answer: '加州（加爲動詞）',
+                answer: '加州',
                 correct: true,
+                notes: '“加”爲動詞'
             },
         ]
     },
@@ -1249,8 +1250,9 @@ const DB = {
         moreHints: ['都是好朋友'],
         choices: [
             {
-                answer: '松竹梅（歲寒三友）',
+                answer: '松竹梅',
                 correct: true,
+                notes: '歲寒三友'
             },
         ]
     },
