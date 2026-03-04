@@ -1149,13 +1149,14 @@ const DB = {
         ]
     },
     78: {
-        question: '照片猜一大詞人',
+        question: '相片猜一大詞人',
         imageId: 'li.jpg',
         moreHints: ['李花', '南北宋之際', '女性'],
         choices: [
             {
                 answer: '李清照',
                 correct: true,
+                notes: '“李”花“清”爽獨“照”，是謂“李清照”'
             },
         ]
     },
@@ -1178,6 +1179,7 @@ const DB = {
             {
                 answer: '芬蘭',
                 correct: true,
+                notes: '頌“芬”，詠“蘭”'
             },
         ]
     },
@@ -1229,7 +1231,7 @@ const DB = {
     85: {
         question: '虎與狐行。獸見之皆走。虎不知獸畏己而走也，以為畏狐也。《戰國策》',
         hint: '猜歐洲國名',
-        moreHints: ['格林蘭', '王儲妃據傳有作風問題'],
+        moreHints: ['格陵蘭', '王儲妃據傳有作風問題'],
         choices: [
             {
                 answer: '挪威',
@@ -1238,7 +1240,7 @@ const DB = {
         ]
     },
     86: {
-        question: '川普并吞格林蘭',
+        question: '川普并吞格陵蘭',
         hint: '猜美國地名',
         moreHints: ['不在美東', '和墨西哥接壤', '有沙漠'],
         choices: [
@@ -1375,7 +1377,7 @@ const DB = {
         choices: [
             {
                 answer: '春節',
-                notes:'好雨知時"節"，當"春"乃發生'
+                notes:'好雨知時“節”，當“春”乃發生'
             },
         ]
     },

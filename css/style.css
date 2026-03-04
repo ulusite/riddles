@@ -242,6 +242,9 @@ footer {
     letter-spacing: 2px;
 }
 
+.date {
+    float: right;
+}
 /* mobile tweaks */
 /* .small .text-input {
     padding: 0 16px;

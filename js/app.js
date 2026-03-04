@@ -254,6 +254,7 @@ function showCorrectAnswer(riddleEl) {
                 if (correctChoice.answerImageId) {
                     const imgEl = document.createElement('img');
                     imgEl.classList.add('img');
+                    imgEl.classList.add('block');
                     imgEl.src = `images/${correctChoice.answerImageId}`;
                     notesEl.after(imgEl);
                 }
@@ -460,6 +461,9 @@ function handleClick(event) {
     }
     const eventEl = event.target;
     const riddleEl = eventEl.closest('.riddle');
+    if (!riddleEl) {
+        return;
+    }
     riddleEl.querySelector('.error').classList.add('hide');
     if (eventEl.tagName === 'INPUT' && eventEl.type === 'button') {
         if (eventEl.classList.contains('btn-pass')) {
@@ -512,17 +516,10 @@ function onLoad() {
         const riddleEls = document.querySelectorAll('.riddle');
         riddleEls.forEach(riddleEl => showCorrectAnswer(riddleEl));
     }
-    // this also disables arrow keys moving screen up and down
-    // const radioButtons = document.querySelectorAll('input[type="radio"]');
-    // radioButtons.forEach(radio => {
-    //     radio.addEventListener('keydown', function(event) {
-    //         // 38 = Up Arrow, 40 = Down Arrow, 37 = Left, 39 = Right
-    //         if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 37 || event.keyCode === 39) {
-    //             event.preventDefault(); // Prevents selection change
-    //         }
-    //     });
-    // });
-    c2tGlobal = OpenCC.Converter({ from: 'cn', to: 't' });
+    // initialize Chinese simplified to traditional converter
+    if (OpenCC) {
+        c2tGlobal = OpenCC.Converter({ from: 'cn', to: 't' });
+    }
 }
 
 // initialize global vars
@@ -552,3 +549,9 @@ window.addEventListener('load', onLoad);
 const mainEl = document.querySelector('main');
 mainEl.addEventListener('click', handleClick);
 mainEl.addEventListener('keyup', handleEnter);
+
+const now = new Date();
+const year = '' + now.getFullYear();
+const footerEl = document.querySelector('footer');
+footerEl.querySelector('.year').textContent = year;
+footerEl.querySelector('.date').textContent = `${now.getMonth()+1}/${now.getDate()}/${year.substring(2)}`;
