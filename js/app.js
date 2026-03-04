@@ -318,11 +318,13 @@ function showAnswerResult(riddleEl, isCorrect) {
         scoreGlobal++;
         playTada(audioCtxGlobal);
         questionWrapper.classList.add('yes');
+        riddleEl.querySelector('.result-mark').classList.add('yes');
         correctCountGlobal++;
     } else {
         scoreGlobal--;
         playMidTone(audioCtxGlobal);
         questionWrapper.classList.add('no');
+        riddleEl.querySelector('.result-mark').classList.add('no');
         wrongCountGlobal++;
     }
 }
@@ -405,6 +407,7 @@ function handleTextInput(riddleEl) {
 function handleByPass(riddleEl) {
     const questionWrapper = riddleEl.querySelector('.question-wrapper');
     questionWrapper.classList.add('passed');
+    riddleEl.querySelector('.result-mark').classList.add('passed');
     showCorrectAnswer(riddleEl);
     disableAllInputs(riddleEl);
     bypassCountGlobal++;

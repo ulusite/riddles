@@ -216,22 +216,35 @@ input:disabled {
     transition: opacity 1s ease-in-out;
 }
 
-.passed.question-wrapper:after {
+.passed:after {
     color: var(--text-passed-color);
     content: ' 已跳過';
     vertical-align: top;
+}
+.passed.result-mark:after {
+    font-weight: bold;
+    line-height: 40px;
+    margin-left: 2px;
 }
 .yes.question-wrapper { /* other elements may have yes/no and not change color */
     color: green;
 }
 .yes::after {
     content: "\2713"; /* check mark */
+    color: green;
 }
 .no.question-wrapper {
     color: red;
 }
 .no::after {
     content: "\2717"; /* ballot X */
+    color: red;
+}
+.yes.result-mark,
+.no.result-mark {
+    font-weight: bold;
+    line-height: 40px;
+    margin-left: 2px;
 }
 
 footer {
