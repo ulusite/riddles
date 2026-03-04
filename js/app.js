@@ -552,9 +552,4 @@ window.addEventListener('load', onLoad);
 const mainEl = document.querySelector('main');
 mainEl.addEventListener('click', handleClick);
 mainEl.addEventListener('keyup', handleEnter);
-
-const now = new Date();
-const year = '' + now.getFullYear();
-const footerEl = document.querySelector('footer');
-footerEl.querySelector('.year').textContent = year;
-footerEl.querySelector('.date').textContent = `${now.getMonth()+1}/${now.getDate()}/${year.substring(2)}`;
+document.querySelector('footer').querySelector('.year').textContent = new Date().getFullYear();
