@@ -432,12 +432,11 @@ const DB = {
             {
                 answer: '龍燈',
                 correct: true,
-                notes: '龍燈或魚燈，“鳳簫聲動，玉壺光轉，一夜魚龍舞”'
             },
             {
                 answer: '魚燈',
                 correct: true,
-                notes: '龍燈或魚燈，“鳳簫聲動，玉壺光轉，一夜魚龍舞”'
+                notes: '“鳳簫聲動，玉壺光轉，一夜魚龍舞”'
             },
 	        {
 		        answer: '水燈',
@@ -467,9 +466,6 @@ const DB = {
                 answer: '增城',
                 notes: '廣東'
             },
-            {
-                answer: '以上皆非',
-            }
         ]
     },
     35: {
@@ -490,9 +486,6 @@ const DB = {
             {
                 answer: '河豚',
             },
-            {
-                answer: '以上皆非',
-            }
         ]
     },
     36: {
@@ -514,9 +507,6 @@ const DB = {
                 correct: true,
                 notes: '清，邱圓《魯智深醉鬧五台山》《寄生草·漫揾英雄淚》：煙蓑雨笠卷單行，一任俺，芒鞋破缽隨緣化'
             },
-            {
-                answer: '以上皆非',
-            }
         ]
     },
     37: {
@@ -542,9 +532,6 @@ const DB = {
                 answer: '五峰',
                 notes: '新竹'
             },
-            {
-                answer: '以上皆非',
-            }
         ]
     },
     38: {
@@ -565,9 +552,6 @@ const DB = {
                 answer: '雙溪',
                 correct: true
             },
-            {
-                answer: '以上皆非',
-            }
         ]
     },
     39: {
@@ -593,9 +577,6 @@ const DB = {
                 answer: '鳳山',
                 notes: '高雄'
             },
-            {
-                answer: '以上皆非',
-            }
         ]
     },
     40: {
@@ -1157,9 +1138,7 @@ const DB = {
         choices: [
             {
                 answer: '李清照',
-                correct: true,
                 notes: '“李”花“獨”“照”，是謂“李清照”',
-                // notes: '“李”子“清”脆獨“照”，是謂“李清照”'
             },
         ]
     },
@@ -1170,7 +1149,6 @@ const DB = {
         choices: [
             {
                 answer: '阿拉伯',
-                correct: true,
             },
         ]
     },
@@ -1180,8 +1158,7 @@ const DB = {
         moreHints: ['在北歐', 'Nokia'],
         choices: [
             {
-                answer: '芬蘭',
-                correct: true,
+                answer: ['芬蘭', '芬兰'],
                 notes: '頌“芬”，詠“蘭”'
             },
         ]
@@ -1192,8 +1169,7 @@ const DB = {
         moreHints: ['在中非','產鑽石','英語簡稱也是ROC'],
         choices: [
             {
-                answer: '剛果',
-                correct: true,
+                answer: ['剛果', '刚果'],
             },
         ]
     },
@@ -1203,8 +1179,7 @@ const DB = {
         moreHints: ['時常爆發火山', '靠近北極'],
         choices: [
             {
-                answer: '冰島',
-                correct: true,
+                answer: ['冰島', '冰岛'],
             },
         ]
     },
@@ -1214,8 +1189,7 @@ const DB = {
         moreHints: ['海盜', '安徒生'],
         choices: [
             {
-                answer: '丹麥',
-                correct: true,
+                answer: ['丹麥', '丹麦'],
             },
         ]
     },
@@ -1226,7 +1200,6 @@ const DB = {
         choices: [
             {
                 answer: '北小',
-                correct: true,
                 notes: '越往南，北越小',
             },
         ]
@@ -1238,7 +1211,6 @@ const DB = {
         choices: [
             {
                 answer: '挪威',
-                correct: true,
                 notes: '狐假虎威，即狐“挪”虎“威”'
             },
         ]
@@ -1251,7 +1223,6 @@ const DB = {
         choices: [
             {
                 answer: ['加州', '得州'],
-                correct: true,
                 notes: '多加一州即“加”州，或又得一州即“得”州',
             },
         ]
@@ -1263,7 +1234,6 @@ const DB = {
         choices: [
             {
                 answer: '松竹梅',
-                correct: true,
                 notes: '都是歲寒三友'
             },
         ]
@@ -1274,8 +1244,7 @@ const DB = {
         moreHints: ['時光倒流'],
         choices: [
             {
-                answer: '返老還童',
-                correct: true,
+                answer: ['返老還童', '返老还童'],
             },
         ]
     },
@@ -1286,7 +1255,6 @@ const DB = {
         choices: [
             {
                 answer: '古巴',
-                correct: true,
                 notes: '四川，巴蜀也。川地古文明三星堆，簡稱古巴'
             },
         ]
@@ -1308,7 +1276,7 @@ const DB = {
         moreHints: ['直轄市', '山城'],
         choices: [
             {
-                answer: ['重慶','重慶市'],
+                answer: ['重慶','重慶市', '重庆', '重庆市'],
             },
         ]
     },
@@ -1318,8 +1286,7 @@ const DB = {
         moreHints: ['省會', '珍惜難得日光'],
         choices: [
             {
-                answer: ['貴陽','貴陽市']
-                // answer: ['貴陽','潮州'],
+                answer: ['貴陽','貴陽市', '贵阳', '贵阳市']
             },
         ]
     },
@@ -1361,7 +1328,7 @@ const DB = {
         moreHints: ['長江中游', '萬里長江第一橋', '男子大丈夫'],
         choices: [
             {
-                answer: ['武漢','武漢市'],
+                answer: ['武漢','武漢市', '武汉', '武汉市'],
                 notes: '關公武聖男子漢，簡稱武漢',
             },
         ]
@@ -1372,7 +1339,7 @@ const DB = {
         moreHints: ['回族自治', '塞上江南', '盛產枸杞'],
         choices: [
             {
-                answer: '寧夏',
+                answer: ['寧夏', '宁夏'],
             },
         ]
     },
@@ -1382,7 +1349,7 @@ const DB = {
         moreHints: ['杜甫草堂詠物', '必在立春前後'],
         choices: [
             {
-                answer: '春節',
+                answer: ['春節', '春节'],
                 notes:'好雨知時“節”，當“春”乃發生'
             },
         ]
@@ -1394,7 +1361,7 @@ const DB = {
         moreHints: ['地表最大遷徙'],
         choices: [
             {
-                answer: '春運',
+                answer: ['春運', '春运'],
                 notes:'人面不知何處去，桃花依舊笑春風，一面之緣的“春”天桃花“運”'
             },
         ]
@@ -1406,7 +1373,7 @@ const DB = {
         moreHints: ['啤酒', '山東'],
         choices: [
             {
-                answer: ['青島','青島市'],
+                answer: ['青島','青島市', '青岛', '青岛市'],
             },
         ]
     },
@@ -1461,6 +1428,16 @@ const DB = {
             },
         ]
     },
+    116: {
+        question: '猜一種食物（不是涼拌茄子）',
+        imageId: 'eggplant.jpg',
+        moreHints: ['海產', '植物'],
+        choices: [
+            {
+                answer: '紫菜',
+            },
+        ]
+    },
 };
 // 移動二根牙籖使等式成立
 /*
@@ -1500,7 +1477,7 @@ const DB = {
 
 */
 const db2026 = [
-    69,79,81,82,83,114,84,80,85,86,87,88,89,90,115,100,101,102,103,104,105,106,107,108,109,110,111,70,77,78,75,72,73,71,74,76
+    69,116,79,81,82,83,114,84,80,85,86,87,88,89,90,115,100,101,102,103,104,105,106,107,108,109,110,111,70,77,78,75,72,73,71,74,76
 ];
 
 const db2024bx = [

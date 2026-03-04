@@ -75,6 +75,7 @@ header {
 }
 .h1 {
     padding: 24px 0;
+    letter-spacing: 0;
 }
 .h3 {
     padding: 20px 0;

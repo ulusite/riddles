@@ -290,8 +290,9 @@ function showCorrectAnswer(riddleEl) {
 }
 
 function prepareText(text) {
-    const data = text.replace(/ /g, '').toLowerCase();
-    return c2tGlobal ? c2tGlobal(data) : data;
+    return text.replace(/ /g, '').toLowerCase();
+    // const data = text.replace(/ /g, '').toLowerCase();
+    // return c2tGlobal ? c2tGlobal(data) : data;
 }
 
 function checkTextAnswer(riddle, yourAnswer, correctAnswer) {
@@ -520,9 +521,9 @@ function onLoad() {
         riddleEls.forEach(riddleEl => showCorrectAnswer(riddleEl));
     }
     // initialize Chinese simplified to traditional converter
-    if (OpenCC) {
-        c2tGlobal = OpenCC.Converter({ from: 'cn', to: 't' });
-    }
+    // if (OpenCC) {
+    //     c2tGlobal = OpenCC.Converter({ from: 'cn', to: 't' });
+    // }
 }
 
 // initialize global vars
