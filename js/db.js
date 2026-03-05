@@ -923,7 +923,7 @@ const DB = {
             },
             {
                 answer: '月季',
-                imageId: 'rose.jpg',
+                imageId: 'rose-iceberg2-reduced.jpg',
             },
             {
                 answer: '木槿',
@@ -933,7 +933,7 @@ const DB = {
             },
             {
                 answer: '辛夷',
-                imageId: 'magnolia.jpg',
+                imageId: 'magnolia2-reduced.jpg',
                 correct: true,
                 notes: '王維《辛夷塢》：木末芙蓉花，山中發紅萼。故辛夷可稱芙蓉。',
             }
@@ -1050,15 +1050,15 @@ const DB = {
             },
             {
                 answer: '杏花',
-                imageId: 'xing5.jpg',
+                imageId: 'xing5-reduced.jpg',
             },
             {
                 answer: '秋海棠',
-                imageId: 'qiu-haitang2.jpg',
+                imageId: 'qiu-haitang2-reduced.jpg',
             },
             {
                 answer: '海棠',
-                imageId: 'haitang2.jpg',
+                imageId: 'haitang6-reduced.jpg',
                 correct: true,
                 notes: '蘇軾《海棠詩》：只恐夜深花睡去，故燒高燭照紅妝。',
             },
@@ -1419,18 +1419,18 @@ const DB = {
     },
     115: {
         question: '移動二根牙籖使等式成立',
-        imageId: 'number-question.jpg',
+        imageId: 'number-question-reduced.jpg',
         skipInput: true,
         choices: [
             {
-                answerImageId: 'number-answer.jpg',
+                answerImageId: 'number-answer-reduced.jpg',
                 notes: '五三正月十五，歡樂今宵，明朝再少年：七十歲專用',
             },
         ]
     },
     116: {
         question: '猜一種食物（不是涼拌茄子）',
-        imageId: 'eggplant.jpg',
+        imageId: 'eggplant-reduced.jpg',
         moreHints: ['海產', '植物'],
         choices: [
             {
