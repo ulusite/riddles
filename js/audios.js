@@ -54,12 +54,12 @@ function play(audioCtx, type, frequency, duration) {
 //     await play(audioCtx, 'sawtooth', 500, 80);
 // }
 
-// plays when wrong answer is submitted or question bypassed
+// plays when wrong answer is submitted
 async function playMidTone(audioCtx) {
     await play(audioCtx, 'triangle', 500);
 }
 
-// plays when warning or hint is displayed
+// plays when warning, hint or bypass is displayed
 async function playSoftTone(audioCtx) {
     await play(audioCtx, 'sine', 440);
 }

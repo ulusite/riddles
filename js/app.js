@@ -187,7 +187,9 @@ function updateScoreHeadline() {
     // play win/sad sound effect when all questions are answered
     if (answerCountGlobal === questionCountGlobal) {
         let audioId = 'win';
-        if (scoreGlobal / questionCountGlobal * 100 <= 50) {
+        // each correct answer gains 2 points, highest score = 2 * questionCountGlobal = 72
+        // make user a winner as long as s/he gains >=36 points
+        if (scoreGlobal < 36) { //
             audioId = 'sad';
         }
         setTimeout(async () => {
@@ -316,13 +318,13 @@ function checkTextAnswer(riddle, yourAnswer, correctAnswer) {
 function showAnswerResult(riddleEl, isCorrect) {
     const questionWrapper = riddleEl.querySelector('.question-wrapper');
     if (isCorrect) {
-        scoreGlobal++;
+        scoreGlobal+=2;
         playTada(audioCtxGlobal);
         questionWrapper.classList.add('yes');
         riddleEl.querySelector('.result-mark').classList.add('yes');
         correctCountGlobal++;
     } else {
-        scoreGlobal--;
+        scoreGlobal++;
         playMidTone(audioCtxGlobal);
         questionWrapper.classList.add('no');
         riddleEl.querySelector('.result-mark').classList.add('no');
@@ -413,7 +415,7 @@ function handleByPass(riddleEl) {
     disableAllInputs(riddleEl);
     bypassCountGlobal++;
     updateScoreHeadline();
-    playMidTone(audioCtxGlobal);
+    playSoftTone(audioCtxGlobal);
 }
 
 function handleMoreHints(riddleEl) {
@@ -543,9 +545,9 @@ const noSkipGlobal = searchParams.get('f') == '1';
 const isAdmGlobal = searchParams.get('adm') == '1';
 
 // find/setup the target data, riddlesDB is defined in db.js
-const fisrtId = riddlesDB.defaultDBId;
+const defaultId = riddlesDB.defaultDBId;
 const dbid = searchParams.get('id');
-const dataGlobal = riddlesDB[dbid] ? riddlesDB[dbid] : riddlesDB[fisrtId];
+const dataGlobal = riddlesDB[dbid] ? riddlesDB[dbid] : riddlesDB[defaultId];
 const masterDB = riddlesDB.masterDB;
 
 // window.onload = onLoad
