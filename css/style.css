@@ -46,6 +46,9 @@ main {
 .blue {
     color: dodgerblue;
 }
+.block {
+    display: block;
+}
 
 /* header elements styles */
 header {

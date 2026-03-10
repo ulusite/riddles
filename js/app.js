@@ -71,6 +71,7 @@ function loadRiddles() {
             restLines.forEach((line, index) => {
                 const lineEl = document.createElement('span');
                 lineEl.textContent = line;
+                lineEl.classList.add('block');
                 previousEl.after(lineEl);
                 previousEl = lineEl;
             });
