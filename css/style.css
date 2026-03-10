@@ -207,9 +207,12 @@ input:disabled {
 .passed .status {
     color: var(--text-passed-color);
 }
-.passed .question-wrapper::after,
+.passed .question-wrapper::after {
+    content: '-- 已跳過';
+    color: var(--text-passed-color);
+}
 .passed .status::after {
-    content: ' 已跳過';
+    content: '已跳過';
     color: var(--text-passed-color);
 }
 .yes::marker,
