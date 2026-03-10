@@ -66,13 +66,11 @@ function loadRiddles() {
         }
         if (Array.isArray(riddle.question)) {
             questionEl.textContent = riddle.question[0];
-            questionEl.classList.add('block');
             const restLines = riddle.question.slice(1);
             let previousEl = questionEl;
             restLines.forEach((line, index) => {
                 const lineEl = document.createElement('span');
                 lineEl.textContent = line;
-                lineEl.classList.add('block');
                 previousEl.after(lineEl);
                 previousEl = lineEl;
             });
@@ -187,16 +185,16 @@ function updateScoreHeadline() {
     // play win/sad sound effect when all questions are answered
     if (answerCountGlobal === questionCountGlobal) {
         let audioId = 'win';
-        // each correct answer gains 2 points, highest score = 2 * questionCountGlobal = 72
-        // make user a winner as long as s/he gains >=36 points
-        if (scoreGlobal < 36) { //
+        // each correct answer gains 2 points, highest score = 2 * questionCountGlobal
+        // make user a winner as long as s/he gains >= number of questions
+        if (scoreGlobal < questionCountGlobal) { //
             audioId = 'sad';
         }
         setTimeout(async () => {
             try {
                 // const sound = document.getElementById(audioId);
                 // sound.play();
-                if (isIphoneChromeGlobal) {
+                if (document.querySelector('html').classList.contains('small-chrome')) {
                     playGameOver(audioCtxGlobal, audioId);
                 } else {
                     const sound = new Audio(`./assets/${audioId}.mp3`);
@@ -211,7 +209,7 @@ function updateScoreHeadline() {
                 window.scrollTo({top: 0, behavior: 'smooth'});
                 scoreHeadlineEl.classList.add('blink');
             }
-        }, 1000);
+        }, 2500);
     }
 }
 
@@ -256,7 +254,6 @@ function showCorrectAnswer(riddleEl) {
                 if (correctChoice.answerImageId) {
                     const imgEl = document.createElement('img');
                     imgEl.classList.add('img');
-                    imgEl.classList.add('block');
                     imgEl.src = `images/${correctChoice.answerImageId}`;
                     notesEl.after(imgEl);
                 }
@@ -316,19 +313,16 @@ function checkTextAnswer(riddle, yourAnswer, correctAnswer) {
 }
 
 function showAnswerResult(riddleEl, isCorrect) {
-    const questionWrapper = riddleEl.querySelector('.question-wrapper');
     if (isCorrect) {
+        riddleEl.classList.add('yes');
         scoreGlobal+=2;
-        playTada(audioCtxGlobal);
-        questionWrapper.classList.add('yes');
-        riddleEl.querySelector('.result-mark').classList.add('yes');
         correctCountGlobal++;
+        playTada(audioCtxGlobal);
     } else {
+        riddleEl.classList.add('no');
         scoreGlobal++;
-        playMidTone(audioCtxGlobal);
-        questionWrapper.classList.add('no');
-        riddleEl.querySelector('.result-mark').classList.add('no');
         wrongCountGlobal++;
+        playMidTone(audioCtxGlobal);
     }
 }
 
@@ -367,7 +361,7 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
 function handleCheckboxInput(riddleEl) {
     const selectedCheckboxes = riddleEl.querySelectorAll('.checkbox-input:checked');
     if (!selectedCheckboxes.length) {
-        riddleEl.querySelector('.error').classList.remove('hide');
+        riddleEl.classList.add('error');
         playSoftTone(audioCtxGlobal);
         return;
     }
@@ -380,7 +374,7 @@ function handleCheckboxInput(riddleEl) {
 function handleRadioInput(riddleEl) {
     const selectedRadio = riddleEl.querySelector('.radio-input:checked');
     if (!selectedRadio) {
-        riddleEl.querySelector('.error').classList.remove('hide');
+        riddleEl.classList.add('error');
         playSoftTone(audioCtxGlobal);
         return;
     }
@@ -408,9 +402,7 @@ function handleTextInput(riddleEl) {
 }
 
 function handleByPass(riddleEl) {
-    const questionWrapper = riddleEl.querySelector('.question-wrapper');
-    questionWrapper.classList.add('passed');
-    riddleEl.querySelector('.result-mark').classList.add('passed');
+    riddleEl.classList.add('passed');
     showCorrectAnswer(riddleEl);
     disableAllInputs(riddleEl);
     bypassCountGlobal++;
@@ -470,7 +462,7 @@ function handleClick(event) {
     if (!riddleEl) {
         return;
     }
-    riddleEl.querySelector('.error').classList.add('hide');
+    riddleEl.classList.remove('error');
     if (eventEl.tagName === 'INPUT' && eventEl.type === 'button') {
         if (eventEl.classList.contains('btn-pass')) {
             handleByPass(riddleEl);
@@ -502,20 +494,6 @@ function handleEnter(event) {
 }
 
 function onLoad() {
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    const mobile = /iPhone|iPad|Android/i;
-    const iphone = /iPhone/i;
-    const small = /iPhone|Android/i;
-
-    if (mobile.test(userAgent)) {
-        document.body.classList.add('mobile');
-        isIphoneChromeGlobal = iphone.test(userAgent) && userAgent.includes('crios');
-        if (small.test(userAgent)) {
-            document.body.classList.add('small');
-        }
-    } else {
-        document.body.classList.add('desktop');
-    }
     loadRiddles();
     initHeader(); // init after riddles are loaded as some might be marked skipped
     if (isAdmGlobal) {
@@ -537,7 +515,6 @@ let wrongCountGlobal = 0;
 let correctCountGlobal = 0;
 let bypassCountGlobal = 0;
 let scoreGlobal = 0;
-let isIphoneChromeGlobal = false;
 let c2tGlobal;
 
 const searchParams = new URLSearchParams(window.location.search);

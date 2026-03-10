@@ -5,6 +5,32 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta name="apple-mobile-web-app-title" content="ulusite" />
+        <script>
+            // set body padding in the beginning to avoid content shifting
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            const small = /iPhone|Android/i;
+            if (small.test(userAgent)) {
+                document.querySelector('html').classList.add('small');
+                const iphone = /iPhone/i;
+                if (iphone.test(userAgent) && userAgent.includes('crios')) {
+                    document.querySelector('html').classList.add('small-chrome');
+                }
+            } else {
+                document.querySelector('html').classList.add('desktop');
+            }
+        </script>
+        <style>
+            :root {
+                --page-max-width: 960px;
+            }
+            .desktop body {
+                max-width: var(--page-max-width);
+                padding: 0 10% 10%;
+            }
+            .small body {
+                padding: 0 20px 20px;
+            }
+        </style>
         <link href="./css/style.css" rel="stylesheet"/>
         <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
@@ -21,10 +47,8 @@
 
     <!-- Riddle maim template -->
     <template id="template__riddle">
-      <li>
-        <div class="riddle">
+        <li class="riddle">
             <div class="question-wrapper strong">
-                <!-- <span class="number"></span> -->
                 <a class="question link hide" target="_blank"></a>
                 <span class="question no-link first-line"></span>
             </div>
@@ -40,19 +64,17 @@
             <div class="buttons">
                 <input type="button" value="跳 過" class="btn btn-pass">
                 <input type="button" value="提 交" class="btn btn-submit">
-                <span class="hide error">請選擇答案再提交</span>
-                <span class="result-mark"></span>
+                <div class="hide status"></div>
             </div>
             <div class="correct-answer-wrapper">
                 <span class="">答案：</span>
                 <span class="answer"></span>
                 <span class="notes"></span>
             </div>
-        </div>
-      </li>
+        </li>
     </template>
 
-    <!-- Riddle input： checkbox -->
+    <!-- Riddle input：checkbox -->
     <template id="template__checkbox">
         <div class="checkbox-wrapper">
             <input type="checkbox" class="checkbox-input">
@@ -65,7 +87,7 @@
         </div>
     </template>
 
-    <!-- Riddle input： radio button -->
+    <!-- Riddle input：radio button -->
     <template id="template__radio">
         <div class="radio-wrapper">
             <input type="radio" class="radio-input">
@@ -78,7 +100,7 @@
         </div>
     </template>
 
-    <!-- Riddle input： text box -->
+    <!-- Riddle input：text box -->
     <template id="template__text">
         <div class="text-wrapper">
             <input type="text" class="text-input">
@@ -100,24 +122,19 @@
                 <span class="title"></span>
                 <span class="subtitle"></span>
             </div>
-            <div>
-                <span>每題答對得二分，答錯得一分，跳過不得分。</span>
-                <!-- <span class="smile">^.^</span> -->
-            </div>
+            <div class="score-rules">每題答對得二分，答錯得一分，跳過不得分</div>
             <div class="h3 score-headline">
-                <span>題數:<span class="question-count strong"></span></span>
-                <span>已答:<span class="answer-count strong"></span></span>
+                <span>題數:<span class="question-count"></span></span>
+                <span>已答:<span class="answer-count"></span></span>
                 <span>提示:<span class="hint-count"></span></span>
                 <span>跳過:<span class="bypass-count"></span></span>
                 <span>答對:<span class="correct-count"></span></span>
                 <span>答錯:<span class="wrong-count"></span></span>
-                <span>得分:<span class="score strong"></span></span>
+                <span>得分:<span class="score"></span></span>
                 <span class="hide win">&#128512;</span>
                 <span class="hide sad">&#128546;</span>
             </div>
-
         </header>
-
         <main>
             <ol class="riddle-list"></ol>
         </main>
@@ -130,7 +147,7 @@
             <audio id="sad" src="./assets/sad.mp3"></audio>
             -->
             Copyright (c) <span class="year"></span> ulusite
-            <span class="date">3/5/26</span>
+            <span class="date">3/9/26</span>
         </footer>
         <!--
         <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/cn2t.js"></script>

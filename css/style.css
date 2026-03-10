@@ -1,5 +1,5 @@
 :root {
-    --page-max-width: 960px;
+    /* --page-max-width: 960px; defined in html */
     --common-height: 28px;
     --input-height: 40px;
     --border-color: #ccc;
@@ -9,21 +9,18 @@
     --btn-aux-bk-color: cadetblue;
     --disabled-color: rgb(84, 84, 84);
     --disabled-bk-color: rgba(239, 239, 239, 0.3);
-    --font-family-en: monospace;
+    /* --font-family-en: monospace; */
     --text-passed-color: #1a73e8;
-    --image-border-color: #eee;
+    --span-spacer: 4px;
+    --font-weight-bold: 600;
 }
 
+/* responsive body padding set in the beginning of html to avoid display shifting */
 body {
     margin: 0 auto;
     font-family: sans-serif;
     font-size: large;
     letter-spacing: 1px;
-    padding: 0 20px 20px;
-}
-body.desktop {
-    max-width: var(--page-max-width);
-    padding: 0 10% 10%;
 }
 
 main {
@@ -35,7 +32,7 @@ main {
     display: none;
 }
 .strong {
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
 }
 .red {
     color: red;
@@ -62,7 +59,7 @@ header {
     top: 0;
 }
 .title {
-    font-size: 36px;
+    font-size: 36px; /* xx-large = 32px */
 }
 .subtitle {
     margin-left: var(--indent-space);
@@ -95,29 +92,24 @@ header {
     100% { opacity: 1; }
 }
 
+/* riddle question styles */
+/* space for 2 digit riddle number set in order list */
 .riddle-list {
     padding-inline-start: 2em;
 }
-/* riddle question element styles */
 .riddle {
     margin-bottom: 24px;
 }
+li.riddle::marker {
+    font-weight: var(--font-weight-bold); /* question number and text are bold*/
+}
 .riddle div {
     margin-bottom: 8px;
-}
-/* .riddle > div {
-    margin-left: var(--indent-space);
-} */
-div.question-wrapper {
-    margin-left: 0;
 }
 .riddle > div.main-hint, .riddle div.more-hint-text {
     font-size: medium;
     margin-bottom: 0;
 }
-/* .riddle div.more-hint-text:last-of-type {
-    margin-bottom: 8px;
-} */
 .more-hint-text::before {
     content: "提示"attr(data-hint-number)"：";
 }
@@ -130,18 +122,7 @@ div.question-wrapper {
     box-sizing:border-box;
 }
 
-.block {
-    display: block;
-}
-
-/* .control .img {
-    max-width: 289px;
-}
-.control .img.block {
-    display: block;
-    max-width: 330px;
-} */
-
+/* riddle input styles */
 input {
     font-size: large;
     border-radius: 4px;
@@ -170,11 +151,8 @@ input:disabled {
     color: red;
     opacity: 1; /* Firefox */
 }
-.error {
-    color: red;
-    line-height: 40px;
-    margin-left: 4px;
-}
+
+/* riddle submit button styles */
 .btn {
     height: var(--input-height);
     vertical-align: top;
@@ -192,7 +170,7 @@ input:disabled {
     border-color: var(--border-color);
 }
 .btn-submit {
-    margin-left: 4px;
+    margin-left: var(--span-spacer);
 }
 .btn-pass {
     background-color: var(--btn-aux-bk-color);
@@ -205,41 +183,60 @@ input:disabled {
     padding: 0 10px;
 }
 
+/* answer status yes/no/bypassed display at the end of questions and button line */
+/* empty input error text is only display at the end of button line */
+.status {
+    display: inline-block;
+    height: 20px;
+    margin-left: var(--span-spacer);
+}
+.status::after {
+    line-height: 46px;
+}
+
+.error .status::after {
+    color: red;
+    content: ' 請選擇答案再提交';
+}
+
+.passed::marker,
+.passed .question-wrapper,
+.passed .status {
+    color: var(--text-passed-color);
+}
+.passed .question-wrapper::after,
+.passed .status::after {
+    content: ' 已跳過';
+    color: var(--text-passed-color);
+}
+.yes::marker,
+.yes .question-wrapper,
+.yes .status {
+    color: green;
+}
+.yes .question-wrapper::after,
+.yes .status::after {
+    content: "\2713"; /* check mark */
+    color: green;
+    font-weight: var(--font-weight-bold);
+}
+.no::marker,
+.no .question-wrapper,
+.no .status {
+    color: red;
+}
+.no .question-wrapper::after,
+.no .status::after {
+    content: "\2717"; /* ballot X */
+    color: red;
+    font-weight: var(--font-weight-bold);
+}
+
+/* riddle answer styles */
 .correct-answer-wrapper {
     text-transform: capitalize;
     opacity: 0;
     transition: opacity 1s ease-in-out;
-}
-
-.passed:after {
-    color: var(--text-passed-color);
-    content: ' 已跳過';
-    vertical-align: top;
-}
-.passed.result-mark:after {
-    font-weight: bold;
-    line-height: 40px;
-    margin-left: 2px;
-}
-.yes.question-wrapper { /* other elements may have yes/no and not change color */
-    color: green;
-}
-.yes::after {
-    content: "\2713"; /* check mark */
-    color: green;
-}
-.no.question-wrapper {
-    color: red;
-}
-.no::after {
-    content: "\2717"; /* ballot X */
-    color: red;
-}
-.yes.result-mark,
-.no.result-mark {
-    font-weight: bold;
-    line-height: 40px;
-    margin-left: 2px;
 }
 
 footer {
@@ -254,6 +251,9 @@ footer {
     float: right;
 }
 /* mobile tweaks */
+.small .score-rules {
+    font-size: medium;
+}
 /* .small .text-input {
     padding: 0 16px;
     max-width: 250px;
