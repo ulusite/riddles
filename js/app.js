@@ -341,10 +341,12 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
     let isCorrect = false;
     if (selectedRadioOrCheckboxes && selectedRadioOrCheckboxes.length > 0) {
         // checkbox group may have multiple correct answers, get all selected answers
-        const yourAnswers = Array.from(selectedRadioOrCheckboxes).map(input => input.value);
-        const sortedYourAnswers = [...yourAnswers].sort();
-        const sortedCorrectAnswers = [...currentRiddle.correctIndex].sort();
-        isCorrect = sortedCorrectAnswers.every((value, index) => value == sortedYourAnswers[index]);
+        if (selectedRadioOrCheckboxes.length == currentRiddle.correctIndex.length) {
+            const yourAnswers = Array.from(selectedRadioOrCheckboxes).map(input => input.value);
+            const sortedYourAnswers = [...yourAnswers].sort();
+            const sortedCorrectAnswers = [...currentRiddle.correctIndex].sort();
+            isCorrect = sortedCorrectAnswers.every((value, index) => value == sortedYourAnswers[index]);
+        }
     } else {
         // text input or radio group has only 1 correct answer
         if (selectedRadioOrCheckboxes) {
