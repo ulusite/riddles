@@ -941,7 +941,7 @@ const DB = {
     },
     70: {
         question: ['列出詩中所有動植物：', '山路多躑躅', '松鼠攀流蘇' ,'依依春深處', '子規聲聲呼'],
-        exactMultiChoice: true,
+        exactMultiWord: true,
         choices: [
             {
                 answer: ['子規', '躑躅', '依依', '松鼠', '流蘇'], //鹧鸪, 踯躅, 松鼠 流苏, 依依
@@ -1046,7 +1046,7 @@ const DB = {
         choices: [
            {
                 answer: '牡丹',
-                imageId: 'poeny.jpg',
+                imageId: 'peony-reduced.jpg',
             },
             {
                 answer: '杏花',
@@ -1264,7 +1264,7 @@ const DB = {
         question: '看圖猜題',
         hint: '猜亞洲國名',
         moreHints: ['東南亞', '華人多'],
-        imageId: 'horse.png',
+        imageId: 'horse.jpg',
         choices: [
             {
                 answer: '馬來西亞',

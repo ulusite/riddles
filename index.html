@@ -74,34 +74,27 @@
         </li>
     </template>
 
-    <!-- Riddle input：checkbox -->
-    <template id="template__checkbox">
-        <div class="checkbox-wrapper">
-            <input type="checkbox" class="checkbox-input">
-            <label>
-                <span class="label-text"></span>
-                <div class="image-wrapper hide">
-                    <img class="img">
-                </div>
-            </label>
-        </div>
+    <!-- Riddle choice label with image -->
+    <template id="template__image-label">
+        <label class="image-wrapper wrap">
+            <img class="img">
+        </label>
     </template>
 
-    <!-- Riddle input：radio button -->
-    <template id="template__radio">
-        <div class="radio-wrapper">
-            <input type="radio" class="radio-input">
-            <label>
+    <!-- Riddle input：checkbox/radio -->
+    <template id="template__choice">
+      <div class="choice-container">
+        <div class="choice-wrapper">
+            <input class="choice-input">
+            <label class="text-label">
                 <span class="label-text"></span>
-                <div class="image-wrapper hide">
-                    <img class="img">
-                </div>
             </label>
         </div>
+      </div>
     </template>
 
     <!-- Riddle input：text box -->
-    <template id="template__text">
+    <template id="template__textbox">
         <div class="text-wrapper">
             <input type="text" class="text-input">
         </div>

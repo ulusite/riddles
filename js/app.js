@@ -5,17 +5,15 @@ function loadImage(imageId, templateNode) {
     imageWrapper.classList.remove('hide');
 }
 
-function buildChoiceEl(choiceEl, riddleId, choiceIndex, choice, templateNode) {
+function buildChoiceEl(inputEl, riddleId, choiceIndex, choice, choiceTemplateNode, isRadio) {
     const elId = `id-${riddleId}-${choiceIndex}`;
-    const nameAttr = `riddle-${riddleId}`;
-    choiceEl.id = elId;
-    choiceEl.value = choiceIndex;
-    choiceEl.name = nameAttr;
-    choiceEl.dataset.currentIndex = choiceIndex;
-    if (choice.imageId) {
-        loadImage(choice.imageId, templateNode);
-    }
-    const labelEl = templateNode.querySelector('label');
+    inputEl.id = elId;
+    inputEl.value = choiceIndex;
+    inputEl.name = `riddle-${riddleId}`;
+    inputEl.dataset.currentIndex = choiceIndex;
+    inputEl.type = isRadio ? 'radio' : 'checkbox';
+
+    const labelEl = choiceTemplateNode.querySelector('label');
     labelEl.htmlFor = elId;
     const labelTextEl = labelEl.querySelector('.label-text');
     let answer = choice.answer;
@@ -23,11 +21,17 @@ function buildChoiceEl(choiceEl, riddleId, choiceIndex, choice, templateNode) {
         if (Array.isArray(answer)) {
             answer = answer[0]; // pick the first correct answer for radio choice
         }
-        labelTextEl.textContent = `${choiceIndex + 1}. ${answer}`;
-    } else {
-        labelTextEl.textContent = `${choiceIndex + 1} `;
+        labelTextEl.textContent = answer;
     }
 
+    // if choice has an image, clone an image label from template and add it to the end of choice container
+    if (choice.imageId) {
+        const imageLabelNode = imageLabelTemplateGlobal.content.cloneNode(true);
+        loadImage(choice.imageId, imageLabelNode);
+        const imageLabelEl = imageLabelNode.querySelector('label');
+        imageLabelEl.htmlFor = elId;
+        choiceTemplateNode.querySelector('.choice-container').appendChild(imageLabelNode);
+    }
 }
 
 function loadRiddles() {
@@ -35,9 +39,9 @@ function loadRiddles() {
     const mainEl = document.querySelector('main');
     const listEl = mainEl.querySelector('ol');
     const riddleTemplate = document.querySelector('#template__riddle');
-    const textTemplate = document.querySelector('#template__text');
-    const checkboxTemplate = document.querySelector('#template__checkbox');
-    const radioTemplate = document.querySelector('#template__radio');
+    const textTemplate = document.querySelector('#template__textbox');
+    const choiceTemplate = document.querySelector('#template__choice');
+    imageLabelTemplateGlobal = document.querySelector('#template__image-label');
 
     dataGlobal.db.forEach(riddleId => {
         const riddle = masterDB[riddleId];
@@ -50,9 +54,9 @@ function loadRiddles() {
         riddleEl.dataset.riddleId = riddleId;
 
         // load riddle question
-        // const numberEl = riddleNode.querySelector('.number');
-        // numberEl.textContent = `${questionCountGlobal}. `;
         const questionEl = riddleNode.querySelector('.question.first-line');
+
+        // if riddle question has a link
         const linkQuestionEl = riddleNode.querySelector('.question.link');
         if (riddle.link) {
             if (Array.isArray(riddle.question)) {
@@ -64,14 +68,16 @@ function loadRiddles() {
             linkQuestionEl.classList.remove('hide');
             questionEl.classList.add('hide');
         }
-        if (Array.isArray(riddle.question)) {
+
+        // if question text needs to wrap to multi lines
+        if (Array.isArray(riddle.question) && riddle.question.length > 1) {
             questionEl.textContent = riddle.question[0];
             const restLines = riddle.question.slice(1);
             let previousEl = questionEl;
             restLines.forEach((line, index) => {
                 const lineEl = document.createElement('span');
                 lineEl.textContent = line;
-                lineEl.classList.add('block');
+                lineEl.classList.add('wrap');
                 previousEl.after(lineEl);
                 previousEl = lineEl;
             });
@@ -80,23 +86,29 @@ function loadRiddles() {
             questionEl.textContent = riddle.question;
         }
 
+        // if riddle question has main/more hints
         if (riddle.hint) {
             const hintEl = riddleNode.querySelector('.hint');
             hintEl.textContent = riddle.hint;
             hintEl.classList.remove('hide');
         }
+        if (riddle.moreHints && riddle.moreHints.length) {
+            const moreHintsEl = riddleNode.querySelector('.more-hints');
+            moreHintsEl.classList.remove('hide');
+            const moreHintBtn = moreHintsEl.querySelector('.btn-hint');
+            moreHintBtn.dataset.hintIndex = 0;
+        }
 
+        // if riddle question has an image
         if (riddle.imageId) {
             loadImage(riddle.imageId, riddleNode);
         }
 
-        // load riddle answer choices
+        // load riddle input control
         const controlEl = riddleNode.querySelector('.control');
         const nameAttr = `riddle-${riddleId}`;
-
         if (riddle.textBox === true || riddle.choices.length === 1) {
-            // load choice riddle with text input
-            // if there is only 1 choice, default to text input and ignore the textBox switch
+            // load riddle with text input: when there is only 1 choice or riddle specifies to use text box
             if (riddle.choices.length === 1) {
                  riddle.correctIndex = 0;
             } else {
@@ -106,43 +118,25 @@ function loadRiddles() {
             const textNode = textTemplate.content.cloneNode(true);
             const inputEl = textNode.querySelector('.text-input');
             inputEl.name = nameAttr;
+
+            // if riddle doesn't provide correct answer, give free points
             if (riddle.skipInput == true) {
                 inputEl.placeholder = '請直接提交';
                 inputEl.disabled = 'true';
             }
             controlEl.appendChild(textNode);
         } else {
+            // load riddle with checkbox/radio group depending on single/multi correct answers
             const correctIndixes = riddle.choices.map((choice, index) => (choice.correct == true ? index : -1)).filter(index => index !== -1);
-            if (correctIndixes.length > 1) {
-                riddle.correctIndex = correctIndixes;
-                // multi choices, load riddle with checkboxes
-                riddle.choices.forEach((choice, choiceIndex) => {
-                    const checkboxNode = checkboxTemplate.content.cloneNode(true);
-                    const checkboxEl = checkboxNode.querySelector('.checkbox-input');
-                    buildChoiceEl(checkboxEl, riddleId, choiceIndex, choice, checkboxNode);
-                    controlEl.appendChild(checkboxNode);
-                });
-                controlEl.classList.add('checkbox-group');
-            }
-            else {
-                // single choice, load riddle with radio buttons
-                riddle.choices.forEach((choice, choiceIndex) => {
-                    const radioNode = radioTemplate.content.cloneNode(true);
-                    const radioEl = radioNode.querySelector('.radio-input');
-                    buildChoiceEl(radioEl, riddleId, choiceIndex, choice, radioNode);
-                    if (choice.correct === true) {
-                        riddle.correctIndex = choiceIndex;
-                    }
-                    controlEl.appendChild(radioNode);
-                });
-                controlEl.classList.add('radio-group');
-            }
-        }
-        if (riddle.moreHints && riddle.moreHints.length) {
-            const moreHintsEl = riddleNode.querySelector('.more-hints');
-            moreHintsEl.classList.remove('hide');
-            const moreHintBtn = moreHintsEl.querySelector('.btn-hint');
-            moreHintBtn.dataset.hintIndex = 0;
+            const isRadio = correctIndixes.length == 1;
+            riddle.choices.forEach((choice, choiceIndex) => {
+                const choiceNode = choiceTemplate.content.cloneNode(true);
+                const inputEl = choiceNode.querySelector('input');
+                buildChoiceEl(inputEl, riddleId, choiceIndex, choice, choiceNode, isRadio);
+                controlEl.appendChild(choiceNode);
+            });
+            riddle.correctIndex = correctIndixes;
+            controlEl.classList.add('choice-group');
         }
         listEl.appendChild(riddleNode);
     });
@@ -216,77 +210,84 @@ function updateScoreHeadline() {
 
 function showCorrectAnswer(riddleEl) {
     const correctAnswerWrapper = riddleEl.querySelector('.correct-answer-wrapper');
-    if (correctAnswerWrapper.classList.contains('had-shown')) {
+    if (correctAnswerWrapper.classList.contains('answer-shown')) {
         return;
     }
 
     const riddleId = riddleEl.dataset.riddleId;
     const currentRiddle = masterDB[riddleId];
+    const correctIndex = currentRiddle.correctIndex;
     const controlEl = riddleEl.querySelector('.control');
     const answerEl = correctAnswerWrapper.querySelector('.answer');
 
-    if (controlEl.classList.contains('checkbox-group')) {
-        // checkbox group may have multiple correct answers, show all correct answers
-        // const notes = [];
-        const correctAnswers = currentRiddle.correctIndex.map(index => {
-            const choice = currentRiddle.choices[index];
-            const answer = choice.answer ? `${index + 1}. ${choice.answer}` : `${index + 1}`;
-            if (choice.notes) {
-                return `${answer} (${choice.notes})`;
-            }
-            return answer;
-        });
-        answerEl.textContent = correctAnswers.join(', ');
-    } else {
-        const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
-        if (controlEl.classList.contains('radio-group')) {
-            // radio input has only 1 correct answer
-            if (correctChoice.answer) {
-                answerEl.textContent = `${currentRiddle.correctIndex + 1}. ${correctChoice.answer}`;
-            } else {
-                answerEl.textContent = `${currentRiddle.correctIndex + 1}`;
-            }
+    if (controlEl.classList.contains('choice-group')) {
+        // show correct answer for checkbox/radio input riddles
+        if (correctIndex.length > 1) {
+            // checkbox group have multiple correct answers, show all correct answers
+            const correctAnswers = correctIndex.map(index => {
+                const choice = currentRiddle.choices[index];
+                const answer = choice.answer ? `${index + 1}. ${choice.answer}` : `${index + 1}`;
+                // append every correct answer's notes if exist
+                if (choice.notes) {
+                    return `${answer} (${choice.notes})`;
+                }
+                return answer;
+            });
+            answerEl.textContent = correctAnswers.join(', ');
         } else {
-            if (currentRiddle.skipInput && !correctAnswerWrapper.classList.contains('had-shown')) {
-                const notesEl = correctAnswerWrapper.querySelector('.notes');
-                if (correctChoice.notes) {
-                    notesEl.textContent = `(${correctChoice.notes})`;
-                }
-                if (correctChoice.answerImageId) {
-                    const imgEl = document.createElement('img');
-                    imgEl.classList.add('img');
-                    imgEl.src = `images/${correctChoice.answerImageId}`;
-                    notesEl.after(imgEl);
-                }
-                correctAnswerWrapper.style.opacity = 1;
-                correctAnswerWrapper.classList.add('had-shown');
-                return;
-            }
-            const isExactMulti = currentRiddle.exactMultiChoice == true;
-            // only when user answer matches all correct answers can be considered correct answer, show all
-            if (isExactMulti && Array.isArray(correctChoice.answer)) {
-                answerEl.textContent = correctChoice.answer.join(', ');
+            // radio input has only 1 correct answer
+            const correctChoice = currentRiddle.choices[correctIndex[0]];
+            if (correctChoice.answer) {
+                answerEl.textContent = `${correctIndex[0] + 1}. ${correctChoice.answer}`;
             } else {
-                // when single correct answer but has multi representations, show the first
-                if (Array.isArray(correctChoice.answer)) {
-                    if (currentRiddle.multiAnswer) {
-                        answerEl.textContent = correctChoice.answer.join(', ');
-                    } else {
-                        answerEl.textContent = correctChoice.answer[0];
-                    }
-                } else {
-                    answerEl.textContent = correctChoice.answer;
-                }
+                answerEl.textContent = `${correctIndex[0] + 1}`;
             }
         }
-        // support notes for single correct answer only
+    } else {
+        // show correct answer for text box input riddles
+        const correctChoice = currentRiddle.choices[currentRiddle.correctIndex];
+        if (currentRiddle.skipInput && !correctAnswerWrapper.classList.contains('answer-shown')) {
+            // for riddles that don't provide correct answer text
+            const notesEl = correctAnswerWrapper.querySelector('.notes');
+            if (correctChoice.notes) {
+                notesEl.textContent = `(${correctChoice.notes})`;
+            }
+            if (correctChoice.answerImageId) {
+                const imgEl = document.createElement('img');
+                imgEl.classList.add('img');
+                imgEl.classList.add('wrap');
+                imgEl.src = `images/${correctChoice.answerImageId}`;
+                notesEl.after(imgEl);
+            }
+            correctAnswerWrapper.style.opacity = 1;
+            correctAnswerWrapper.classList.add('answer-shown');
+            return;
+        }
+        // text box input with multi word answer
+        const isExactMulti = currentRiddle.exactMultiWord == true;
+        // only when user answer matches all correct words can be considered correct answer, show all
+        if (isExactMulti && Array.isArray(correctChoice.answer)) {
+            answerEl.textContent = correctChoice.answer.join(', ');
+        } else {
+            // when single correct answer but has multi representations, show the first
+            if (Array.isArray(correctChoice.answer)) {
+                if (currentRiddle.multiAnswer) {
+                    answerEl.textContent = correctChoice.answer.join(', ');
+                } else {
+                    answerEl.textContent = correctChoice.answer[0];
+                }
+            } else {
+                answerEl.textContent = correctChoice.answer;
+            }
+        }
+        // set notes from the single correct answer
         if (correctChoice.notes) {
             const notesEl = correctAnswerWrapper.querySelector('.notes');
             notesEl.textContent = `(${correctChoice.notes})`;
         }
     }
     correctAnswerWrapper.style.opacity = 1;
-    correctAnswerWrapper.classList.add('had-shown');
+    correctAnswerWrapper.classList.add('answer-shown');
 }
 
 function prepareText(text) {
@@ -296,7 +297,7 @@ function prepareText(text) {
 }
 
 function checkTextAnswer(riddle, yourAnswer, correctAnswer) {
-    const isExactMulti = riddle.exactMultiChoice == true;
+    const isExactMulti = riddle.exactMultiWord == true;
     if (!isExactMulti && !Array.isArray(correctAnswer)) {
         return prepareText(correctAnswer) == prepareText(yourAnswer);
     }
@@ -331,6 +332,7 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
     const riddleId = riddleEl.dataset.riddleId;
     const currentRiddle = masterDB[riddleId];
 
+    // if riddle doesn't provide correct answer, simple treats it as correctly answered
     if (currentRiddle.skipInput == true) {
         showAnswerResult(riddleEl, true);
         return;
@@ -344,8 +346,8 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
         const sortedCorrectAnswers = [...currentRiddle.correctIndex].sort();
         isCorrect = sortedCorrectAnswers.every((value, index) => value == sortedYourAnswers[index]);
     } else {
-         // text input or radio group has only 1 correct answer
-        if (selectedRadioOrCheckboxes){
+        // text input or radio group has only 1 correct answer
+        if (selectedRadioOrCheckboxes) {
             selectedRadioOrCheckboxes.classList.add('selected');
             isCorrect = currentRiddle.correctIndex == selectedRadioOrCheckboxes.value;
         } else {
@@ -359,28 +361,15 @@ function handleYourAnswer(riddleEl, selectedRadioOrCheckboxes) {
     showAnswerResult(riddleEl, isCorrect);
 }
 
-function handleCheckboxInput(riddleEl) {
-    const selectedCheckboxes = riddleEl.querySelectorAll('.checkbox-input:checked');
-    if (!selectedCheckboxes.length) {
+function handleChoiceInput(riddleEl) {
+    const selectedChoices = riddleEl.querySelectorAll('input:checked');
+    if (!selectedChoices.length) {
         riddleEl.classList.add('error');
         playSoftTone(audioCtxGlobal);
         return;
     }
     showCorrectAnswer(riddleEl);
-    handleYourAnswer(riddleEl, selectedCheckboxes);
-    disableAllInputs(riddleEl);
-    updateScoreHeadline();
-}
-
-function handleRadioInput(riddleEl) {
-    const selectedRadio = riddleEl.querySelector('.radio-input:checked');
-    if (!selectedRadio) {
-        riddleEl.classList.add('error');
-        playSoftTone(audioCtxGlobal);
-        return;
-    }
-    showCorrectAnswer(riddleEl);
-    handleYourAnswer(riddleEl, selectedRadio);
+    handleYourAnswer(riddleEl, selectedChoices);
     disableAllInputs(riddleEl);
     updateScoreHeadline();
 }
@@ -472,10 +461,8 @@ function handleClick(event) {
             handleMoreHints(riddleEl);
         } else {
             const controlEl = riddleEl.querySelector('.control');
-            if (controlEl.classList.contains('checkbox-group')) {
-                handleCheckboxInput(riddleEl);
-            } else if (controlEl.classList.contains('radio-group')) {
-                handleRadioInput(riddleEl);
+            if (controlEl.classList.contains('choice-group')) {
+                handleChoiceInput(riddleEl);
             } else {
                 handleTextInput(riddleEl);
             }
@@ -517,6 +504,7 @@ let correctCountGlobal = 0;
 let bypassCountGlobal = 0;
 let scoreGlobal = 0;
 let c2tGlobal;
+let imageLabelTemplateGlobal;
 
 const searchParams = new URLSearchParams(window.location.search);
 const noSkipGlobal = searchParams.get('f') == '1';

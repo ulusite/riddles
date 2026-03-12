@@ -11,7 +11,7 @@
     --disabled-bk-color: rgba(239, 239, 239, 0.3);
     /* --font-family-en: monospace; */
     --text-passed-color: #1a73e8;
-    --span-spacer: 4px;
+    --span-spacer: 2px;
     --font-weight-bold: 600;
 }
 
@@ -46,7 +46,7 @@ main {
 .blue {
     color: dodgerblue;
 }
-.block {
+.wrap {
     display: block;
 }
 
@@ -104,17 +104,18 @@ header {
     margin-bottom: 24px;
 }
 li.riddle::marker {
-    font-weight: var(--font-weight-bold); /* question number and text are bold*/
+    font-weight: var(--font-weight-bold); /* question number and text are bold */
 }
 .riddle div {
     margin-bottom: 8px;
 }
-.riddle > div.main-hint, .riddle div.more-hint-text {
+.riddle > div.main-hint,
+.riddle div.more-hint-text {
     font-size: medium;
     margin-bottom: 0;
 }
 .more-hint-text::before {
-    content: "提示"attr(data-hint-number)"：";
+    content: "提示" attr(data-hint-number)"：";
 }
 .img {
     object-fit: contain;
@@ -122,7 +123,7 @@ li.riddle::marker {
     width: 100%;
     vertical-align: top;
     max-width: 330px;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 /* riddle input styles */
@@ -155,7 +156,43 @@ input:disabled {
     opacity: 1; /* Firefox */
 }
 
-/* riddle submit button styles */
+/* checkbox/radio group choice auto counter*/
+.choice-group {
+    counter-reset: choice-counter;
+}
+.choice-group .text-label {
+    counter-increment: choice-counter;
+    position: relative;
+    padding-left: 1.2em;
+    overflow-wrap: anywhere;
+}
+.choice-group .text-label::before {
+    content: counter(choice-counter) ". ";
+    position: absolute;
+    left: 0;
+}
+
+/* checkbox/radio label wrapping indetation to align with label text, not the checkbox/radio controls */
+.choice-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+.choice-wrapper input {
+    margin-right: 10px;
+    flex-shrink: 0;
+    height: 22px;
+}
+.choice-wrapper label {
+    flex-grow: 1;
+    white-space: normal;
+}
+
+/* remove margin between choice text label and image label */
+label.image-wrapper {
+    margin-top: -8px;
+}
+
+/* riddle button styles */
 .btn {
     height: var(--input-height);
     vertical-align: top;
@@ -192,16 +229,17 @@ input:disabled {
     display: inline-block;
     height: 20px;
     margin-left: var(--span-spacer);
+    letter-spacing: 0;
+    font-size: medium;
+    line-height: 44px;
 }
-.status::after {
-    line-height: 46px;
+.small .status {
+    line-height: 42px;
 }
-
 .error .status::after {
     color: red;
-    content: ' 請選擇答案再提交';
+    content: '請選擇答案再提交';
 }
-
 .passed::marker,
 .passed .question-wrapper,
 .passed .status {
@@ -245,6 +283,7 @@ input:disabled {
     transition: opacity 1s ease-in-out;
 }
 
+/* footer styles */
 footer {
     padding-top: 20px;
     border-top: 1px dotted var(--border-color);
@@ -252,10 +291,10 @@ footer {
     font-size: medium;
     letter-spacing: 2px;
 }
-
 .date {
     float: right;
 }
+
 /* mobile tweaks */
 .small .score-rules {
     font-size: medium;
