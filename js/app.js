@@ -237,7 +237,9 @@ function showCorrectAnswer(riddleEl) {
         } else {
             // radio input has only 1 correct answer
             const correctChoice = currentRiddle.choices[correctIndex[0]];
-            if (correctChoice.answer) {
+            if (correctChoice.answer && Array.isArray(correctChoice.answer)) {
+                answerEl.textContent = `${correctIndex[0] + 1}. ${correctChoice.answer[0]}`
+            } else if (correctChoice.answer) {
                 answerEl.textContent = `${correctIndex[0] + 1}. ${correctChoice.answer}`;
             } else {
                 answerEl.textContent = `${correctIndex[0] + 1}`;
