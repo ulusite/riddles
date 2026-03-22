@@ -242,6 +242,11 @@ function showCorrectAnswer(riddleEl) {
             } else {
                 answerEl.textContent = `${correctIndex[0] + 1}`;
             }
+            // set notes from the single correct answer
+            if (correctChoice.notes) {
+                const notesEl = correctAnswerWrapper.querySelector('.notes');
+                notesEl.textContent = `(${correctChoice.notes})`;
+            }
         }
     } else {
         // show correct answer for text box input riddles
