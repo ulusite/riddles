@@ -492,7 +492,7 @@ function handleEnter(event) {
 
 function onLoad() {
     loadRiddles();
-    initHeader(); // init after riddles are loaded as some might be marked skipped
+    initHeader(); // init after riddles are loaded to get actual question count as some might be marked skipped
     if (isAdmGlobal) {
         const riddleEls = document.querySelectorAll('.riddle');
         riddleEls.forEach(riddleEl => showCorrectAnswer(riddleEl));
